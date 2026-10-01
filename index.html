@@ -124,7 +124,7 @@
     .card-fault { background-color: #fcfbfb; border-color: #d8b4b4; }
     .card-fault h3 { color: #734040; }
 
-    /* Top Full-Width Navigation Button */
+    /* Top Full-Width Navigation Button (Contrasting Dark Slate) */
     .top-nav {
       margin-bottom: 20px;
     }
@@ -141,7 +141,7 @@
       font-weight: bold;
       line-height: 1.2;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      background-color: #2986cc;
+      background-color: #37474f;
     }
     .btn-large { font-size: 14px; font-weight: bold; }
 
@@ -187,15 +187,25 @@
       text-align: center;
       padding: 14px 8px;
       border-radius: 8px;
-      border: 1px solid #44403c;
-      background-color: #57534e;
       cursor: pointer;
       font-weight: bold;
       line-height: 1.2;
       box-shadow: 0 2px 4px rgba(87, 83, 78, 0.2);
       font-family: Arial, sans-serif;
     }
-    .bottom-dual-row-btn:hover { background-color: #44403c; }
+
+    /* Distinct Notes Button Colors */
+    .btn-members-notes {
+      background-color: #15803d;
+      border: 1px solid #166534;
+    }
+    .btn-members-notes:hover { background-color: #166534; }
+
+    .btn-parents-notes {
+      background-color: #57534e;
+      border: 1px solid #44403c;
+    }
+    .btn-parents-notes:hover { background-color: #44403c; }
 
     .bottom-full-nav {
       margin-bottom: 20px;
@@ -316,6 +326,18 @@
     </div>
   </div>
 
+  <!-- Side-by-Side Notes Buttons -->
+  <div class="bottom-dual-row">
+    <button onclick="toggleSubSection('member-notes-card')" class="bottom-dual-row-btn btn-members-notes">
+      <span class="btn-large">Current Notes for</span>
+      <span class="btn-large">Choir Members</span>
+    </button>
+    <button onclick="toggleSubSection('parent-notes-card')" class="bottom-dual-row-btn btn-parents-notes">
+      <span class="btn-large">Current Notes for</span>
+      <span class="btn-large">Parents / Guardians</span>
+    </button>
+  </div>
+
   <!-- Three-Column Toggle Navigation Buttons -->
   <div class="triple-nav">
     <button onclick="toggleSection('subscribe-section')" class="triple-nav-btn">
@@ -334,11 +356,11 @@
 
   <!-- Side-by-Side Buttons: Privacy & Safeguarding -->
   <div class="bottom-dual-row">
-    <button onclick="toggleSection('privacy-section')" class="bottom-dual-row-btn">
+    <button onclick="toggleSection('privacy-section')" class="bottom-dual-row-btn" style="background-color: #57534e; border: 1px solid #44403c;">
       <span class="btn-large">Privacy /</span>
       <span class="btn-large">Data Protection</span>
     </button>
-    <button onclick="toggleSection('safeguarding-section')" class="bottom-dual-row-btn">
+    <button onclick="toggleSection('safeguarding-section')" class="bottom-dual-row-btn" style="background-color: #57534e; border: 1px solid #44403c;">
       <span class="btn-large">Child Protection &amp;</span>
       <span class="btn-large">Safeguarding</span>
     </button>
@@ -443,8 +465,8 @@
       <form id="fault-form" onsubmit="submitFaultReport(event)">
         <div style="font-size: 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
           <label><input type="checkbox" name="fault_area" value="Choir Calendar in Web Browser"> Choir Calendar in Web Browser</label>
-          <label><input type="checkbox" name="fault_area" value="Notes for Choir Members"> Notes for Choir Members</label>
-          <label><input type="checkbox" name="fault_area" value="Notes for Parents/Guardians"> Notes for Parents/Guardians</label>
+          <label><input type="checkbox" name="fault_area" value="Current Notes for Choir Members"> Current Notes for Choir Members</label>
+          <label><input type="checkbox" name="fault_area" value="Current Notes for Parents/Guardians"> Current Notes for Parents/Guardians</label>
           <label><input type="checkbox" name="fault_area" value="Future Events"> Future Events</label>
           <label><input type="checkbox" name="fault_area" value="Choir Calendar Subscription"> Choir Calendar Subscription</label>
           <label><input type="checkbox" name="fault_area" value="Phone Installation Guide"> Phone Installation Guide</label>
@@ -626,25 +648,16 @@
       fullHTML += '<div class="card card-event-1"><h3>' + formattedDateTitle + '</h3><div class="card-inner">' + eventsDetailsHTML + '</div></div>';
     }
 
-    fullHTML += '<div class="section-subheading">Current Notes</div>';
-
-    // Side-by-side buttons for Notes selection
-    fullHTML += '<div class="bottom-dual-row">' +
-                '<button onclick="toggleSubSection(\'member-notes-card\')" class="bottom-dual-row-btn" style="background-color: #22c55e; border-color: #15803d;">' +
-                '<span class="btn-large">Notes for</span><span class="btn-large">Choir Members</span></button>' +
-                '<button onclick="toggleSubSection(\'parent-notes-card\')" class="bottom-dual-row-btn" style="background-color: #2563eb; border-color: #1d4ed8;">' +
-                '<span class="btn-large">Notes for</span><span class="btn-large">Parents / Guardians</span></button>' +
-                '</div>';
-
-    // Hidden by default: Choir Members Notes Card (Director + Manager)
+    // Hidden by default: Choir Members Notes Card (Director first, then Manager for members)
     fullHTML += '<div id="member-notes-card" style="display: none;">';
     fullHTML += '<div class="card card-director"><h3>Notes from Chorus Director</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
     fullHTML += '<div class="card card-manager"><h3>Notes from Choir Manager (Members)</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
     fullHTML += '</div>';
 
-    // Hidden by default: Parents/Guardians Notes Card (Manager only)
+    // Hidden by default: Parents/Guardians Notes Card (Manager first, then Director notes/gratitude)
     fullHTML += '<div id="parent-notes-card" style="display: none;">';
     fullHTML += '<div class="card card-manager"><h3>Notes from Choir Manager (Parents / Guardians)</h3><div class="card-inner"><p id="parent-manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+    fullHTML += '<div class="card card-director"><h3>Notes from Chorus Director (Parents / Guardians)</h3><div class="card-inner"><p id="parent-director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
     fullHTML += '</div>';
 
     fullHTML += '<div class="section-subheading">Future Events</div>';
@@ -699,17 +712,13 @@
     let fallbackHTML = 
       '<div class="section-subheading">Next Event</div>' +
       '<div class="card card-event-1"><h3>Schedule Notice</h3><div class="card-inner"><p style="margin-top: 0;">Unable to load live calendar feed automatically. Please view the <a href="https://calendar.google.com/calendar/embed?src=corlinirl%40gmail.com&ctz=Europe%2FDublin" target="_blank" style="color: #1e3a8a; font-weight: bold;">Choir Calendar</a> directly.</p></div></div>' +
-      '<div class="section-subheading">Current Notes</div>' +
-      '<div class="bottom-dual-row">' +
-      '<button onclick="toggleSubSection(\'member-notes-card\')" class="bottom-dual-row-btn" style="background-color: #22c55e; border-color: #15803d;"><span class="btn-large">Notes for</span><span class="btn-large">Choir Members</span></button>' +
-      '<button onclick="toggleSubSection(\'parent-notes-card\')" class="bottom-dual-row-btn" style="background-color: #2563eb; border-color: #1d4ed8;"><span class="btn-large">Notes for</span><span class="btn-large">Parents / Guardians</span></button>' +
-      '</div>' +
       '<div id="member-notes-card" style="display: none;">' +
       '<div class="card card-director"><h3>Notes from Chorus Director</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
       '<div class="card card-manager"><h3>Notes from Choir Manager (Members)</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
       '</div>' +
       '<div id="parent-notes-card" style="display: none;">' +
       '<div class="card card-manager"><h3>Notes from Choir Manager (Parents / Guardians)</h3><div class="card-inner"><p id="parent-manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
+      '<div class="card card-director"><h3>Notes from Chorus Director (Parents / Guardians)</h3><div class="card-inner"><p id="parent-director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
       '</div>';
 
     document.getElementById('events-container').innerHTML = fallbackHTML;
@@ -728,6 +737,8 @@
         if (data.content) {
           const contentEl = document.getElementById('director-content');
           if (contentEl) contentEl.innerHTML = data.content;
+          const parentContentEl = document.getElementById('parent-director-content');
+          if (parentContentEl) parentContentEl.innerHTML = data.content;
         }
         if (data.modifiedTime) {
           const dateObj = new Date(data.modifiedTime);
@@ -735,15 +746,21 @@
           const formattedTime = dateObj.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
           const timeEl = document.getElementById('director-timestamp');
           if (timeEl) timeEl.innerText = 'Last Updated: ' + formattedTime + ' on ' + formattedDate;
+          const parentTimeEl = document.getElementById('parent-director-timestamp');
+          if (parentTimeEl) parentTimeEl.innerText = 'Last Updated: ' + formattedTime + ' on ' + formattedDate;
         } else {
           const timeEl = document.getElementById('director-timestamp');
           if (timeEl) timeEl.innerText = 'Last Updated: Unavailable';
+          const parentTimeEl = document.getElementById('parent-director-timestamp');
+          if (parentTimeEl) parentTimeEl.innerText = 'Last Updated: Unavailable';
         }
       }
     } catch (e) {
       console.error('Failed to load director notes', e);
       const el = document.getElementById('director-timestamp');
       if (el) el.innerText = 'Last Updated: Unavailable';
+      const parentEl = document.getElementById('parent-director-timestamp');
+      if (parentEl) parentEl.innerText = 'Last Updated: Unavailable';
     }
   }
 
@@ -825,6 +842,40 @@
       '<body>' +
       '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
       '<h2>Notes from Chorus Director</h2>' +
+      '<div class="timestamp">' + timestampText + '</div>' +
+      '<div style="font-size: 16px;">' + contentHTML + '</div>' +
+      '</body>' +
+      '</html>';
+
+    const blob = new Blob([printPageHTML], { type: 'text/html' });
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, '_blank');
+  }
+
+  function openParentDirectorPrintView() {
+    const contentEl = document.getElementById('parent-director-content');
+    const timeEl = document.getElementById('parent-director-timestamp');
+    const contentHTML = contentEl ? contentEl.innerHTML : '';
+    const timestampText = timeEl ? timeEl.innerText : '';
+
+    const printPageHTML = 
+      '<!DOCTYPE html>' +
+      '<html lang="en">' +
+      '<head>' +
+      '<meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<title>Notes from Chorus Director (Parents) - Printable View</title>' +
+      '<style>' +
+      'body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }' +
+      'h2 { color: #15803d; border-bottom: 2px solid #15803d; padding-bottom: 8px; margin-top: 0; }' +
+      '.timestamp { font-size: 14px; color: #d32f2f; margin-bottom: 20px; font-style: italic; font-weight: bold; }' +
+      '.print-btn { background: #15803d; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-bottom: 30px; }' +
+      '@media print { .print-btn { display: none; } }' +
+      '</style>' +
+      '</head>' +
+      '<body>' +
+      '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
+      '<h2>Notes from Chorus Director (Parents / Guardians)</h2>' +
       '<div class="timestamp">' + timestampText + '</div>' +
       '<div style="font-size: 16px;">' + contentHTML + '</div>' +
       '</body>' +
