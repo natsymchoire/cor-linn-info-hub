@@ -194,18 +194,20 @@
       font-family: Arial, sans-serif;
     }
 
-    /* Distinct Notes Button Colors */
+    /* Distinct Notes Button Colors (Members updated to #c894e0 with dark text for contrast) */
     .btn-members-notes {
+      background-color: #c894e0;
+      color: #222;
+      border: 1px solid #a874c0;
+      box-shadow: 0 2px 4px rgba(200, 148, 224, 0.3);
+    }
+    .btn-members-notes:hover { background-color: #b884d0; }
+
+    .btn-parents-notes {
       background-color: #15803d;
       border: 1px solid #166534;
     }
-    .btn-members-notes:hover { background-color: #166534; }
-
-    .btn-parents-notes {
-      background-color: #57534e;
-      border: 1px solid #44403c;
-    }
-    .btn-parents-notes:hover { background-color: #44403c; }
+    .btn-parents-notes:hover { background-color: #166534; }
 
     .bottom-full-nav {
       margin-bottom: 20px;
@@ -636,7 +638,7 @@
       fullHTML += '<div class="card card-event-1"><h3>' + formattedDateTitle + '</h3><div class="card-inner">' + eventsDetailsHTML + '</div></div>';
     }
 
-    // --- Notes Buttons (Placed right after Next Event / Today's Event) ---
+    // --- Notes Buttons & Cards Placed Right After Next Event / Today's Event ---
     fullHTML += '<div class="bottom-dual-row" style="margin-top: 20px;">';
     fullHTML += '<button onclick="toggleSubSection(\'member-notes-card\')" class="bottom-dual-row-btn btn-members-notes"><span class="btn-large">Current Notes for</span><span class="btn-large">Choir Members</span></button>';
     fullHTML += '<button onclick="toggleSubSection(\'parent-notes-card\')" class="bottom-dual-row-btn btn-parents-notes"><span class="btn-large">Current Notes for</span><span class="btn-large">Parents / Guardians</span></button>';
@@ -644,15 +646,16 @@
 
     // Hidden by default: Choir Members Notes Card (Director first, then Manager for members)
     fullHTML += '<div id="member-notes-card" style="display: none;">';
-    fullHTML += '<div class="card card-director"><h3>Notes from Chorus Director</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
-    fullHTML += '<div class="card card-manager"><h3>Notes from Choir Manager (Members)</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+    fullHTML += '<div class="card card-director"><h3>Music Director&rsquo;s Notes for C&oacute;r Linn Members</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+    fullHTML += '<div class="card card-manager"><h3>Choir Manager&rsquo;s Notes for C&oacute;r Linn Members</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
     fullHTML += '</div>';
 
     // Hidden by default: Parents/Guardians Notes Card (Manager first, then Director notes/gratitude)
     fullHTML += '<div id="parent-notes-card" style="display: none;">';
-    fullHTML += '<div class="card card-manager"><h3>Notes from Choir Manager (Parents / Guardians)</h3><div class="card-inner"><p id="parent-manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
-    fullHTML += '<div class="card card-director"><h3>Notes from Chorus Director (Parents / Guardians)</h3><div class="card-inner"><p id="parent-director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+    fullHTML += '<div class="card card-manager"><h3>Choir Manager&rsquo;s Notes for Parents / Guardians of C&oacute;r Linn Members</h3><div class="card-inner"><p id="parent-manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+    fullHTML += '<div class="card card-director"><h3>Music Director&rsquo;s Notes for Parents / Guardians of C&oacute;r Linn Members</h3><div class="card-inner"><p id="parent-director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
     fullHTML += '</div>';
+    // -------------------------------------------------------------------------
 
     fullHTML += '<div class="section-subheading">Future Events</div>';
 
@@ -711,12 +714,12 @@
       '<button onclick="toggleSubSection(\'parent-notes-card\')" class="bottom-dual-row-btn btn-parents-notes"><span class="btn-large">Current Notes for</span><span class="btn-large">Parents / Guardians</span></button>' +
       '</div>' +
       '<div id="member-notes-card" style="display: none;">' +
-      '<div class="card card-director"><h3>Notes from Chorus Director</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
-      '<div class="card card-manager"><h3>Notes from Choir Manager (Members)</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
+      '<div class="card card-director"><h3>Music Director&rsquo;s Notes for C&oacute;r Linn Members</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
+      '<div class="card card-manager"><h3>Choir Manager&rsquo;s Notes for C&oacute;r Linn Members</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
       '</div>' +
       '<div id="parent-notes-card" style="display: none;">' +
-      '<div class="card card-manager"><h3>Notes from Choir Manager (Parents / Guardians)</h3><div class="card-inner"><p id="parent-manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
-      '<div class="card card-director"><h3>Notes from Chorus Director (Parents / Guardians)</h3><div class="card-inner"><p id="parent-director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
+      '<div class="card card-manager"><h3>Choir Manager&rsquo;s Notes for Parents / Guardians of C&oacute;r Linn Members</h3><div class="card-inner"><p id="parent-manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
+      '<div class="card card-director"><h3>Music Director&rsquo;s Notes for Parents / Guardians of C&oacute;r Linn Members</h3><div class="card-inner"><p id="parent-director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="parent-director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openParentDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
       '</div>';
 
     document.getElementById('events-container').innerHTML = fallbackHTML;
@@ -828,7 +831,7 @@
       '<head>' +
       '<meta charset="utf-8">' +
       '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-      '<title>Notes from Chorus Director - Printable View</title>' +
+      '<title>Music Director&rsquo;s Notes for C&oacute;r Linn Members - Printable View</title>' +
       '<style>' +
       'body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }' +
       'h2 { color: #15803d; border-bottom: 2px solid #15803d; padding-bottom: 8px; margin-top: 0; }' +
@@ -839,7 +842,7 @@
       '</head>' +
       '<body>' +
       '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
-      '<h2>Notes from Chorus Director</h2>' +
+      '<h2>Music Director&rsquo;s Notes for C&oacute;r Linn Members</h2>' +
       '<div class="timestamp">' + timestampText + '</div>' +
       '<div style="font-size: 16px;">' + contentHTML + '</div>' +
       '</body>' +
@@ -862,7 +865,7 @@
       '<head>' +
       '<meta charset="utf-8">' +
       '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-      '<title>Notes from Chorus Director (Parents) - Printable View</title>' +
+      '<title>Music Director&rsquo;s Notes for Parents / Guardians - Printable View</title>' +
       '<style>' +
       'body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }' +
       'h2 { color: #15803d; border-bottom: 2px solid #15803d; padding-bottom: 8px; margin-top: 0; }' +
@@ -873,7 +876,7 @@
       '</head>' +
       '<body>' +
       '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
-      '<h2>Notes from Chorus Director (Parents / Guardians)</h2>' +
+      '<h2>Music Director&rsquo;s Notes for Parents / Guardians of C&oacute;r Linn Members</h2>' +
       '<div class="timestamp">' + timestampText + '</div>' +
       '<div style="font-size: 16px;">' + contentHTML + '</div>' +
       '</body>' +
@@ -896,7 +899,7 @@
       '<head>' +
       '<meta charset="utf-8">' +
       '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-      '<title>Notes from Choir Manager (Members) - Printable View</title>' +
+      '<title>Choir Manager&rsquo;s Notes for C&oacute;r Linn Members - Printable View</title>' +
       '<style>' +
       'body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }' +
       'h2 { color: #1e3a8a; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; margin-top: 0; }' +
@@ -907,7 +910,7 @@
       '</head>' +
       '<body>' +
       '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
-      '<h2>Notes from Choir Manager (Members)</h2>' +
+      '<h2>Choir Manager&rsquo;s Notes for C&oacute;r Linn Members</h2>' +
       '<div class="timestamp">' + timestampText + '</div>' +
       '<div style="font-size: 16px;">' + contentHTML + '</div>' +
       '</body>' +
@@ -930,7 +933,7 @@
       '<head>' +
       '<meta charset="utf-8">' +
       '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-      '<title>Notes from Choir Manager (Parents) - Printable View</title>' +
+      '<title>Choir Manager&rsquo;s Notes for Parents / Guardians - Printable View</title>' +
       '<style>' +
       'body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }' +
       'h2 { color: #1e3a8a; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; margin-top: 0; }' +
@@ -941,7 +944,7 @@
       '</head>' +
       '<body>' +
       '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
-      '<h2>Notes from Choir Manager (Parents / Guardians)</h2>' +
+      '<h2>Choir Manager&rsquo;s Notes for Parents / Guardians of C&oacute;r Linn Members</h2>' +
       '<div class="timestamp">' + timestampText + '</div>' +
       '<div style="font-size: 16px;">' + contentHTML + '</div>' +
       '</body>' +
