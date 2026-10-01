@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>National Symphony Chorus - Member Hub</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="manifest" href="manifest.json">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      color: #222;
+      margin: 0;
+      padding: 15px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Title & Subtitle (Choir Brand Orange-Ochre with Black Text) */
+    .app-title {
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .app-title-line1 {
+      font-variant: small-caps;
+      font-weight: bold;
+      font-size: 32px;
+      background-color: #d97706;
+      color: #000000;
+      padding: 14px 10px;
+      border-radius: 8px 8px 0 0;
+      letter-spacing: 0.5px;
+    }
+    .app-title-line2 {
+      font-style: italic;
+      font-weight: 700;
+      font-size: 22px;
+      background-color: #ffffff;
+      color: #000000;
+      padding: 10px 10px;
+      border-radius: 0 0 8px 8px;
+      border: 1px solid #e0e0e0;
+      border-top: none;
+    }
+
+    /* Subheadings / Cross Headings */
+    .section-subheading {
+      text-align: center;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 18px;
+      color: #333;
+      margin: 20px 0 10px 0;
+      padding: 6px;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+    }
+
+    /* Card Framework */
+    .card {
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+      border-width: 2px;
+      border-style: solid;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 17px;
+    }
+    .card-inner {
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+    }
+
+    /* Theme Styles */
+    .card-event-1 { 
+      background-color: #dbeafe; 
+      border-color: #1d4ed8; 
+      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.15);
+    } 
+    .card-event-1 h3 { color: #1e3a8a; }
+
+    .card-director { 
+      background-color: #dcfce7; 
+      border-color: #22c55e; 
+    } 
+    .card-director h3 { color: #15803d; }
+
+    .card-manager { 
+      background-color: #dbeafe; 
+      border-color: #1d4ed8; 
+      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.15);
+    } 
+    .card-manager h3 { color: #1e3a8a; }
+
+    .card-event-secondary { 
+      background-color: #f8f9fa; 
+      border-color: #78909c; 
+    }
+    .card-event-secondary h3 { color: #455a64; }
+
+    .card-subscribe { background-color: #eef4fc; border-color: #003366; }
+    .card-subscribe h3 { color: #003366; }
+
+    .card-app-install { background-color: #e8f5f4; border-color: #1d5c5a; }
+    .card-app-install h3 { color: #1d5c5a; }
+
+    .card-performances { background-color: #fafaf9; border-color: #78716c; }
+    .card-performances h3 { color: #44403c; }
+
+    .card-archive-detail { background-color: #fafaf9; border-color: #57534e; }
+    .card-archive-detail h3 { color: #292524; }
+
+    .card-privacy { background-color: #fafaf9; border-color: #57534e; }
+    .card-privacy h3 { color: #292524; text-align: center; }
+
+    /* Muted Fault Card (softened neutral-rose appearance) */
+    .card-fault { background-color: #fcfbfb; border-color: #d8b4b4; }
+    .card-fault h3 { color: #734040; }
+
+    /* Top Full-Width Navigation Button */
+    .top-nav {
+      margin-bottom: 20px;
+    }
+    .nav-btn-calendar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 12px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      line-height: 1.2;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background-color: #37474f;
+    }
+    .btn-large { font-size: 14px; font-weight: bold; }
+
+    /* Three-Column Functional Toggle Buttons */
+    .triple-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .triple-nav-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      text-align: center;
+      padding: 12px 6px;
+      border-radius: 8px;
+      border: 1px solid #64748b;
+      background-color: #64748b;
+      cursor: pointer;
+      font-weight: bold;
+      line-height: 1.2;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      font-family: Arial, sans-serif;
+    }
+    .triple-nav-btn:hover { background-color: #475569; }
+
+    /* Dual Row for Performances and Secondary Buttons */
+    .bottom-dual-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .bottom-dual-row-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 14px 8px;
+      border-radius: 8px;
+      border: 1px solid #44403c;
+      background-color: #57534e;
+      cursor: pointer;
+      font-weight: bold;
+      line-height: 1.2;
+      box-shadow: 0 2px 4px rgba(87, 83, 78, 0.2);
+      font-family: Arial, sans-serif;
+    }
+    .bottom-dual-row-btn:hover { background-color: #44403c; }
+
+    .nav-btn-archive {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    /* Full Width Bottom Action Button */
+    .bottom-full-nav {
+      margin-bottom: 20px;
+    }
+    .bottom-full-btn {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 14px 8px;
+      border-radius: 8px;
+      border: 1px solid #5c3333;
+      background-color: #734040;
+      cursor: pointer;
+      font-weight: bold;
+      line-height: 1.2;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      font-family: Arial, sans-serif;
+    }
+    .bottom-full-btn:hover { background-color: #5c3333; }
+
+    .load-more-btn, .reduce-btn {
+      display: block;
+      width: 100%;
+      background-color: #2563eb;
+      color: white;
+      border: 1px solid #1d4ed8;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+      font-family: Arial, sans-serif;
+    }
+    .load-more-btn:hover, .reduce-btn:hover { background-color: #1d4ed8; }
+
+    .sub-btn {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: #37474f;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+    }
+    .sub-btn-alt { background-color: #1d5c5a; }
+
+    .perf-btn {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: #78716c;
+      color: #ffffff;
+      text-align: center;
+      padding: 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 1px 3px rgba(120, 113, 108, 0.2);
+    }
+    .perf-btn:first-of-type {
+      margin-top: 0;
+    }
+    .perf-btn:hover {
+      background-color: #57534e;
+    }
+
+    .sub-perf-btn {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: #e7e5e4;
+      color: #292524;
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13px;
+      margin-top: 8px;
+      border: 1px solid #d7d3cb;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+    }
+    .sub-perf-btn:hover {
+      background-color: #d6d3d1;
+      color: #1c1917;
+    }
+
+    .parking-banner {
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      margin-top: 10px;
+      border: 1px solid #e0e0e0;
+      border-left-width: 4px;
+    }
+
+    #director-content, #manager-content {
+      font-size: 16px; 
+      margin-bottom: 12px; 
+      max-height: 440px; 
+      overflow-y: auto; 
+      border: 1px solid #ccc; 
+      background: #fff; 
+      padding: 12px; 
+      border-radius: 4px;
+      line-height: 1.6;
+    }
+
+    /* Privacy Numbered List Grid Styling */
+    .privacy-item {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      margin-bottom: 12px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .privacy-item:last-child {
+      margin-bottom: 15px;
+    }
+    .privacy-num {
+      font-weight: normal;
+    }
+    .privacy-text {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Title & Subtitle -->
+  <div class="app-title">
+    <div class="app-title-line1">National Symphony Chorus Ireland</div>
+    <div class="app-title-line2">Member Information Hub</div>
+  </div>
+
+  <!-- Top Full-Width Choir Calendar Navigation Button -->
+  <div class="top-nav">
+    <a href="https://calendar.google.com/calendar/embed?src=natsymphchorus%40gmail.com&ctz=Europe%2FDublin" target="_blank" class="nav-btn-calendar">
+      <span class="btn-large">Open Choir Calendar</span>
+      <span class="btn-large">in Web Browser</span>
+    </a>
+  </div>
+
+  <!-- Dynamic Content Container -->
+  <div id="events-container">
+    <div class="card card-event-1">
+      <h3>Loading Upcoming Events...</h3>
+      <div class="card-inner">
+        <p style="margin-top: 0;">Please wait while schedule and parking information load.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three-Column Toggle Navigation Buttons -->
+  <div class="triple-nav">
+    <button onclick="toggleSection('subscribe-section')" class="triple-nav-btn">
+      <span class="btn-large">Subscribe to</span>
+      <span class="btn-large">Choir Calendar</span>
+    </button>
+    <button onclick="toggleSection('install-section')" class="triple-nav-btn">
+      <span class="btn-large">Install Hub</span>
+      <span class="btn-large">On Phone as App</span>
+    </button>
+    <button onclick="openQRCodePage()" class="triple-nav-btn">
+      <span class="btn-large">Generate QR Code</span>
+      <span class="btn-large">for Hub App</span>
+    </button>
+  </div>
+
+  <!-- Side-by-Side Buttons: Performances & Privacy -->
+  <div class="bottom-dual-row">
+    <button onclick="toggleSection('performances-section')" class="bottom-dual-row-btn">
+      <span class="btn-large">Previous NSCI Performances</span>
+      <span class="btn-large">of Works in 2026/27 Season</span>
+    </button>
+    <button onclick="toggleSection('privacy-section')" class="bottom-dual-row-btn">
+      <span class="btn-large">Privacy /</span>
+      <span class="btn-large">Data Protection</span>
+    </button>
+  </div>
+
+  <!-- Bottom Dual Row: Performances Archive External Link (Renamed) -->
+  <div class="bottom-dual-row">
+    <a href="https://sites.google.com/view/nsc-new-archive/home" target="_blank" class="bottom-dual-row-btn nav-btn-archive">
+      <span class="btn-large">NSCI Performances Archive</span>
+      <span class="btn-large">1985-2026</span>
+    </a>
+  </div>
+
+  <!-- Full-Width Bottom Action Button: Report Faults/Glitches With App -->
+  <div class="bottom-full-nav">
+    <button onclick="toggleSection('fault-section')" class="bottom-full-btn">
+      <span class="btn-large">Report Faults/Glitches With App</span>
+    </button>
+  </div>
+
+  <!-- Collapsible: Subscribe to Choir Calendar -->
+  <div id="subscribe-section" class="card card-subscribe" style="display: none;">
+    <h3>Subscribe to Choir Calendar</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px; margin-bottom: 12px;">Add online choir calendar to your personal calendar app. Changes will sync automatically over time.</p>
+      
+      <a href="https://calendar.google.com/calendar/u/0?cid=natsymphchorus%40gmail.com" target="_blank" class="sub-btn">
+        Subscribe with Google Calendar
+      </a>
+      <button onclick="copyAndOpenInstructions(this)" class="sub-btn sub-btn-alt">
+        Copy Link for Apple / Outlook Calendar
+      </button>
+    </div>
+  </div>
+
+  <!-- Collapsible: Install Member Information Hub On Your Phone -->
+  <div id="install-section" class="card card-app-install" style="display: none;">
+    <h3>Install Member Information Hub On Your Phone</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px; margin-bottom: 10px;">You can save this page directly to your home screen for quick, one-tap access:</p>
+      
+      <div style="font-size: 13px; background: #fafafa; padding: 10px; border-radius: 4px; border: 1px solid #ddd;">
+        <p style="margin: 0 0 6px 0;"><strong>Android (Chrome / Samsung Internet):</strong></p>
+        <ol style="margin: 0 0 12px 20px; padding: 0;">
+          <li>Tap the menu icon (three dots in top-right).</li>
+          <li>Select <strong>Install and create shortcut</strong> (or <em>Add to Home screen</em>).</li>
+          <li>Confirm by tapping <strong>Install</strong> or <strong>Add</strong>.</li>
+        </ol>
+
+        <p style="margin: 0 0 6px 0;"><strong>iPhone / iPad (Safari):</strong></p>
+        <ol style="margin: 0 0 0 20px; padding: 0;">
+          <li>Tap the <strong>Share</strong> button at the bottom of the screen.</li>
+          <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+          <li>Tap <strong>Add</strong> in the top-right corner.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collapsible: Previous NSCI Performances of Works in 2026/27 Season -->
+  <div id="performances-section" class="card card-performances" style="display: none;">
+    <h3>Previous NSCI Performances of Works in 2026/27 Season</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px; margin-bottom: 12px;">Select a work below to view its previous performance archive:</p>
+      
+      <!-- Work 1: Bach: St Matthew Passion -->
+      <button onclick="toggleWorkSubMenu('bach-sub')" class="perf-btn">
+        Bach: St Matthew Passion
+      </button>
+      <div id="bach-sub" style="display: none; background: #f8fafc; padding: 10px; border-radius: 6px; margin-top: 8px; border: 1px solid #cbd5e1;">
+        <p style="margin: 0 0 8px 0; font-size: 13px; font-weight: bold; color: #44403c;">Select performance date:</p>
+        <button onclick="showPerformanceDetail('bach-2015')" class="sub-perf-btn">3 April 2015</button>
+        <button onclick="showPerformanceDetail('bach-2017')" class="sub-perf-btn">14 April 2017</button>
+        <button onclick="showPerformanceDetail('bach-2019')" class="sub-perf-btn">19 April 2019</button>
+        <button onclick="showPerformanceDetail('bach-2024')" class="sub-perf-btn">29 March 2024</button>
+      </div>
+
+      <!-- Work 2: Berlioz: Damnation of Faust -->
+      <button onclick="toggleWorkSubMenu('berlioz-sub')" class="perf-btn">
+        Berlioz: Damnation of Faust
+      </button>
+      <div id="berlioz-sub" style="display: none; background: #f8fafc; padding: 10px; border-radius: 6px; margin-top: 8px; border: 1px solid #cbd5e1;">
+        <p style="margin: 0 0 8px 0; font-size: 13px; font-weight: bold; color: #44403c;">Select performance date:</p>
+        <button onclick="showPerformanceDetail('berlioz-2003')" class="sub-perf-btn">5 December 2003</button>
+      </div>
+
+      <!-- Work 3: Britten: War Requiem -->
+      <button onclick="toggleWorkSubMenu('war-requiem-sub')" class="perf-btn">
+        Britten: War Requiem
+      </button>
+      <div id="war-requiem-sub" style="display: none; background: #f8fafc; padding: 10px; border-radius: 6px; margin-top: 8px; border: 1px solid #cbd5e1;">
+        <p style="margin: 0 0 8px 0; font-size: 13px; font-weight: bold; color: #44403c;">Select performance date:</p>
+        <button onclick="showPerformanceDetail('war-requiem-1986')" class="sub-perf-btn">27 June 1986</button>
+        <button onclick="showPerformanceDetail('war-requiem-2002')" class="sub-perf-btn">1 March 2002</button>
+        <button onclick="showPerformanceDetail('war-requiem-2018')" class="sub-perf-btn">9 November 2018</button>
+      </div>
+
+      <!-- Work 4: Holst: The Planets -->
+      <button onclick="toggleWorkSubMenu('holst-sub')" class="perf-btn">
+        Holst: The Planets
+      </button>
+      <div id="holst-sub" style="display: none; background: #f8fafc; padding: 10px; border-radius: 6px; margin-top: 8px; border: 1px solid #cbd5e1;">
+        <p style="margin: 0 0 8px 0; font-size: 13px; font-weight: bold; color: #44403c;">Select performance date:</p>
+        <button onclick="showPerformanceDetail('holst-2018')" class="sub-perf-btn">28 September 2018</button>
+      </div>
+
+      <!-- Work 5: Mahler: Symphony No. 2, 'Resurrection' -->
+      <button onclick="toggleWorkSubMenu('mahler-sub')" class="perf-btn">
+        Mahler: Symphony No. 2, 'Resurrection'
+      </button>
+      <div id="mahler-sub" style="display: none; background: #f8fafc; padding: 10px; border-radius: 6px; margin-top: 8px; border: 1px solid #cbd5e1;">
+        <p style="margin: 0 0 8px 0; font-size: 13px; font-weight: bold; color: #44403c;">Select performance date:</p>
+        <button onclick="showPerformanceDetail('mahler-1988')" class="sub-perf-btn">8 January 1988</button>
+        <button onclick="showPerformanceDetail('mahler-1997-nov7')" class="sub-perf-btn">7 November 1997</button>
+        <button onclick="showPerformanceDetail('mahler-1997-nov15')" class="sub-perf-btn">15 November 1997</button>
+        <button onclick="showPerformanceDetail('mahler-2006')" class="sub-perf-btn">20 October 2006</button>
+        <button onclick="showPerformanceDetail('mahler-2009')" class="sub-perf-btn">22 May 2009</button>
+        <button onclick="showPerformanceDetail('mahler-2015')" class="sub-perf-btn">16 October 2015</button>
+        <button onclick="showPerformanceDetail('mahler-2018')" class="sub-perf-btn">14 September 2018</button>
+        <button onclick="showPerformanceDetail('mahler-2024')" class="sub-perf-btn">9 February 2024</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collapsible: Privacy / Data Protection -->
+  <div id="privacy-section" class="card card-privacy" style="display: none;">
+    <h3>Privacy/Data Protection</h3>
+    <div class="card-inner" style="font-size: 14px; line-height: 1.6;">
+      
+      <div class="privacy-item" style="margin-top: 0;">
+        <div class="privacy-num">1.</div>
+        <div class="privacy-text">This online NSCI Member Information Hub (&ldquo;the App&rdquo;) has been developed, on his own initiative, by Kevin O&rsquo;Connell: an individual member of the NSCI. To contact him please <a href="mailto:natsymphchorus@gmail.com" style="color: #1e3a8a; font-weight: bold; text-decoration: underline;">click here</a>.</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-num">2.</div>
+        <div class="privacy-text">An Ceoláras Náisiúnta (the National Concert Hall) has not been involved in the development of the App. Neither is it involved in any control, maintenance or monitoring of it.</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-num">3.</div>
+        <div class="privacy-text">The App is not intended to be used for gathering or disseminating anyone's personal data. No such data is collected when NSCI members choose whether or not to use the App. Similarly, no logs are maintained regarding anyone&rsquo;s use of it.</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-num">4.</div>
+        <div class="privacy-text">The NSCI Chorus Director and Choir Manager have both undertaken that no personal data will be uploaded by them to the &ldquo;Current Notes&rdquo; section of the App.</div>
+      </div>
+
+      <div class="privacy-item" style="margin-bottom: 15px;">
+        <div class="privacy-num">5.</div>
+        <div class="privacy-text">NSCI Members remain perfectly free to choose not to download or use the App. Information regarding the NSCI's rehearsal &amp; performance will continue to be communicated to choir members in exactly the same way as it was prior to the development of the App.</div>
+      </div>
+
+      <button onclick="toggleSection('privacy-section')" class="sub-btn" style="background-color: #78716c; margin-top: 0;">Close Privacy Notice</button>
+    </div>
+  </div>
+
+  <!-- ================= ARCHIVE DETAIL CARDS ================= -->
+
+  <!-- Bach: St Matthew Passion - 3 April 2015 -->
+  <div id="bach-2015" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Bach, St Matthew Passion, 3 April 2015</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> James Oxley (tenor, Evangelist), Philip O'Reilly (bass, Jesus), Róisín O'Grady (soprano), Sharon Carty (alto), Eamonn Mulhall (tenor), Padraic Rowan (bass, Pilate), Pascall Kennedy (bass), Shokri Raoof (bass), Margaret Bridge (alto), RTÉ Cór na nÓg, RTÉ Philharmonic Choir, Mark Hindley (chorus director), RTÉ National Symphony Orchestra, Robert Howarth (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('1oawEhKSc0aEr64aTF9mmJMJETFBHdnUsDVfzClrEnec', 'Bach, St Matthew Passion, 3 April 2015')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('bach-2015').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Bach: St Matthew Passion - 14 April 2017 -->
+  <div id="bach-2017" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Bach, St Matthew Passion, 14 April 2017</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Ben Johnson (tenor, Evangelist), Stephan Loges (bass, Jesus), Aoife Miskelly (soprano), Madeleine Shaw (mezzo-soprano), Mark Wilde (tenor), Brendan Collins (bass, Pilate), Peter Manning & Tim Shaffrey (basses, High Priests), Mihaela Loredana Chirvase (alto, Witness), RTÉ Cór na nÓg, RTÉ Philharmonic Choir, Mark Hindley (chorus director), RTÉ National Symphony Orchestra, Matthew Halls (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('11cUDWilCk8PkjFSVITPTZ5PRLbBwPyTKn47BWGvUagY', 'Bach, St Matthew Passion, 14 April 2017')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('bach-2017').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Bach: St Matthew Passion - 19 April 2019 -->
+  <div id="bach-2019" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Bach, St Matthew Passion, 19 April 2019</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> James Way (tenor, Evangelist), James Newby (bass, Jesus), Daire Halpin (soprano), Claudia Huckle (alto), James Oxley (tenor), Padraic Rowan (bass, Pilate), RTÉ Cór na nÓg, RTÉ Philharmonic Choir, David Young (guest chorus director), RTÉ National Symphony Orchestra, David Hill (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('1O9tGVKQeyCNIz-5DiIaJmxiWQ1mke1d4D3f2AX7D6bI', 'Bach, St Matthew Passion, 19 April 2019')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('bach-2019').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Bach: St Matthew Passion - 29 March 2024 -->
+  <div id="bach-2024" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Bach, St Matthew Passion, 29 March 2024</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Gavan Ring (tenor, Evangelist), Dan D’Souza (bass, Jesus), Kelli-Ann Masterson (soprano), Bethany Horak-Hallett (alto), Ilker Arcayürek (tenor), Michael Mofidian (bass, Pilate), Cór na nÓg (Mary Amond O’Brien, choral director), National Symphony Chorus (David Young, chorus director), National Symphony Orchestra, David Young (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('179VLD_6o6TTMt8Owcg84OvgIN5u-KxJteXKXQU-bB5o', 'Bach, St Matthew Passion, 29 March 2024')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('bach-2024').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Berlioz: Damnation of Faust - 5 December 2003 -->
+  <div id="berlioz-2003" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Berlioz, La Damnation de Faust Op.24, 5 December 2003</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Anne Murray (mezzo-soprano, Marguerite, Celestial Voice), Peter Hoare (tenor, Faust), Gerard O'Connor (bass, Mephistopheles), Darren Jeffrey (bass, Brander), Boys of Clongowes Wood College & De La Salle College, Waterford, RTÉ Philharmonic Choir, Mark Duley (chorus director), RTÉ National Symphony Orchestra, Gerhard Markson (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('1YtwGZziu97-OsooSwadl9DcxFUU7Ag-0UfkMQ8tfiEw', 'Berlioz, Damnation of Faust, 5 December 2003')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('berlioz-2003').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- War Requiem - 27 June 1986 -->
+  <div id="war-requiem-1986" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Britten, War Requiem, 27 June 1986</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Jennifer Smith (soprano), Maldwyn Davies (tenor), Peter McBrien (bass), Boys of the Palestrina Choir and of St Patrick's Cathedral, RTÉ Philharmonic Choir, Colin Mawby (chorus director), RTÉ Symphony Orchestra, Colman Pearce (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> St Patrick's Cathedral, Dublin</p>
+      <button onclick="openProgramNoteWindow('1dlbLyeGn9vUycyJcy-HT2fdx3W1E-OShgaBLbBfXsbQ', 'Britten, War Requiem, 27 June 1986')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('war-requiem-1986').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- War Requiem - 1 March 2002 -->
+  <div id="war-requiem-2002" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Britten, War Requiem, 1 March 2002</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Cara O'Sullivan (soprano), Anthony Rolfe Johnson (tenor), Johannes Mannov (baritone), Boys of St. Patrick's Cathedral, Boys of the Palestrina Choir, Boys of St. Bartholomew's Choir, RTÉ Philharmonic Choir, Mark Duley (chorus director), National Symphony Orchestra, David Brophy (conductor of chamber orchestra), Alexander Anissimov (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> St Patrick's Cathedral, Dublin</p>
+      <button onclick="openProgramNoteWindow('1MpUjQRFC5CZNyvpL-aYE7ALjdc-4ZHWdf06X4T69WeA', 'Britten, War Requiem, 1 March 2002')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('war-requiem-2002').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- War Requiem - 9 November 2018 -->
+  <div id="war-requiem-2018" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Britten, War Requiem, 9 November 2018</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Ailish Tynan (soprano), Robin Tritschler (tenor), Gavan Ring (baritone), The Choristers of St Patrick's Cathedral, RTÉ Philharmonic Choir, Desmond Earley (guest chorus director), RTÉ Concert Orchestra and RTÉ National Symphony Orchestra, David Brophy (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('1RwUSVonwDMJ_9SuJtqhcswG3HiyaDOFtwOXjJksVUBc', 'Britten, War Requiem, 9 November 2018')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('war-requiem-2018').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Holst: The Planets - 28 September 2018 -->
+  <div id="holst-2018" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Holst, The Planets, 28 September 2018</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> RTÉ Philharmonic Choir, Desmond Earley (guest chorus director), RTÉ National Symphony Orchestra, José Serebrier (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('13q9fO3kmqRQzngQ6RbOhxfzle-xQYn52FbgN9aEEd5o', 'Holst, The Planets, 28 September 2018')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('holst-2018').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Mahler: Symphony No. 2 - 8 January 1988 -->
+  <div id="mahler-1988" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Mahler, Symphony No. 2, 'Resurrection', 8 January 1988</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Sheila Armstrong (soprano), Bernadette Greevy (contralto), RTÉ Philharmonic Choir, Colin Mawby (chorus director), RTÉ Symphony Orchestra, János Furst (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('1TSdodZf4iHf6tcfw2uZFdH0TbbtqO4KiU37kqth0a4k', 'Mahler, Symphony No. 2, 8 January 1988')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('mahler-1988').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Mahler: Symphony No. 2 - 7 November 1997 -->
+  <div id="mahler-1997-nov7" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Mahler, Symphony No. 2, 'Resurrection', 7 November 1997</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Rosalind Sutherland (soprano), Alison Browner (mezzo-soprano), RTÉ Philharmonic Choir, Mark Duley (chorus director), National Symphony Orchestra, Kasper de Roo (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('1HvlpgWE6VhfnCnjQQxVQldQWW20Egd4Ci5NsxZbNCHA', 'Mahler, Symphony No. 2, 7 November 1997')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('mahler-1997-nov7').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Mahler: Symphony No. 2 - 15 November 1997 -->
+  <div id="mahler-1997-nov15" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Mahler, Symphony No. 2, 'Resurrection', 15 November 1997</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Louise Walsh (soprano), Jean Rigby (contralto), Belfast Philharmonic Chorus, RTÉ Philharmonic Choir, Mark Duley (chorus director), Ulster Orchestra, Benjamin Zander (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> Waterfront Hall, Belfast</p>
+      <button onclick="openProgramNoteWindow('1INQbHmd6xAktQMhfBMiG0LeV0fZpxzC3F3AZEFfQ9Bg', 'Mahler, Symphony No. 2, 15 November 1997')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('mahler-1997-nov15').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Mahler: Symphony No. 2 - 20 October 2006 -->
+  <div id="mahler-2006" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Mahler, Symphony No. 2, 'Resurrection', 20 October 2006</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Franzita Whelan (soprano), Edel O'Brien (mezzo-soprano), RTÉ Philharmonic Choir, Mark Duley (chorus director), RTÉ National Symphony Orchestra, Gerhard Markson (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('1KuEpwwJa5w7ld6g9NExiHJaAaqEc2J3loqck3UcozA4', 'Mahler, Symphony No. 2, 20 October 2006')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('mahler-2006').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Mahler: Symphony No. 2 - 22 May 2009 -->
+  <div id="mahler-2009" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Mahler, Symphony No. 2, 'Resurrection', 22 May 2009</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Cara O'Sullivan (soprano), Jane Irwin (mezzo-soprano), RTÉ Philharmonic Choir, Mark Duley (chorus director), RTÉ National Symphony Orchestra, Gerhard Markson (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('17_mV6BTo2ozea8qFO6MHuGAXzX2XskrGWSebT7quN1I', 'Mahler, Symphony No. 2, 22 May 2009')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('mahler-2009').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Mahler: Symphony No. 2 - 16 October 2015 -->
+  <div id="mahler-2015" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Mahler, Symphony No. 2, 'Resurrection', 16 October 2015</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Máire Flavin (soprano), Patricia Bardon (mezzo-soprano), RTÉ Philharmonic Choir, Mark Hindley (chorus director), RTÉ National Symphony Orchestra, Alan Buribayev (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('1FGyt6Vnr_HtQ8l2RQKVtFAYD5Be8wi3_MEkopqKY62M', 'Mahler, Symphony No. 2, 16 October 2015')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('mahler-2015').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Mahler: Symphony No. 2 - 14 September 2018 -->
+  <div id="mahler-2018" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Mahler, Symphony No. 2, 'Resurrection', 14 September 2018</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Orla Boylan (soprano), Jennifer Johnston (mezzo-soprano), RTÉ Philharmonic Choir, Desmond Early (guest chorus director), RTÉ National Symphony Orchestra, Robert Trevino (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('17CpDpip_M8Cv7g0VitqIgBqoK1a4LhTr8gC6h-oOBzU', 'Mahler, Symphony No. 2, 14 September 2018')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('mahler-2018').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Mahler: Symphony No. 2 - 9 February 2024 -->
+  <div id="mahler-2024" class="card card-archive-detail detail-card" style="display: none;">
+    <h3>Mahler, Symphony No. 2, 'Resurrection', 9 February 2024</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px;"><strong>Performers:</strong> Ailish Tynan (soprano), Niamh O’Sullivan (mezzo-soprano), Cór Linn, National Symphony Chorus (David Young, chorus director), National Symphony Orchestra, Anja Bihlmaier (conductor)</p>
+      <p style="font-size: 14px; margin-bottom: 12px;"><strong>Venue:</strong> National Concert Hall, Dublin</p>
+      <button onclick="openProgramNoteWindow('1t7OHIoQ7TcsvDjnkpAGu_HIbIJQXoesT5cCRkvPxqw0', 'Mahler, Symphony No. 2, 9 February 2024')" class="sub-btn" style="background-color: #57534e; margin-bottom: 10px;">Open Program Note in New Window</button>
+      <button onclick="document.getElementById('mahler-2024').style.display='none';" class="sub-btn" style="background-color: #78716c; margin-top: 10px;">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Collapsible: Report Faults or Glitches -->
+  <div id="fault-section" class="card card-fault" style="display: none;">
+    <h3>Report Faults or Glitches With this App</h3>
+    <div class="card-inner">
+      <p style="margin-top: 0; font-size: 14px; margin-bottom: 12px;">Please select the area(s) of the app where you are experiencing issues:</p>
+      
+      <form id="fault-form" onsubmit="submitFaultReport(event)">
+        <div style="font-size: 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
+          <label><input type="checkbox" name="fault_area" value="Choir Calendar in Web Browser"> Choir Calendar in Web Browser</label>
+          <label><input type="checkbox" name="fault_area" value="Parking Checker"> Parking Checker</label>
+          <label><input type="checkbox" name="fault_area" value="Notes from Chorus Director"> Notes from Chorus Director</label>
+          <label><input type="checkbox" name="fault_area" value="Notes from Choir Manager"> Notes from Choir Manager</label>
+          <label><input type="checkbox" name="fault_area" value="Future Events"> Future Events</label>
+          <label><input type="checkbox" name="fault_area" value="Choir Calendar Subscription"> Choir Calendar Subscription</label>
+          <label><input type="checkbox" name="fault_area" value="Phone Installation Guide"> Phone Installation Guide</label>
+          <label><input type="checkbox" name="fault_area" value="Previous Performances & Archive"> Previous Performances & Archive</label>
+          <label><input type="checkbox" name="fault_area" value="QR Code Generator"> QR Code Generator</label>
+          <label><input type="checkbox" name="fault_area" value="General / Other App Glitch"> General / Other App Glitch</label>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+          <label for="fault-desc" style="display: block; font-weight: bold; font-size: 14px; margin-bottom: 4px;">Describe the problem you are experiencing:</label>
+          <textarea id="fault-desc" rows="4" style="width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif;" required placeholder="Please provide details about what went wrong..."></textarea>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+          <label for="fault-email" style="display: block; font-weight: bold; font-size: 14px; margin-bottom: 4px;">Email address (optional):</label>
+          <input type="email" id="fault-email" style="width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif;" placeholder="e.g., name@example.com">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+          <label for="fault-phone" style="display: block; font-weight: bold; font-size: 14px; margin-bottom: 4px;">Mobile phone number (optional):</label>
+          <input type="tel" id="fault-phone" style="width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif;" placeholder="e.g., 087 123 4567">
+        </div>
+
+        <button type="submit" class="sub-btn" style="background-color: #734040; margin-top: 0;">Open Email to Send Fault Report</button>
+        <button type="button" onclick="toggleSection('fault-section')" class="sub-btn" style="background-color: #78716c; margin-top: 8px;">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const WORKER_URL = 'https://nsc-calendar-proxy.natsymphchorus.workers.dev/';
+  const DIRECTOR_NOTES_WORKER = 'https://nsc-choral-director-notes.natsymphchorus.workers.dev';
+  const MANAGER_NOTES_WORKER = 'https://nch-manager-notes.natsymphchorus.workers.dev';
+  const PROGRAM_NOTE_WORKER = 'https://retrieve-program-note.natsymphchorus.workers.dev';
+
+  let cachedEvents = [];
+  let showAllFuture = false;
+
+  function toggleSection(sectionId) {
+    const subscribeSection = document.getElementById('subscribe-section');
+    const installSection = document.getElementById('install-section');
+    const performancesSection = document.getElementById('performances-section');
+    const privacySection = document.getElementById('privacy-section');
+    const faultSection = document.getElementById('fault-section');
+
+    const isTargetAlreadyOpen = document.getElementById(sectionId).style.display === 'block';
+
+    subscribeSection.style.display = 'none';
+    installSection.style.display = 'none';
+    performancesSection.style.display = 'none';
+    privacySection.style.display = 'none';
+    faultSection.style.display = 'none';
+
+    if (!isTargetAlreadyOpen) {
+      const target = document.getElementById(sectionId);
+      target.style.display = 'block';
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else if (sectionId === 'performances-section') {
+      const subMenus = ['bach-sub', 'berlioz-sub', 'war-requiem-sub', 'holst-sub', 'mahler-sub'];
+      subMenus.forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+      const allDetailCards = document.querySelectorAll('.detail-card');
+      allDetailCards.forEach(card => {
+        card.style.display = 'none';
+      });
+    }
+  }
+
+  function submitFaultReport(event) {
+    event.preventDefault();
+
+    const checkboxes = document.querySelectorAll('input[name="fault_area"]:checked');
+    const selectedAreas = Array.from(checkboxes).map(cb => cb.value);
+    const description = document.getElementById('fault-desc').value.trim();
+    const emailContact = document.getElementById('fault-email').value.trim();
+    const phoneContact = document.getElementById('fault-phone').value.trim();
+
+    // Get exact Irish time timestamp
+    const now = new Date();
+    const irishTimeString = now.toLocaleString('en-GB', { 
+      timeZone: 'Europe/Dublin', 
+      dateStyle: 'full', 
+      timeStyle: 'medium' 
+    });
+
+    const subject = "NSCI Info Hub Fault Report, Created at " + irishTimeString;
+
+    let bodyText = "NSCI Info Hub Fault Report\n\n";
+    bodyText += "Timestamp (Irish Time): " + irishTimeString + "\n\n";
+    bodyText += "Problem Areas Selected:\n";
+    if (selectedAreas.length > 0) {
+      selectedAreas.forEach(area => { bodyText += " - " + area + "\n"; });
+    } else {
+      bodyText += " - None specifically checked\n";
+    }
+    bodyText += "\nDescription of Problem:\n" + description + "\n";
+    
+    if (emailContact || phoneContact) {
+      bodyText += "\nContact Information Provided:\n";
+      if (emailContact) bodyText += " - Email: " + emailContact + "\n";
+      if (phoneContact) bodyText += " - Mobile Phone: " + phoneContact + "\n";
+    }
+
+    const recipient = "natsymphchorus@gmail.com";
+    const mailtoUri = "mailto:" + recipient + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyText);
+
+    window.location.href = mailtoUri;
+  }
+
+  function toggleWorkSubMenu(subId) {
+    const allDetailCards = document.querySelectorAll('.detail-card');
+    allDetailCards.forEach(card => {
+      card.style.display = 'none';
+    });
+
+    const subMenus = ['bach-sub', 'berlioz-sub', 'war-requiem-sub', 'holst-sub', 'mahler-sub'];
+    subMenus.forEach(id => {
+      const el = document.getElementById(id);
+      if (id === subId) {
+        el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+      } else {
+        el.style.display = 'none';
+      }
+    });
+  }
+
+  function showPerformanceDetail(detailId) {
+    const allDetailCards = document.querySelectorAll('.detail-card');
+    allDetailCards.forEach(card => {
+      card.style.display = 'none';
+    });
+
+    const detailCard = document.getElementById(detailId);
+    if (detailCard) {
+      detailCard.style.display = 'block';
+      detailCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  async function openProgramNoteWindow(docId, noteTitle) {
+    const win = window.open('', '_blank');
+    if (win) {
+      win.document.write(
+        '<!DOCTYPE html>' +
+        '<html lang="en">' +
+        '<head>' +
+        '<meta charset="utf-8">' +
+        '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+        '<title>' + noteTitle + '</title>' +
+        '<style>' +
+        'body { font-family: Arial, sans-serif; padding: 25px; color: #222; line-height: 1.6; max-width: 750px; margin: 0 auto; background: #fdfdfd; }' +
+        'h2 { color: #292524; border-bottom: 2px solid #78716c; padding-bottom: 8px; margin-top: 0; }' +
+        '.print-btn { background: #57534e; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-bottom: 25px; }' +
+        '.print-btn:hover { background: #44403c; }' +
+        'p { text-align: justify; text-justify: inter-word; }' +
+        '@media print { .print-btn { display: none; } }' +
+        '</style>' +
+        '</head>' +
+        '<body>' +
+        '<button class="print-btn" onclick="window.print()">Print Program Note</button>' +
+        '<h2>' + noteTitle + '</h2>' +
+        '<div id="content" style="font-size: 16px;"><em>Loading program note...</em></div>' +
+        '</body>' +
+        '</html>'
+      );
+    }
+
+    try {
+      const response = await fetch(PROGRAM_NOTE_WORKER + '?docId=' + docId);
+      if (!response.ok) throw new Error('Server returned status ' + response.status);
+      
+      const data = await response.json();
+      if (win && !win.closed) {
+        const contentDiv = win.document.getElementById('content');
+        if (contentDiv) {
+          contentDiv.innerHTML = data.content || '<em>No content available for this program note.</em>';
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load program note:', err);
+      if (win && !win.closed) {
+        const contentDiv = win.document.getElementById('content');
+        if (contentDiv) {
+          contentDiv.innerHTML = '<span style="color: #d32f2f;"><em>Failed to load program note. Please check connection or sharing permissions.</em></span>';
+        }
+      }
+    }
+  }
+
+  async function loadDynamicEvents() {
+    try {
+      const response = await fetch(WORKER_URL);
+      if (!response.ok) throw new Error('Server returned status ' + response.status);
+      
+      cachedEvents = await response.json();
+
+      if (!Array.isArray(cachedEvents) || cachedEvents.length === 0) {
+        showFallbackNotice();
+        return;
+      }
+
+      renderEvents();
+      loadDirectorNotes();
+      loadManagerNotes();
+
+    } catch (err) {
+      console.error('Error loading calendar events:', err);
+      showFallbackNotice();
+    }
+  }
+
+  function renderEvents() {
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0];
+
+    const dateMap = new Map();
+    cachedEvents.forEach(ev => {
+      if (!dateMap.has(ev.startDateStr)) {
+        dateMap.set(ev.startDateStr, []);
+      }
+      dateMap.get(ev.startDateStr).push(ev);
+    });
+
+    const targetDates = Array.from(dateMap.keys()).sort();
+
+    if (targetDates.length === 0) {
+      showFallbackNotice();
+      return;
+    }
+
+    let fullHTML = '';
+
+    let firstDateKey = targetDates[0];
+    let subheadingText = (firstDateKey === todayStr) ? "Today's Event" : "Next Event";
+
+    fullHTML += '<div class="section-subheading">' + subheadingText + '</div>';
+
+    if (targetDates.length > 0) {
+      const dateKey = firstDateKey;
+      const dayEvents = dateMap.get(dateKey);
+      const parts = dateKey.split('-').map(Number);
+      const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+      const formattedDateTitle = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+      let eventsDetailsHTML = '';
+      dayEvents.forEach(ev => {
+        eventsDetailsHTML += '<p style="margin-top: 0; margin-bottom: 8px;"><strong>' + ev.summary + '</strong><br><strong>Time:</strong> ' + ev.timeStr + '<br><strong>Venue:</strong> ' + ev.location + '</p>';
+      });
+
+      const nchUrl = 'https://www.nch.ie/all-events-listing/?search=&from=' + dateKey;
+      
+      const diffTime = dateObj - new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      let parkingHTML = '';
+      if (diffDays <= 14 && diffDays >= 0) {
+        parkingHTML = '<div class="parking-banner" style="border-left-color: #1d4ed8;">Parking: <a href="' + nchUrl + '" target="_blank" style="color: #1e3a8a; font-weight: bold; text-decoration: underline;">Check NCH Calendar for any other events today</a></div>';
+      }
+
+      fullHTML += '<div class="card card-event-1"><h3>' + formattedDateTitle + '</h3><div class="card-inner">' + eventsDetailsHTML + parkingHTML + '</div></div>';
+    }
+
+    fullHTML += '<div class="section-subheading">Current Notes</div>';
+
+    fullHTML += '<div class="card card-director"><h3>Notes from Chorus Director</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+
+    fullHTML += '<div class="card card-manager"><h3>Notes from Choir Manager</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+
+    fullHTML += '<div class="section-subheading">Future Events</div>';
+
+    const futureDates = targetDates.slice(1);
+    const displayDates = showAllFuture ? futureDates : futureDates.slice(0, 4);
+    const hasMoreFutureEvents = futureDates.length > 4;
+
+    displayDates.forEach(dateKey => {
+      const dayEvents = dateMap.get(dateKey);
+
+      const parts = dateKey.split('-').map(Number);
+      const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+      const formattedDateTitle = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+      let eventsDetailsHTML = '';
+      dayEvents.forEach(ev => {
+        eventsDetailsHTML += '<p style="margin-top: 0; margin-bottom: 8px;"><strong>' + ev.summary + '</strong><br><strong>Time:</strong> ' + ev.timeStr + '<br><strong>Venue:</strong> ' + ev.location + '</p>';
+      });
+
+      const nchUrl = 'https://www.nch.ie/all-events-listing/?search=&from=' + dateKey;
+      const diffTime = dateObj - new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      let parkingHTML = '';
+      if (diffDays <= 14 && diffDays >= 0) {
+        parkingHTML = '<div class="parking-banner" style="border-left-color: #78909c;">Parking: <a href="' + nchUrl + '" target="_blank" style="color: #455a64; font-weight: bold; text-decoration: underline;">Check NCH Calendar for any other events today</a></div>';
+      }
+
+      fullHTML += '<div class="card card-event-secondary"><h3>' + formattedDateTitle + '</h3><div class="card-inner">' + eventsDetailsHTML + parkingHTML + '</div></div>';
+    });
+
+    if (!showAllFuture && hasMoreFutureEvents) {
+      fullHTML += '<button class="load-more-btn" onclick="showAllEvents()">Show All Future Events</button>';
+    } else if (showAllFuture && hasMoreFutureEvents) {
+      fullHTML += '<button class="reduce-btn" onclick="reduceEvents()">Show Fewer Future Events</button>';
+    }
+
+    document.getElementById('events-container').innerHTML = fullHTML;
+  }
+
+  function showAllEvents() {
+    showAllFuture = true;
+    renderEvents();
+    loadDirectorNotes();
+    loadManagerNotes();
+    window.scrollBy({ top: 300, behavior: 'smooth' });
+  }
+
+  function reduceEvents() {
+    showAllFuture = false;
+    renderEvents();
+    loadDirectorNotes();
+    loadManagerNotes();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showFallbackNotice() {
+    let fallbackHTML = 
+      '<div class="section-subheading">Next Event</div>' +
+      '<div class="card card-event-1"><h3>Schedule Notice</h3><div class="card-inner"><p style="margin-top: 0;">Unable to load live calendar feed automatically. Please view the <a href="https://calendar.google.com/calendar/embed?src=natsymphchorus%40gmail.com&ctz=Europe%2FDublin" target="_blank" style="color: #1e3a8a; font-weight: bold;">Choir Calendar</a> directly.</p></div></div>' +
+      '<div class="section-subheading">Current Notes</div>' +
+      '<div class="card card-director"><h3>Notes from Chorus Director</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
+      '<div class="card card-manager"><h3>Notes from Choir Manager</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+
+    document.getElementById('events-container').innerHTML = fallbackHTML;
+    loadDirectorNotes();
+    loadManagerNotes();
+  }
+
+  loadDynamicEvents();
+
+  async function loadDirectorNotes() {
+    try {
+      const response = await fetch(DIRECTOR_NOTES_WORKER);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.content) {
+          const contentEl = document.getElementById('director-content');
+          if (contentEl) contentEl.innerHTML = data.content;
+        }
+        if (data.modifiedTime) {
+          const dateObj = new Date(data.modifiedTime);
+          const formattedDate = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+          const formattedTime = dateObj.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+          const timeEl = document.getElementById('director-timestamp');
+          if (timeEl) timeEl.innerText = 'Last Updated: ' + formattedTime + ' on ' + formattedDate;
+        } else {
+          const timeEl = document.getElementById('director-timestamp');
+          if (timeEl) timeEl.innerText = 'Last Updated: Unavailable';
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load director notes', e);
+      const el = document.getElementById('director-timestamp');
+      if (el) el.innerText = 'Last Updated: Unavailable';
+    }
+  }
+
+  async function loadManagerNotes() {
+    try {
+      const response = await fetch(MANAGER_NOTES_WORKER);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.content) {
+          const contentEl = document.getElementById('manager-content');
+          if (contentEl) contentEl.innerHTML = data.content;
+        }
+        if (data.modifiedTime) {
+          const dateObj = new Date(data.modifiedTime);
+          const formattedDate = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+          const formattedTime = dateObj.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+          const timeEl = document.getElementById('manager-timestamp');
+          if (timeEl) timeEl.innerText = 'Last Updated: ' + formattedTime + ' on ' + formattedDate;
+        } else {
+          const timeEl = document.getElementById('manager-timestamp');
+          if (timeEl) timeEl.innerText = 'Last Updated: Unavailable';
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load manager notes', e);
+      const el = document.getElementById('manager-timestamp');
+      if (el) el.innerText = 'Last Updated: Unavailable';
+    }
+  }
+
+  function openDirectorPrintView() {
+    const contentEl = document.getElementById('director-content');
+    const timeEl = document.getElementById('director-timestamp');
+    const contentHTML = contentEl ? contentEl.innerHTML : '';
+    const timestampText = timeEl ? timeEl.innerText : '';
+
+    const printPageHTML = 
+      '<!DOCTYPE html>' +
+      '<html lang="en">' +
+      '<head>' +
+      '<meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<title>Notes from Chorus Director - Printable View</title>' +
+      '<style>' +
+      'body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }' +
+      'h2 { color: #15803d; border-bottom: 2px solid #15803d; padding-bottom: 8px; margin-top: 0; }' +
+      '.timestamp { font-size: 14px; color: #d32f2f; margin-bottom: 20px; font-style: italic; font-weight: bold; }' +
+      '.print-btn { background: #15803d; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-bottom: 30px; }' +
+      '@media print { .print-btn { display: none; } }' +
+      '</style>' +
+      '</head>' +
+      '<body>' +
+      '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
+      '<h2>Notes from Chorus Director</h2>' +
+      '<div class="timestamp">' + timestampText + '</div>' +
+      '<div style="font-size: 16px;">' + contentHTML + '</div>' +
+      '</body>' +
+      '</html>';
+
+    const blob = new Blob([printPageHTML], { type: 'text/html' });
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, '_blank');
+  }
+
+  function openManagerPrintView() {
+    const contentEl = document.getElementById('manager-content');
+    const timeEl = document.getElementById('manager-timestamp');
+    const contentHTML = contentEl ? contentEl.innerHTML : '';
+    const timestampText = timeEl ? timeEl.innerText : '';
+
+    const printPageHTML = 
+      '<!DOCTYPE html>' +
+      '<html lang="en">' +
+      '<head>' +
+      '<meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<title>Notes from Choir Manager - Printable View</title>' +
+      '<style>' +
+      'body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }' +
+      'h2 { color: #1e3a8a; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; margin-top: 0; }' +
+      '.timestamp { font-size: 14px; color: #d32f2f; margin-bottom: 20px; font-style: italic; font-weight: bold; }' +
+      '.print-btn { background: #1e3a8a; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-bottom: 30px; }' +
+      '@media print { .print-btn { display: none; } }' +
+      '</style>' +
+      '</head>' +
+      '<body>' +
+      '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
+      '<h2>Notes from Choir Manager</h2>' +
+      '<div class="timestamp">' + timestampText + '</div>' +
+      '<div style="font-size: 16px;">' + contentHTML + '</div>' +
+      '</body>' +
+      '</html>';
+
+    const blob = new Blob([printPageHTML], { type: 'text/html' });
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, '_blank');
+  }
+
+  function openQRCodePage() {
+    const appUrl = window.location.href;
+    const qrPageHTML = 
+      '<!DOCTYPE html>' +
+      '<html lang="en">' +
+      '<head>' +
+      '<meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<title>NSCI Hub - QR Code</title>' +
+      '<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>' +
+      '<style>' +
+      'body { font-family: Arial, sans-serif; padding: 30px; color: #222; text-align: center; max-width: 600px; margin: 0 auto; line-height: 1.5; }' +
+      'h2 { color: #d97706; margin-top: 0; font-variant: small-caps; }' +
+      '.qr-container { background: #fff; padding: 20px; border: 1px solid #ccc; border-radius: 8px; display: inline-block; margin: 20px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }' +
+      '#qrcode { display: flex; justify-content: center; margin: 10px 0; }' +
+      '.btn { background: #37474f; color: white; border: none; padding: 12px 20px; font-size: 15px; font-weight: bold; border-radius: 6px; cursor: pointer; margin: 10px 5px; font-family: Arial, sans-serif; }' +
+      '.btn:hover { background: #263238; }' +
+      '.instruction-box { background: #f8f9fa; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; font-size: 13px; color: #334155; margin: 15px auto; max-width: 400px; }' +
+      '.url-text { font-family: monospace; background: #f1f3f4; padding: 8px; border-radius: 4px; font-size: 13px; word-break: break-all; margin: 15px 0; }' +
+      '@media print { .no-print { display: none; } }' +
+      '</style>' +
+      '</head>' +
+      '<body>' +
+      '<div class="no-print" style="margin-bottom: 20px;">' +
+      '<button class="btn" onclick="window.print()">Print This Page</button>' +
+      '</div>' +
+      '<h2>National Symphony Chorus Ireland</h2>' +
+      '<p><strong>Member Information Hub - QR Code</strong></p>' +
+      '<p style="font-size: 14px;">Point another device&apos;s camera at the QR code below to open this app:</p>' +
+      '<div class="qr-container" id="qr-box">' +
+      '<div id="qrcode"></div>' +
+      '<div class="instruction-box"><strong>To save to your phone:</strong> Touch and hold the QR code above, then select <em>Download image</em> (Android) or <em>Add to Photos / Save Image</em> (iPhone).</div>' +
+      '<div class="url-text">' + appUrl + '</div>' +
+      '</div>' +
+      '<script>' +
+      'new QRCode(document.getElementById("qrcode"), { text: "' + appUrl + '", width: 220, height: 220, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });' +
+      '<\/script>' +
+      '</body>' +
+      '</html>';
+
+    const blob = new Blob([qrPageHTML], { type: 'text/html' });
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, '_blank');
+  }
+
+  function copyAndOpenInstructions(btn) {
+    const icalUrl = "https://calendar.google.com/calendar/ical/natsymphchorus%40gmail.com/public/basic.ics";
+    
+    navigator.clipboard.writeText(icalUrl).catch(err => {
+      console.error("Clipboard write failed", err);
+    });
+
+    const originalText = btn.innerText;
+    btn.innerText = "Link Copied! Opening Guide...";
+    setTimeout(() => {
+      btn.innerText = originalText;
+    }, 3000);
+
+    const instructionsHTML = 
+      '<!DOCTYPE html>' +
+      '<html lang="en">' +
+      '<head>' +
+      '<meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<title>Apple & Outlook Calendar Setup Guide</title>' +
+      '<style>' +
+      'body { font-family: Arial, sans-serif; background: #f8f9fa; color: #333; padding: 20px; line-height: 1.6; }' +
+      '.box { max-width: 600px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); border-top: 4px solid #37474f; }' +
+      'h2 { color: #37474f; margin-top: 0; }' +
+      'input { width: 100%; padding: 10px; font-size: 13px; box-sizing: border-box; background: #f1f3f4; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; font-family: monospace; }' +
+      'ul { padding-left: 20px; }' +
+      'li { margin-bottom: 10px; }' +
+      '.note { background: #fdf2f2; border-left: 4px solid #d9534f; padding: 10px; font-size: 13px; margin-top: 20px; border-radius: 4px; }' +
+      '</style>' +
+      '</head>' +
+      '<body>' +
+      '<div class="box">' +
+      '<h2>Apple & Outlook Calendar Setup</h2>' +
+      '<p>The subscription link has been copied to your clipboard. If you need to copy it manually again, use the box below:</p>' +
+      '<label for="urlbox"><strong>Calendar iCal Link:</strong></label>' +
+      '<input type="text" id="urlbox" value="' + icalUrl + '" readonly onclick="this.select();">' +
+      '<h3>Step-by-Step Instructions:</h3>' +
+      '<ul>' +
+      '<li><strong>iPhone / iPad (Apple Calendar):</strong> Open device <em>Settings &gt; Calendar &gt; Accounts &gt; Add Account &gt; Other &gt; Add Subscribed Calendar</em>, then paste the link into the Server field and save.</li>' +
+      '<li><strong>Outlook (Desktop / Web):</strong> Open Outlook Calendar, click <em>Add calendar &gt; Subscribe from web</em>, paste the link, name the calendar, and save.</li>' +
+      '</ul>' +
+      '<div class="note">' +
+      '<strong>Note:</strong> Calendar apps check for updates periodically. For urgent updates, check the main <a href="https://natsymphchoire.github.io/Member-Info-Hub/" target="_blank">Member Hub</a>.' +
+      '</div>' +
+      '</div>' +
+      '</body>' +
+      '</html>';
+
+    const blob = new Blob([instructionsHTML], { type: 'text/html' });
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, '_blank');
+  }
+</script>
+
+</body>
+</html>
