@@ -326,18 +326,6 @@
     </div>
   </div>
 
-  <!-- Side-by-Side Notes Buttons -->
-  <div class="bottom-dual-row">
-    <button onclick="toggleSubSection('member-notes-card')" class="bottom-dual-row-btn btn-members-notes">
-      <span class="btn-large">Current Notes for</span>
-      <span class="btn-large">Choir Members</span>
-    </button>
-    <button onclick="toggleSubSection('parent-notes-card')" class="bottom-dual-row-btn btn-parents-notes">
-      <span class="btn-large">Current Notes for</span>
-      <span class="btn-large">Parents / Guardians</span>
-    </button>
-  </div>
-
   <!-- Three-Column Toggle Navigation Buttons -->
   <div class="triple-nav">
     <button onclick="toggleSection('subscribe-section')" class="triple-nav-btn">
@@ -648,6 +636,12 @@
       fullHTML += '<div class="card card-event-1"><h3>' + formattedDateTitle + '</h3><div class="card-inner">' + eventsDetailsHTML + '</div></div>';
     }
 
+    // --- Notes Buttons (Placed right after Next Event / Today's Event) ---
+    fullHTML += '<div class="bottom-dual-row" style="margin-top: 20px;">';
+    fullHTML += '<button onclick="toggleSubSection(\'member-notes-card\')" class="bottom-dual-row-btn btn-members-notes"><span class="btn-large">Current Notes for</span><span class="btn-large">Choir Members</span></button>';
+    fullHTML += '<button onclick="toggleSubSection(\'parent-notes-card\')" class="bottom-dual-row-btn btn-parents-notes"><span class="btn-large">Current Notes for</span><span class="btn-large">Parents / Guardians</span></button>';
+    fullHTML += '</div>';
+
     // Hidden by default: Choir Members Notes Card (Director first, then Manager for members)
     fullHTML += '<div id="member-notes-card" style="display: none;">';
     fullHTML += '<div class="card card-director"><h3>Notes from Chorus Director</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
@@ -712,6 +706,10 @@
     let fallbackHTML = 
       '<div class="section-subheading">Next Event</div>' +
       '<div class="card card-event-1"><h3>Schedule Notice</h3><div class="card-inner"><p style="margin-top: 0;">Unable to load live calendar feed automatically. Please view the <a href="https://calendar.google.com/calendar/embed?src=corlinirl%40gmail.com&ctz=Europe%2FDublin" target="_blank" style="color: #1e3a8a; font-weight: bold;">Choir Calendar</a> directly.</p></div></div>' +
+      '<div class="bottom-dual-row" style="margin-top: 20px;">' +
+      '<button onclick="toggleSubSection(\'member-notes-card\')" class="bottom-dual-row-btn btn-members-notes"><span class="btn-large">Current Notes for</span><span class="btn-large">Choir Members</span></button>' +
+      '<button onclick="toggleSubSection(\'parent-notes-card\')" class="bottom-dual-row-btn btn-parents-notes"><span class="btn-large">Current Notes for</span><span class="btn-large">Parents / Guardians</span></button>' +
+      '</div>' +
       '<div id="member-notes-card" style="display: none;">' +
       '<div class="card card-director"><h3>Notes from Chorus Director</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
       '<div class="card card-manager"><h3>Notes from Choir Manager (Members)</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #1e3a8a; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
