@@ -1,6 +1,6 @@
 {
-  "name": "NSCI Hub",
-  "short_name": "NSCI Hub",
+  "name": "Cór Linn Hub",
+  "short_name": "Cór Linn",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f0f2f5",
@@ -8,7 +8,7 @@
   "icons": [
     {
       "src": "icon.png",
-      "sizes": "447x447",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]
