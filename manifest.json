@@ -3,8 +3,8 @@
   "short_name": "Cór Linn",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f0f2f5",
-  "theme_color": "#d97706",
+  "background_color": "#2986cc",
+  "theme_color": "#2986cc",
   "icons": [
     {
       "src": "icon.png",
