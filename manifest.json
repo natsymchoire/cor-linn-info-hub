@@ -1,0 +1,15 @@
+{
+  "name": "NSCI Hub",
+  "short_name": "NSCI Hub",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f0f2f5",
+  "theme_color": "#d97706",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "447x447",
+      "type": "image/png"
+    }
+  ]
+}
