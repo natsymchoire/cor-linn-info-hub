@@ -1538,11 +1538,11 @@
             const title = ev.summary || "";
 
             const extraStyle = /to be confirmed/i.test(title)
-              ? "background-color: #f2d5e8; padding: 10px; border-radius: 5px;"
-              : /\bExtra\b/i.test(title)
-                ? "background-color: #f4faa5; padding: 10px; border-radius: 5px;"
-                : "";
-
+  ? "background-color: #ead5e7; padding: 10px; border-radius: 5px;"
+  : /\bRegular Rehearsal\b/i.test(title)
+    ? "background-color: #ffffff; padding: 10px; border-radius: 5px;"
+    : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
+                
             eventsDetailsHTML +=
               '<p style="margin-top: 0; margin-bottom: 8px; ' +
               extraStyle +
@@ -1597,11 +1597,11 @@
             const title = ev.summary || "";
 
             const extraStyle = /to be confirmed/i.test(title)
-              ? "background-color: #f2d5e8; padding: 10px; border-radius: 5px;"
-              : /\bExtra\b/i.test(title)
-                ? "background-color: #f4faa5; padding: 10px; border-radius: 5px;"
-                : "";
-
+  ? "background-color: #ead5e7; padding: 10px; border-radius: 5px;"
+  : /\bRegular Rehearsal\b/i.test(title)
+    ? "background-color: #ffffff; padding: 10px; border-radius: 5px;"
+    : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
+                
             eventsDetailsHTML +=
               '<p style="margin-top: 0; margin-bottom: 8px; ' +
               extraStyle +
