@@ -1,1646 +1,2178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NCH Cór Linn - Member Hub</title>
-  <link rel="icon" type="image/png" href="icon.png">
-  <link rel="apple-touch-icon" href="icon.png">
-  <link rel="manifest" href="manifest.json">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
-      color: #222;
-      margin: 0;
-      padding: 15px;
-      line-height: 1.5;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Title & Subtitle (Cór Linn Brand Blue with White Text) */
-    .app-title {
-      text-align: center;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
-    .app-title-line1 {
-      font-variant: small-caps;
-      font-weight: bold;
-      font-size: 32px;
-      background-color: #2986cc;
-      color: #ffffff;
-      padding: 14px 10px;
-      border-radius: 8px 8px 0 0;
-      letter-spacing: 0.5px;
-    }
-
-    .app-title-line2 {
-      font-style: italic;
-      font-weight: 700;
-      font-size: 22px;
-      background-color: #ffffff;
-      color: #000000;
-      padding: 10px 10px;
-      border-radius: 0 0 8px 8px;
-      border: 1px solid #e0e0e0;
-      border-top: none;
-    }
-
-    /* Subheadings / Cross Headings */
-    .section-subheading {
-      text-align: center;
-      font-style: italic;
-      font-weight: 700;
-      font-size: 18px;
-      color: #333;
-      margin: 20px 0 10px 0;
-      padding: 6px;
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 6px;
-    }
-
-    /* Card Framework */
-    .card {
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-      border-width: 2px;
-      border-style: solid;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 17px;
-    }
-
-    .card-inner {
-      background: #ffffff;
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid #e0e0e0;
-    }
-
-    /* Theme Styles */
-    .card-event-1 {
-      background-color: #dbeafe;
-      border-color: #1d4ed8;
-      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.15);
-    }
-
-    .card-event-1 h3 {
-      color: #1e3a8a;
-    }
-
-    .card-director {
-      background-color: #dcfce7;
-      border-color: #22c55e;
-    }
-
-    .card-director h3 {
-      color: #15803d;
-    }
-
-
-
-    .card-manager {
-      background-color: #fce7f3;
-      border-color: #f472b6;
-      box-shadow: 0 4px 10px rgba(244, 114, 182, 0.15);
-    }
-
-    .card-manager h3 {
-      color: #831843;
-    }
-
-    .card-event-secondary {
-      background-color: #f8f9fa;
-      border-color: #78909c;
-    }
-
-    .card-event-secondary h3 {
-      color: #455a64;
-    }
-
-    .card-subscribe {
-      background-color: #eef4fc;
-      border-color: #003366;
-    }
-
-    .card-subscribe h3 {
-      color: #003366;
-    }
-
-    .card-app-install {
-      background-color: #e8f5f4;
-      border-color: #1d5c5a;
-    }
-
-    .card-app-install h3 {
-      color: #1d5c5a;
-    }
-
-    .card-safeguarding {
-      background-color: #fafaf9;
-      border-color: #57534e;
-    }
-
-    .card-safeguarding h3 {
-      color: #292524;
-      text-align: center;
-    }
-
-    .card-privacy {
-      background-color: #fafaf9;
-      border-color: #57534e;
-    }
-
-    .card-privacy h3 {
-      color: #292524;
-      text-align: center;
-    }
-
-    /* Muted Fault Card (softened neutral-rose appearance) */
-    .card-fault {
-      background-color: #fcfbfb;
-      border-color: #d8b4b4;
-    }
-
-    .card-fault h3 {
-      color: #734040;
-    }
-
-    /* Top Navigation Area */
-    .top-nav {
-      margin-bottom: 20px;
-    }
-
-    .top-nav-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    .nav-btn-calendar {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-align: center;
-      padding: 12px 10px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      line-height: 1.2;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      background-color: #37474f;
-      border: none;
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-    }
-
-    .nav-btn-calendar:hover {
-      background-color: #263238;
-    }
-
-    .btn-large {
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .btn-small {
-      font-size: 12px;
-      font-weight: normal;
-      opacity: 0.9;
-    }
-
-    /* Four-Column Functional Toggle Buttons */
-    .triple-nav {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .triple-nav-btn {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #ffffff;
-      text-align: center;
-      padding: 12px 6px;
-      border-radius: 8px;
-      border: 1px solid #64748b;
-      background-color: #64748b;
-      cursor: pointer;
-      font-weight: bold;
-      line-height: 1.2;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      font-family: Arial, sans-serif;
-    }
-
-    .triple-nav-btn:hover {
-      background-color: #475569;
-    }
-
-    /* Dual Row for Performances and Secondary Buttons */
-    .bottom-dual-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .bottom-dual-row-btn {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      text-align: center;
-      padding: 14px 8px;
-      border-radius: 8px;
-      border: 1px solid #44403c;
-      background-color: #57534e;
-      cursor: pointer;
-      font-weight: bold;
-      line-height: 1.2;
-      box-shadow: 0 2px 4px rgba(87, 83, 78, 0.2);
-      font-family: Arial, sans-serif;
-    }
-
-    .bottom-dual-row-btn:hover {
-      background-color: #44403c;
-    }
-
-
-    .nav-btn-archive {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-      line-height: 1.2;
-    }
-
-    /* Custom Button Color Themes */
-    .pale-yellow-btn {
-      background-color: #fef08a !important;
-      border-color: #eab308 !important;
-      color: #713f12 !important;
-      box-shadow: 0 2px 4px rgba(234, 179, 8, 0.2);
-    }
-
-    .pale-yellow-btn:hover {
-      background-color: #fde047 !important;
-    }
-
-    .pistachio-btn {
-      background-color: #d1fae5 !important;
-      border-color: #10b981 !important;
-      color: #065f46 !important;
-      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.15);
-    }
-
-    .pistachio-btn:hover {
-      background-color: #a7f3d0 !important;
-    }
-
-    .black-btn {
-      background-color: #000000 !important;
-      border-color: #000000 !important;
-      color: #ffffff !important;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .black-btn:hover {
-      background-color: #27272a !important;
-    }
-
-    .load-more-btn,
-    .reduce-btn {
-      display: block;
-      width: 100%;
-      background-color: #2563eb;
-      color: white;
-      border: 1px solid #1d4ed8;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 15px;
-      cursor: pointer;
-      text-align: center;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
-      font-family: Arial, sans-serif;
-    }
-
-    .load-more-btn:hover,
-    .reduce-btn:hover {
-      background-color: #1d4ed8;
-    }
-
-    .sub-btn {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      background-color: #37474f;
-      color: white;
-      text-align: center;
-      padding: 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-      margin-top: 10px;
-      border: none;
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-    }
-
-    .sub-btn-alt {
-      background-color: #1d5c5a;
-    }
-
-    .perf-btn {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      background-color: #78716c;
-      color: #ffffff;
-      text-align: center;
-      padding: 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-      margin-top: 10px;
-      border: none;
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-      box-shadow: 0 1px 3px rgba(120, 113, 108, 0.2);
-    }
-
-    .perf-btn:first-of-type {
-      margin-top: 0;
-    }
-
-    .perf-btn:hover {
-      background-color: #57534e;
-    }
-
-    .sub-perf-btn {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      background-color: #e7e5e4;
-      color: #292524;
-      text-align: center;
-      padding: 10px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 13px;
-      margin-top: 8px;
-      border: 1px solid #d7d3cb;
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-    }
-
-    .sub-perf-btn:hover {
-      background-color: #d6d3d1;
-      color: #1c1917;
-    }
-
-
-
-    /* Unified font size for Card A and Card C content boxes */
-    #director-content,
-    #manager-content {
-      font-size: 16px;
-      margin-bottom: 12px;
-      max-height: 440px;
-      overflow-y: auto;
-      border: 1px solid #ccc;
-      background: #fff;
-      padding: 12px;
-      border-radius: 4px;
-      line-height: 1.6;
-      text-align: justify;
-      text-justify: inter-word;
-    }
-
-    /* Privacy Numbered List Grid Styling */
-    .privacy-item {
-      display: grid;
-      grid-template-columns: 24px 1fr;
-      margin-bottom: 12px;
-      text-align: justify;
-      text-justify: inter-word;
-    }
-
-    .privacy-item:last-child {
-      margin-bottom: 15px;
-    }
-
-    .privacy-num {
-      font-weight: normal;
-    }
-
-    .privacy-text {
-      text-align: justify;
-      text-justify: inter-word;
-    }
-
-    /* Notification Buttons Row and Subcards */
-    .notification-button-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .action-btn-shared {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 14px 8px;
-      border-radius: 8px;
-      border: 1px solid #4b5563;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 1.2;
-      font-family: Arial, sans-serif;
-    }
-
-    .subcard-container {
-      background: #ffffff;
-      border: 2px solid #4b5563;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-    }
-
-    .subcard-container h4 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 17px;
-      color: #374151;
-    }
-
-    .subcard-intro-text {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #374151;
-      margin-bottom: 15px;
-    }
-
-    .subcard-intro-text p {
-      margin-top: 0;
-      margin-bottom: 10px;
-      text-align: justify;
-      text-justify: inter-word;
-    }
-
-    .subcard-concluding-text {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #374151;
-      margin-bottom: 15px;
-    }
-
-    .subcard-concluding-text p {
-      margin-top: 0;
-      margin-bottom: 10px;
-      text-align: justify;
-      text-justify: inter-word;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      font-weight: bold;
-      font-size: 14px;
-      color: #1f2937;
-      margin-bottom: 6px;
-    }
-
-    .form-group input[type="text"],
-    .form-group input[type="tel"],
-    .form-group input[type="email"],
-    .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      font-size: 14px;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    .radio-group,
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      background: #f9fafb;
-      padding: 10px;
-      border: 1px solid #e5e7eb;
-      border-radius: 6px;
-    }
-
-    .radio-group label,
-    .checkbox-group label {
-      font-weight: normal;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      margin-bottom: 0;
-    }
-
-    .form-buttons {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .form-submit-btn {
-      flex: 1;
-      background-color: #1e3a8a;
-      color: white;
-      border: none;
-      padding: 12px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .form-submit-btn:hover {
-      background-color: #1d4ed8;
-    }
-
-    .form-cancel-btn {
-      flex: 1;
-      background-color: #78716c;
-      color: white;
-      border: none;
-      padding: 12px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .form-cancel-btn:hover {
-      background-color: #57534e;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="container">
-
-    <!-- Title & Subtitle -->
-    <div class="app-title">
-      <div class="app-title-line1">NCH Cór Linn</div>
-      <div class="app-title-line2">Member Information Hub</div>
-    </div>
-
-    <!-- Top Navigation Buttons Row -->
-    <div class="top-nav">
-      <div class="top-nav-row">
-        <a href="https://calendar.google.com/calendar/embed?src=06d1d22e95ac65658f0c018562876542aa9a449fce7df7cb85f232d7e5595b50%40group.calendar.google.com&ctz=Europe%2FDublin"
-          target="_blank" class="nav-btn-calendar" onclick="closeAllAbsenceCards()">
-          <span class="btn-large">Open Choir Calendar</span>
-          <span class="btn-small">in Web Browser</span>
-        </a>
-        <button onclick="resyncAllData(this)" class="nav-btn-calendar">
-          <span class="btn-large">Resync All Data</span>
-          <span class="btn-small">(Refresh Hub)</span>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NCH Cór Linn - Member Hub</title>
+    <link rel="icon" type="image/png" href="icon.png" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <link rel="manifest" href="manifest.json" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        color: #222;
+        margin: 0;
+        padding: 15px;
+        line-height: 1.5;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Title & Subtitle (Cór Linn Brand Blue with White Text) */
+      .app-title {
+        text-align: center;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .app-title-line1 {
+        font-variant: small-caps;
+        font-weight: bold;
+        font-size: 32px;
+        background-color: #2986cc;
+        color: #ffffff;
+        padding: 14px 10px;
+        border-radius: 8px 8px 0 0;
+        letter-spacing: 0.5px;
+      }
+
+      .app-title-line2 {
+        font-style: italic;
+        font-weight: 700;
+        font-size: 22px;
+        background-color: #ffffff;
+        color: #000000;
+        padding: 10px 10px;
+        border-radius: 0 0 8px 8px;
+        border: 1px solid #e0e0e0;
+        border-top: none;
+      }
+
+      /* Subheadings / Cross Headings */
+      .section-subheading {
+        text-align: center;
+        font-style: italic;
+        font-weight: 700;
+        font-size: 18px;
+        color: #333;
+        margin: 20px 0 10px 0;
+        padding: 6px;
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+      }
+
+      /* Card Framework */
+      .card {
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+        border-width: 2px;
+        border-style: solid;
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 17px;
+      }
+
+      .card-inner {
+        background: #ffffff;
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+      }
+
+      /* Theme Styles */
+      .card-event-1 {
+        background-color: #dbeafe;
+        border-color: #1d4ed8;
+        box-shadow: 0 4px 10px rgba(29, 78, 216, 0.15);
+      }
+
+      .card-event-1 h3 {
+        color: #1e3a8a;
+      }
+
+      .card-director {
+        background-color: #dcfce7;
+        border-color: #22c55e;
+      }
+
+      .card-director h3 {
+        color: #15803d;
+      }
+
+      .card-manager {
+        background-color: #fce7f3;
+        border-color: #f472b6;
+        box-shadow: 0 4px 10px rgba(244, 114, 182, 0.15);
+      }
+
+      .card-manager h3 {
+        color: #831843;
+      }
+
+      .card-event-secondary {
+        background-color: #f8f9fa;
+        border-color: #78909c;
+      }
+
+      .card-event-secondary h3 {
+        color: #455a64;
+      }
+
+      .card-subscribe {
+        background-color: #eef4fc;
+        border-color: #003366;
+      }
+
+      .card-subscribe h3 {
+        color: #003366;
+      }
+
+      .card-app-install {
+        background-color: #e8f5f4;
+        border-color: #1d5c5a;
+      }
+
+      .card-app-install h3 {
+        color: #1d5c5a;
+      }
+
+      .card-safeguarding {
+        background-color: #fafaf9;
+        border-color: #57534e;
+      }
+
+      .card-safeguarding h3 {
+        color: #292524;
+        text-align: center;
+      }
+
+      .card-privacy {
+        background-color: #fafaf9;
+        border-color: #57534e;
+      }
+
+      .card-privacy h3 {
+        color: #292524;
+        text-align: center;
+      }
+
+      /* Muted Fault Card (softened neutral-rose appearance) */
+      .card-fault {
+        background-color: #fcfbfb;
+        border-color: #d8b4b4;
+      }
+
+      .card-fault h3 {
+        color: #734040;
+      }
+
+      /* Top Navigation Area */
+      .top-nav {
+        margin-bottom: 20px;
+      }
+
+      .top-nav-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .nav-btn-calendar {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        padding: 12px 10px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        line-height: 1.2;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #37474f;
+        border: none;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+      }
+
+      .nav-btn-calendar:hover {
+        background-color: #263238;
+      }
+
+      .btn-large {
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .btn-small {
+        font-size: 12px;
+        font-weight: normal;
+        opacity: 0.9;
+      }
+
+      /* Four-Column Functional Toggle Buttons */
+      .triple-nav {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .triple-nav-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        text-align: center;
+        padding: 12px 6px;
+        border-radius: 8px;
+        border: 1px solid #64748b;
+        background-color: #64748b;
+        cursor: pointer;
+        font-weight: bold;
+        line-height: 1.2;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+      }
+
+      .triple-nav-btn:hover {
+        background-color: #475569;
+      }
+
+      /* Dual Row for Performances and Secondary Buttons */
+      .bottom-dual-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .bottom-dual-row-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        padding: 14px 8px;
+        border-radius: 8px;
+        border: 1px solid #44403c;
+        background-color: #57534e;
+        cursor: pointer;
+        font-weight: bold;
+        line-height: 1.2;
+        box-shadow: 0 2px 4px rgba(87, 83, 78, 0.2);
+        font-family: Arial, sans-serif;
+      }
+
+      .bottom-dual-row-btn:hover {
+        background-color: #44403c;
+      }
+
+      .nav-btn-archive {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        line-height: 1.2;
+      }
+
+      /* Custom Button Color Themes */
+      .pale-yellow-btn {
+        background-color: #fef08a !important;
+        border-color: #eab308 !important;
+        color: #713f12 !important;
+        box-shadow: 0 2px 4px rgba(234, 179, 8, 0.2);
+      }
+
+      .pale-yellow-btn:hover {
+        background-color: #fde047 !important;
+      }
+
+      .pistachio-btn {
+        background-color: #d1fae5 !important;
+        border-color: #10b981 !important;
+        color: #065f46 !important;
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.15);
+      }
+
+      .pistachio-btn:hover {
+        background-color: #a7f3d0 !important;
+      }
+
+      .black-btn {
+        background-color: #000000 !important;
+        border-color: #000000 !important;
+        color: #ffffff !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .black-btn:hover {
+        background-color: #27272a !important;
+      }
+
+      .load-more-btn,
+      .reduce-btn {
+        display: block;
+        width: 100%;
+        background-color: #2563eb;
+        color: white;
+        border: 1px solid #1d4ed8;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+        text-align: center;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        font-family: Arial, sans-serif;
+      }
+
+      .load-more-btn:hover,
+      .reduce-btn:hover {
+        background-color: #1d4ed8;
+      }
+
+      .sub-btn {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #37474f;
+        color: white;
+        text-align: center;
+        padding: 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 14px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+      }
+
+      .sub-btn-alt {
+        background-color: #1d5c5a;
+      }
+
+      .perf-btn {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #78716c;
+        color: #ffffff;
+        text-align: center;
+        padding: 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 14px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 1px 3px rgba(120, 113, 108, 0.2);
+      }
+
+      .perf-btn:first-of-type {
+        margin-top: 0;
+      }
+
+      .perf-btn:hover {
+        background-color: #57534e;
+      }
+
+      .sub-perf-btn {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #e7e5e4;
+        color: #292524;
+        text-align: center;
+        padding: 10px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 13px;
+        margin-top: 8px;
+        border: 1px solid #d7d3cb;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+      }
+
+      .sub-perf-btn:hover {
+        background-color: #d6d3d1;
+        color: #1c1917;
+      }
+
+      /* Unified font size for Card A and Card C content boxes */
+      #director-content,
+      #manager-content {
+        font-size: 16px;
+        margin-bottom: 12px;
+        max-height: 440px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        background: #fff;
+        padding: 12px;
+        border-radius: 4px;
+        line-height: 1.6;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      /* Privacy Numbered List Grid Styling */
+      .privacy-item {
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        margin-bottom: 12px;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      .privacy-item:last-child {
+        margin-bottom: 15px;
+      }
+
+      .privacy-num {
+        font-weight: normal;
+      }
+
+      .privacy-text {
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      /* Notification Buttons Row and Subcards */
+      .notification-button-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .action-btn-shared {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 14px 8px;
+        border-radius: 8px;
+        border: 1px solid #4b5563;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 1.2;
+        font-family: Arial, sans-serif;
+      }
+
+      .subcard-container {
+        background: #ffffff;
+        border: 2px solid #4b5563;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      .subcard-container h4 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 17px;
+        color: #374151;
+      }
+
+      .subcard-intro-text {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #374151;
+        margin-bottom: 15px;
+      }
+
+      .subcard-intro-text p {
+        margin-top: 0;
+        margin-bottom: 10px;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      .subcard-concluding-text {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #374151;
+        margin-bottom: 15px;
+      }
+
+      .subcard-concluding-text p {
+        margin-top: 0;
+        margin-bottom: 10px;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        color: #1f2937;
+        margin-bottom: 6px;
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="tel"],
+      .form-group input[type="email"],
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      .radio-group,
+      .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: #f9fafb;
+        padding: 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+      }
+
+      .radio-group label,
+      .checkbox-group label {
+        font-weight: normal;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        margin-bottom: 0;
+      }
+
+      .form-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .form-submit-btn {
+        flex: 1;
+        background-color: #1e3a8a;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .form-submit-btn:hover {
+        background-color: #1d4ed8;
+      }
+
+      .form-cancel-btn {
+        flex: 1;
+        background-color: #78716c;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .form-cancel-btn:hover {
+        background-color: #57534e;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Title & Subtitle -->
+      <div class="app-title">
+        <div class="app-title-line1">NCH Cór Linn</div>
+        <div class="app-title-line2">Member Information Hub</div>
+      </div>
+
+      <!-- Top Navigation Buttons Row -->
+      <div class="top-nav">
+        <div class="top-nav-row">
+          <a
+            href="https://calendar.google.com/calendar/embed?src=06d1d22e95ac65658f0c018562876542aa9a449fce7df7cb85f232d7e5595b50%40group.calendar.google.com&ctz=Europe%2FDublin"
+            target="_blank"
+            class="nav-btn-calendar"
+            onclick="closeAllAbsenceCards()"
+          >
+            <span class="btn-large">Open Choir Calendar</span>
+            <span class="btn-small">in Web Browser</span>
+          </a>
+          <button onclick="resyncAllData(this)" class="nav-btn-calendar">
+            <span class="btn-large">Resync All Data</span>
+            <span class="btn-small">(Refresh Hub)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dynamic Content Container -->
+      <div id="events-container">
+        <div class="card card-event-1">
+          <h3>Loading Upcoming Events...</h3>
+          <div class="card-inner">
+            <p style="margin-top: 0">
+              Please wait while schedule information loads.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 1: Side-by-Side Absence Notification Buttons (Pale Yellow) -->
+      <div class="notification-button-row">
+        <button
+          class="action-btn-shared pale-yellow-btn"
+          onclick="toggleSubcard('rehearsal-absence-card')"
+        >
+          Notify Forthcoming Absence(s) From Rehearsal(s)
+        </button>
+        <button
+          class="action-btn-shared pale-yellow-btn"
+          onclick="toggleSubcard('performance-absence-card')"
+        >
+          Notify Forthcoming Absence(s) From Performance(s)
         </button>
       </div>
-    </div>
 
-    <!-- Dynamic Content Container -->
-    <div id="events-container">
-      <div class="card card-event-1">
-        <h3>Loading Upcoming Events...</h3>
-        <div class="card-inner">
-          <p style="margin-top: 0;">Please wait while schedule information loads.</p>
-        </div>
-      </div>
-    </div>
+      <!-- Rehearsal Absence Subcard -->
+      <div
+        id="rehearsal-absence-card"
+        class="subcard-container"
+        style="display: none"
+      >
+        <h4>Forthcoming Absence(s) from Rehearsal(s)</h4>
 
-    <!-- Row 1: Side-by-Side Absence Notification Buttons (Pale Yellow) -->
-    <div class="notification-button-row">
-      <button class="action-btn-shared pale-yellow-btn" onclick="toggleSubcard('rehearsal-absence-card')">Notify
-        Forthcoming Absence(s) From Rehearsal(s)</button>
-      <button class="action-btn-shared pale-yellow-btn" onclick="toggleSubcard('performance-absence-card')">Notify
-        Forthcoming Absence(s) From Performance(s)</button>
-    </div>
-
-    <!-- Rehearsal Absence Subcard -->
-    <div id="rehearsal-absence-card" class="subcard-container" style="display: none;">
-      <h4>Forthcoming Absence(s) from Rehearsal(s)</h4>
-
-      <div class="subcard-intro-text">
-        <p>NSCI Members are expected to try to attend all rehearsals. However it is understood that this is not always
-          possible. NCSI management will always try to work around individual issues - particularly last-minute
-          emergencies.</p>
-        <p>Please communicate absences to the Choir Manager ahead of time whenever possible. We understand that
-          circumstances change, but late drop-outs can make the planning and running of the NCSI really challenging.</p>
-        <p><strong>If you wish you can complete this form to generate a pre-populated email, which you can then send to
-            the Choir Manager.)</strong></p>
-      </div>
-
-      <form id="rehearsal-absence-form" onsubmit="submitRehearsalAbsence(event)">
-        <div class="form-group">
-          <label for="absence-name">1. Name:</label>
-          <input type="text" id="absence-name" required placeholder="Your name">
+        <div class="subcard-intro-text">
+          <p>
+            NSCI Members are expected to try to attend all rehearsals. However
+            it is understood that this is not always possible. NCSI management
+            will always try to work around individual issues - particularly
+            last-minute emergencies.
+          </p>
+          <p>
+            Please communicate absences to the Choir Manager ahead of time
+            whenever possible. We understand that circumstances change, but late
+            drop-outs can make the planning and running of the NCSI really
+            challenging.
+          </p>
+          <p>
+            <strong
+              >If you wish you can complete this form to generate a
+              pre-populated email, which you can then send to the Choir
+              Manager.)</strong
+            >
+          </p>
         </div>
 
-        <div class="form-group">
-          <label>2. Voice:</label>
-          <div class="radio-group">
-            <label><input type="radio" name="absence-voice" value="Soprano" required> Soprano</label>
-            <label><input type="radio" name="absence-voice" value="Alto"> Alto</label>
-            <label><input type="radio" name="absence-voice" value="Tenor"> Tenor</label>
-            <label><input type="radio" name="absence-voice" value="Bass"> Bass</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="absence-mobile">3. Mobile Number (optional):</label>
-          <input type="tel" id="absence-mobile" placeholder="Your mobile number">
-        </div>
-
-        <div class="form-group">
-          <label>4. Rehearsal(s) From Which You Will be Absent:</label>
-          <div id="rehearsal-checkboxes-container" class="checkbox-group">
-            <em>Loading upcoming rehearsal dates...</em>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="absence-notes">5. Additional Information:</label>
-          <textarea id="absence-notes" rows="3"
-            placeholder="Any additional absences you currently anticipate, or any other relevant information"></textarea>
-        </div>
-
-        <div class="form-buttons">
-          <button type="submit" class="form-submit-btn">Generate EMail (and remember to actually send it)</button>
-          <button type="button" class="form-cancel-btn"
-            onclick="toggleSubcard('rehearsal-absence-card')">Cancel</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Performance Absence Subcard -->
-    <div id="performance-absence-card" class="subcard-container" style="display: none;">
-      <h4>Forthcoming Absence(s) from Performance(s)</h4>
-
-      <div class="subcard-intro-text">
-        <p>NSCI Members are expected to commit to all or most of the concert performances scheduled in a season in order
-          to retain their place in the choir. (Taking part in half or less of the concerts in a season will lead to a
-          discussion regarding your continuing membership). However NSCI Management fully acknowledge that members will
-          sometimes be compelled to miss a performance. They will always try to accommodate individual issues,
-          particularly last-minute emergencies.</p>
-        <p>If you know you will be unable to take part in a forthcoming performance it is essential that the Choir
-          Manager be advised at the earliest possible opportunity. The Chorus Director needs to know to what extent the
-          choir may be operating in any forthcoming concert with somewhat reduced numbers. Late drop-outs make that sort
-          of planning really challenging. Accordingly, such drop-outs must be avoided except when they arise by virtue
-          of genuinely unforeseen & pressing circumstances.</p>
-        <p><strong>If you wish you can complete this form to generate a pre-populated email, which you can then send to
-            the Choir Manager, regarding any forthcoming performances you will be unable to take part in.</strong></p>
-      </div>
-
-      <form id="performance-absence-form" onsubmit="submitPerformanceAbsence(event)">
-        <div class="form-group">
-          <label for="perf-absence-name">1. Name:</label>
-          <input type="text" id="perf-absence-name" required placeholder="Your name">
-        </div>
-
-        <div class="form-group">
-          <label>2. Voice:</label>
-          <div class="radio-group">
-            <label><input type="radio" name="perf-absence-voice" value="Soprano" required> Soprano</label>
-            <label><input type="radio" name="perf-absence-voice" value="Alto"> Alto</label>
-            <label><input type="radio" name="perf-absence-voice" value="Tenor"> Tenor</label>
-            <label><input type="radio" name="perf-absence-voice" value="Bass"> Bass</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="perf-absence-mobile">3. Mobile Number (optional):</label>
-          <input type="tel" id="perf-absence-mobile" placeholder="Your mobile number">
-        </div>
-
-        <div class="form-group">
-          <label>4. Performance(s) From Which You Will be Absent:</label>
-          <div id="performance-checkboxes-container" class="checkbox-group">
-            <em>Loading upcoming performance dates...</em>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="perf-absence-notes">5. Additional Information:</label>
-          <textarea id="perf-absence-notes" rows="3"
-            placeholder="Any additional information regarding your absence"></textarea>
-        </div>
-
-        <div class="subcard-concluding-text">
-          <p>If you are unable to participate in a forthcoming performance, you are still welcome (and actively
-            encouraged) to come nonetheless to as many rehearsals as you can. This helps keep the sound, musicianship &
-            social culture of the choir alive and developing. It also helps build the institutional repertoire memory of
-            the NCSI. But typically we expect to have only those singers who intend performing in a concert taking part
-            in the final Wednesday choir-only rehearsal before concert week, and attending the rehearsals with the
-            conductor during concert week. </p>
-        </div>
-
-        <div class="form-buttons">
-          <button type="submit" class="form-submit-btn">Generate EMail (and remember to actually send it)</button>
-          <button type="button" class="form-cancel-btn"
-            onclick="toggleSubcard('performance-absence-card')">Cancel</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Row 2: Safeguarding and Privacy (Pistachio Green) -->
-    <div class="bottom-dual-row">
-      <button onclick="toggleSection('safeguarding-section')" class="bottom-dual-row-btn pistachio-btn">
-        <span class="btn-large">Child Protection &amp;</span>
-        <span class="btn-large">Safeguarding</span>
-      </button>
-      <button onclick="toggleSection('privacy-section')" class="bottom-dual-row-btn pistachio-btn">
-        <span class="btn-large">Privacy /</span>
-        <span class="btn-large">Data Protection</span>
-      </button>
-    </div>
-
-    <!-- Collapsible: Child Protection & Safeguarding (from OldCode) -->
-    <div id="safeguarding-section" class="card card-safeguarding" style="display: none;">
-      <h3>Child Protection &amp; Safeguarding</h3>
-      <div class="card-inner" style="font-size: 14px; line-height: 1.6;">
-        <p style="margin-top: 0;">Cór Linn and the National Concert Hall are committed to the highest standards of child
-          protection and safeguarding. All staff, conductors, and volunteers adhere to strict safeguarding policies to
-          ensure a safe, inclusive, and nurturing environment for all young choir members.</p>
-        <p>Further details regarding our safeguarding guidelines, designated liaison persons, and reporting procedures
-          will be made available here.</p>
-        <button onclick="toggleSection('safeguarding-section')" class="sub-btn"
-          style="background-color: #78716c; margin-top: 15px;">Close Safeguarding Notice</button>
-      </div>
-    </div>
-
-    <!-- Row 3: Four-Column Utility Buttons -->
-    <div class="triple-nav">
-      <button onclick="toggleSection('fault-section')" class="triple-nav-btn">
-        <span class="btn-large">Report Faults/</span>
-        <span class="btn-large">Glitches</span>
-      </button>
-      <button onclick="toggleSection('subscribe-section')" class="triple-nav-btn">
-        <span class="btn-large">Subscribe to</span>
-        <span class="btn-large">Choir Calendar</span>
-      </button>
-      <button onclick="toggleSection('install-section')" class="triple-nav-btn">
-        <span class="btn-large">Install Hub as App</span>
-        <span class="btn-large">on Phone</span>
-      </button>
-      <button onclick="openQRCodePage()" class="triple-nav-btn">
-        <span class="btn-large">Generate QR Code</span>
-        <span class="btn-large">for Hub App</span>
-      </button>
-    </div>
-
-    <!-- Collapsible: Subscribe to Choir Calendar -->
-    <div id="subscribe-section" class="card card-subscribe" style="display: none;">
-      <h3>Subscribe to Choir Calendar</h3>
-      <div class="card-inner">
-        <p style="margin-top: 0; font-size: 14px; margin-bottom: 12px;">Add online choir calendar to your personal
-          calendar app. Changes will sync automatically over time.</p>
-
-        <a href="https://calendar.google.com/calendar/u/0?cid=06d1d22e95ac65658f0c018562876542aa9a449fce7df7cb85f232d7e5595b50%40group.calendar.google.com"
-          target="_blank" class="sub-btn" onclick="closeAllAbsenceCards()">
-          Subscribe with Google Calendar
-        </a>
-        <button onclick="copyAndOpenInstructions(this)" class="sub-btn sub-btn-alt">
-          Copy Link for Apple / Outlook Calendar
-        </button>
-      </div>
-    </div>
-
-    <!-- Collapsible: Install Member Information Hub On Your Phone -->
-    <div id="install-section" class="card card-app-install" style="display: none;">
-      <h3>Install Member Information Hub On Your Phone</h3>
-      <div class="card-inner">
-        <p style="margin-top: 0; font-size: 14px; margin-bottom: 10px;">You can save this page directly to your home
-          screen for quick, one-tap access:</p>
-
-        <div style="font-size: 13px; background: #fafafa; padding: 10px; border-radius: 4px; border: 1px solid #ddd;">
-          <p style="margin: 0 0 6px 0;"><strong>Android (Chrome / Samsung Internet):</strong></p>
-          <ol style="margin: 0 0 12px 20px; padding: 0;">
-            <li>Tap the menu icon (three dots in top-right).</li>
-            <li>Select <strong>Install and create shortcut</strong> (or <em>Add to Home screen</em>).</li>
-            <li>Confirm by tapping <strong>Install</strong> or <strong>Add</strong>.</li>
-          </ol>
-
-          <p style="margin: 0 0 6px 0;"><strong>iPhone / iPad (Safari):</strong></p>
-          <ol style="margin: 0 0 0 20px; padding: 0;">
-            <li>Tap the <strong>Share</strong> button at the bottom of the screen.</li>
-            <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
-            <li>Tap <strong>Add</strong> in the top-right corner.</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-
-    <!-- Collapsible: Privacy / Data Protection -->
-    <div id="privacy-section" class="card card-privacy" style="display: none;">
-      <h3>Privacy/Data Protection</h3>
-      <div class="card-inner" style="font-size: 14px; line-height: 1.6;">
-
-        <div class="privacy-item" style="margin-top: 0;">
-          <div class="privacy-num">1.</div>
-          <div class="privacy-text">This online NCH Cór Linn Information Hub (&ldquo;the App&rdquo;) is a spinoff of
-            a similar hub that was developed, on his own initiative, by Kevin O&rsquo;Connell, a member of the
-            National Symphony Chorus. To contact him please <a href="mailto:natsymphchorus@gmail.com"
-              style="color: #2986cc; font-weight: bold; text-decoration: underline;">click here</a>.</div>
-        </div>
-
-        <div class="privacy-item">
-          <div class="privacy-num">2.</div>
-          <div class="privacy-text">An Ceoláras Náisiúnta (the National Concert Hall) has not been involved in the
-            development of the App. Neither is it involved in any control, maintenance or monitoring of it.</div>
-        </div>
-
-        <div class="privacy-item">
-          <div class="privacy-num">3.</div>
-          <div class="privacy-text">The App is not intended to be used for gathering or disseminating anyone's personal
-            data. No such data is collected when Cór Linn Members, or their parents/guardians, choose whether or not to
-            use the App. Similarly, no logs are maintained regarding anyone&rsquo;s use of it.</div>
-        </div>
-
-        <div class="privacy-item">
-          <div class="privacy-num">4.</div>
-          <div class="privacy-text">The Cór Linn Music Director and Choir Manager have both undertaken that no personal
-            data will ever be uploaded by them to the &ldquo;Current Notes&rdquo; section of the App.</div>
-        </div>
-
-        <div class="privacy-item" style="margin-bottom: 15px;">
-          <div class="privacy-num">5.</div>
-          <div class="privacy-text">Cór Linn Members and their parents remain perfectly free to choose not to download
-            or use the App. Information regarding rehearsals &amp; performances will continue to be communicated to them
-            in exactly the same way as prior to the development of the App.</div>
-        </div>
-
-        <button onclick="toggleSection('privacy-section')" class="sub-btn"
-          style="background-color: #78716c; margin-top: 0;">Close Privacy Notice</button>
-      </div>
-    </div>
-
-    <!-- Collapsible: Report Faults or Glitches -->
-    <div id="fault-section" class="card card-fault" style="display: none;">
-      <h3>Report Faults or Glitches With this App</h3>
-      <div class="card-inner">
-        <p style="margin-top: 0; font-size: 14px; margin-bottom: 12px;">Please select the area(s) of the app where you
-          are experiencing issues:</p>
-
-        <form id="fault-form" onsubmit="submitFaultReport(event)">
-          <div style="font-size: 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
-            <label><input type="checkbox" name="fault_area" value="Choir Calendar in Web Browser"> Choir Calendar in Web
-              Browser</label>
-            <label><input type="checkbox" name="fault_area" value="Music Director's Notes"> Music Director's
-              Notes</label>
-            <label><input type="checkbox" name="fault_area" value="Notes from Choir Manager"> Notes from Choir
-              Manager</label>
-            <label><input type="checkbox" name="fault_area" value="Future Events"> Future Events</label>
-            <label><input type="checkbox" name="fault_area" value="Choir Calendar Subscription"> Choir Calendar
-              Subscription</label>
-            <label><input type="checkbox" name="fault_area" value="Phone Installation Guide"> Phone Installation
-              Guide</label>
-            <label><input type="checkbox" name="fault_area" value="Child Protection & Safeguarding"> Child Protection
-              &amp; Safeguarding</label>
-            <label><input type="checkbox" name="fault_area" value="QR Code Generator"> QR Code Generator</label>
-            <label><input type="checkbox" name="fault_area" value="General / Other App Glitch"> General / Other App
-              Glitch</label>
+        <form
+          id="rehearsal-absence-form"
+          onsubmit="submitRehearsalAbsence(event)"
+        >
+          <div class="form-group">
+            <label for="absence-name">1. Name:</label>
+            <input
+              type="text"
+              id="absence-name"
+              required
+              placeholder="Your name"
+            />
           </div>
 
-          <div style="margin-bottom: 12px;">
-            <label for="fault-desc"
-              style="display: block; font-weight: bold; font-size: 14px; margin-bottom: 4px;">Describe the problem you
-              are experiencing:</label>
-            <textarea id="fault-desc" rows="4"
-              style="width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif;"
-              required placeholder="Please provide details about what went wrong..."></textarea>
+          <div class="form-group">
+            <label>2. Voice:</label>
+            <div class="radio-group">
+              <label
+                ><input
+                  type="radio"
+                  name="absence-voice"
+                  value="Soprano"
+                  required
+                />
+                Soprano</label
+              >
+              <label
+                ><input type="radio" name="absence-voice" value="Alto" />
+                Alto</label
+              >
+              <label
+                ><input type="radio" name="absence-voice" value="Tenor" />
+                Tenor</label
+              >
+              <label
+                ><input type="radio" name="absence-voice" value="Bass" />
+                Bass</label
+              >
+            </div>
           </div>
 
-          <div style="margin-bottom: 12px;">
-            <label for="fault-email"
-              style="display: block; font-weight: bold; font-size: 14px; margin-bottom: 4px;">Email address
-              (optional):</label>
-            <input type="email" id="fault-email"
-              style="width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif;"
-              placeholder="e.g., name@example.com">
+          <div class="form-group">
+            <label for="absence-mobile">3. Mobile Number (optional):</label>
+            <input
+              type="tel"
+              id="absence-mobile"
+              placeholder="Your mobile number"
+            />
           </div>
 
-          <div style="margin-bottom: 15px;">
-            <label for="fault-phone"
-              style="display: block; font-weight: bold; font-size: 14px; margin-bottom: 4px;">Mobile phone number
-              (optional):</label>
-            <input type="tel" id="fault-phone"
-              style="width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif;"
-              placeholder="e.g., 087 123 4567">
+          <div class="form-group">
+            <label>4. Rehearsal(s) From Which You Will be Absent:</label>
+            <div id="rehearsal-checkboxes-container" class="checkbox-group">
+              <em>Loading upcoming rehearsal dates...</em>
+            </div>
           </div>
 
-          <button type="submit" class="sub-btn" style="background-color: #734040; margin-top: 0;">Open Email to Send
-            Fault Report</button>
-          <button type="button" onclick="toggleSection('fault-section')" class="sub-btn"
-            style="background-color: #78716c; margin-top: 8px;">Cancel</button>
+          <div class="form-group">
+            <label for="absence-notes">5. Additional Information:</label>
+            <textarea
+              id="absence-notes"
+              rows="3"
+              placeholder="Any additional absences you currently anticipate, or any other relevant information"
+            ></textarea>
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" class="form-submit-btn">
+              Generate EMail (and remember to actually send it)
+            </button>
+            <button
+              type="button"
+              class="form-cancel-btn"
+              onclick="toggleSubcard('rehearsal-absence-card')"
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
+
+      <!-- Performance Absence Subcard -->
+      <div
+        id="performance-absence-card"
+        class="subcard-container"
+        style="display: none"
+      >
+        <h4>Forthcoming Absence(s) from Performance(s)</h4>
+
+        <div class="subcard-intro-text">
+          <p>
+            NSCI Members are expected to commit to all or most of the concert
+            performances scheduled in a season in order to retain their place in
+            the choir. (Taking part in half or less of the concerts in a season
+            will lead to a discussion regarding your continuing membership).
+            However NSCI Management fully acknowledge that members will
+            sometimes be compelled to miss a performance. They will always try
+            to accommodate individual issues, particularly last-minute
+            emergencies.
+          </p>
+          <p>
+            If you know you will be unable to take part in a forthcoming
+            performance it is essential that the Choir Manager be advised at the
+            earliest possible opportunity. The Chorus Director needs to know to
+            what extent the choir may be operating in any forthcoming concert
+            with somewhat reduced numbers. Late drop-outs make that sort of
+            planning really challenging. Accordingly, such drop-outs must be
+            avoided except when they arise by virtue of genuinely unforeseen &
+            pressing circumstances.
+          </p>
+          <p>
+            <strong
+              >If you wish you can complete this form to generate a
+              pre-populated email, which you can then send to the Choir Manager,
+              regarding any forthcoming performances you will be unable to take
+              part in.</strong
+            >
+          </p>
+        </div>
+
+        <form
+          id="performance-absence-form"
+          onsubmit="submitPerformanceAbsence(event)"
+        >
+          <div class="form-group">
+            <label for="perf-absence-name">1. Name:</label>
+            <input
+              type="text"
+              id="perf-absence-name"
+              required
+              placeholder="Your name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>2. Voice:</label>
+            <div class="radio-group">
+              <label
+                ><input
+                  type="radio"
+                  name="perf-absence-voice"
+                  value="Soprano"
+                  required
+                />
+                Soprano</label
+              >
+              <label
+                ><input type="radio" name="perf-absence-voice" value="Alto" />
+                Alto</label
+              >
+              <label
+                ><input type="radio" name="perf-absence-voice" value="Tenor" />
+                Tenor</label
+              >
+              <label
+                ><input type="radio" name="perf-absence-voice" value="Bass" />
+                Bass</label
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="perf-absence-mobile"
+              >3. Mobile Number (optional):</label
+            >
+            <input
+              type="tel"
+              id="perf-absence-mobile"
+              placeholder="Your mobile number"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>4. Performance(s) From Which You Will be Absent:</label>
+            <div id="performance-checkboxes-container" class="checkbox-group">
+              <em>Loading upcoming performance dates...</em>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="perf-absence-notes">5. Additional Information:</label>
+            <textarea
+              id="perf-absence-notes"
+              rows="3"
+              placeholder="Any additional information regarding your absence"
+            ></textarea>
+          </div>
+
+          <div class="subcard-concluding-text">
+            <p>
+              If you are unable to participate in a forthcoming performance, you
+              are still welcome (and actively encouraged) to come nonetheless to
+              as many rehearsals as you can. This helps keep the sound,
+              musicianship & social culture of the choir alive and developing.
+              It also helps build the institutional repertoire memory of the
+              NCSI. But typically we expect to have only those singers who
+              intend performing in a concert taking part in the final Wednesday
+              choir-only rehearsal before concert week, and attending the
+              rehearsals with the conductor during concert week.
+            </p>
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" class="form-submit-btn">
+              Generate EMail (and remember to actually send it)
+            </button>
+            <button
+              type="button"
+              class="form-cancel-btn"
+              onclick="toggleSubcard('performance-absence-card')"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Row 2: Safeguarding and Privacy (Pistachio Green) -->
+      <div class="bottom-dual-row">
+        <button
+          onclick="toggleSection('safeguarding-section')"
+          class="bottom-dual-row-btn pistachio-btn"
+        >
+          <span class="btn-large">Child Protection &amp;</span>
+          <span class="btn-large">Safeguarding</span>
+        </button>
+        <button
+          onclick="toggleSection('privacy-section')"
+          class="bottom-dual-row-btn pistachio-btn"
+        >
+          <span class="btn-large">Privacy /</span>
+          <span class="btn-large">Data Protection</span>
+        </button>
+      </div>
+
+      <!-- Collapsible: Child Protection & Safeguarding (from OldCode) -->
+      <div
+        id="safeguarding-section"
+        class="card card-safeguarding"
+        style="display: none"
+      >
+        <h3>Child Protection &amp; Safeguarding</h3>
+        <div class="card-inner" style="font-size: 14px; line-height: 1.6">
+          <p style="margin-top: 0">
+            Cór Linn and the National Concert Hall are committed to the highest
+            standards of child protection and safeguarding. All staff,
+            conductors, and volunteers adhere to strict safeguarding policies to
+            ensure a safe, inclusive, and nurturing environment for all young
+            choir members.
+          </p>
+          <p>
+            Further details regarding our safeguarding guidelines, designated
+            liaison persons, and reporting procedures will be made available
+            here.
+          </p>
+          <button
+            onclick="toggleSection('safeguarding-section')"
+            class="sub-btn"
+            style="background-color: #78716c; margin-top: 15px"
+          >
+            Close Safeguarding Notice
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 3: Four-Column Utility Buttons -->
+      <div class="triple-nav">
+        <button onclick="toggleSection('fault-section')" class="triple-nav-btn">
+          <span class="btn-large">Report Faults/</span>
+          <span class="btn-large">Glitches</span>
+        </button>
+        <button
+          onclick="toggleSection('subscribe-section')"
+          class="triple-nav-btn"
+        >
+          <span class="btn-large">Subscribe to</span>
+          <span class="btn-large">Choir Calendar</span>
+        </button>
+        <button
+          onclick="toggleSection('install-section')"
+          class="triple-nav-btn"
+        >
+          <span class="btn-large">Install Hub as App</span>
+          <span class="btn-large">on Phone</span>
+        </button>
+        <button onclick="openQRCodePage()" class="triple-nav-btn">
+          <span class="btn-large">Generate QR Code</span>
+          <span class="btn-large">for Hub App</span>
+        </button>
+      </div>
+
+      <!-- Collapsible: Subscribe to Choir Calendar -->
+      <div
+        id="subscribe-section"
+        class="card card-subscribe"
+        style="display: none"
+      >
+        <h3>Subscribe to Choir Calendar</h3>
+        <div class="card-inner">
+          <p style="margin-top: 0; font-size: 14px; margin-bottom: 12px">
+            Add online choir calendar to your personal calendar app. Changes
+            will sync automatically over time.
+          </p>
+
+          <a
+            href="https://calendar.google.com/calendar/u/0?cid=06d1d22e95ac65658f0c018562876542aa9a449fce7df7cb85f232d7e5595b50%40group.calendar.google.com"
+            target="_blank"
+            class="sub-btn"
+            onclick="closeAllAbsenceCards()"
+          >
+            Subscribe with Google Calendar
+          </a>
+          <button
+            onclick="copyAndOpenInstructions(this)"
+            class="sub-btn sub-btn-alt"
+          >
+            Copy Link for Apple / Outlook Calendar
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible: Install Member Information Hub On Your Phone -->
+      <div
+        id="install-section"
+        class="card card-app-install"
+        style="display: none"
+      >
+        <h3>Install Member Information Hub On Your Phone</h3>
+        <div class="card-inner">
+          <p style="margin-top: 0; font-size: 14px; margin-bottom: 10px">
+            You can save this page directly to your home screen for quick,
+            one-tap access:
+          </p>
+
+          <div
+            style="
+              font-size: 13px;
+              background: #fafafa;
+              padding: 10px;
+              border-radius: 4px;
+              border: 1px solid #ddd;
+            "
+          >
+            <p style="margin: 0 0 6px 0">
+              <strong>Android (Chrome / Samsung Internet):</strong>
+            </p>
+            <ol style="margin: 0 0 12px 20px; padding: 0">
+              <li>Tap the menu icon (three dots in top-right).</li>
+              <li>
+                Select <strong>Install and create shortcut</strong> (or
+                <em>Add to Home screen</em>).
+              </li>
+              <li>
+                Confirm by tapping <strong>Install</strong> or
+                <strong>Add</strong>.
+              </li>
+            </ol>
+
+            <p style="margin: 0 0 6px 0">
+              <strong>iPhone / iPad (Safari):</strong>
+            </p>
+            <ol style="margin: 0 0 0 20px; padding: 0">
+              <li>
+                Tap the <strong>Share</strong> button at the bottom of the
+                screen.
+              </li>
+              <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+              <li>Tap <strong>Add</strong> in the top-right corner.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible: Privacy / Data Protection -->
+      <div id="privacy-section" class="card card-privacy" style="display: none">
+        <h3>Privacy/Data Protection</h3>
+        <div class="card-inner" style="font-size: 14px; line-height: 1.6">
+          <div class="privacy-item" style="margin-top: 0">
+            <div class="privacy-num">1.</div>
+            <div class="privacy-text">
+              This online NCH Cór Linn Information Hub (&ldquo;the App&rdquo;)
+              is a spinoff of a similar hub that was developed, on his own
+              initiative, by Kevin O&rsquo;Connell, a member of the National
+              Symphony Chorus. To contact him please
+              <a
+                href="mailto:natsymphchorus@gmail.com"
+                style="
+                  color: #2986cc;
+                  font-weight: bold;
+                  text-decoration: underline;
+                "
+                >click here</a
+              >.
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-num">2.</div>
+            <div class="privacy-text">
+              An Ceoláras Náisiúnta (the National Concert Hall) has not been
+              involved in the development of the App. Neither is it involved in
+              any control, maintenance or monitoring of it.
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-num">3.</div>
+            <div class="privacy-text">
+              The App is not intended to be used for gathering or disseminating
+              anyone's personal data. No such data is collected when Cór Linn
+              Members, or their parents/guardians, choose whether or not to use
+              the App. Similarly, no logs are maintained regarding
+              anyone&rsquo;s use of it.
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-num">4.</div>
+            <div class="privacy-text">
+              The Cór Linn Music Director and Choir Manager have both undertaken
+              that no personal data will ever be uploaded by them to the
+              &ldquo;Current Notes&rdquo; section of the App.
+            </div>
+          </div>
+
+          <div class="privacy-item" style="margin-bottom: 15px">
+            <div class="privacy-num">5.</div>
+            <div class="privacy-text">
+              Cór Linn Members and their parents remain perfectly free to choose
+              not to download or use the App. Information regarding rehearsals
+              &amp; performances will continue to be communicated to them in
+              exactly the same way as prior to the development of the App.
+            </div>
+          </div>
+
+          <button
+            onclick="toggleSection('privacy-section')"
+            class="sub-btn"
+            style="background-color: #78716c; margin-top: 0"
+          >
+            Close Privacy Notice
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible: Report Faults or Glitches -->
+      <div id="fault-section" class="card card-fault" style="display: none">
+        <h3>Report Faults or Glitches With this App</h3>
+        <div class="card-inner">
+          <p style="margin-top: 0; font-size: 14px; margin-bottom: 12px">
+            Please select the area(s) of the app where you are experiencing
+            issues:
+          </p>
+
+          <form id="fault-form" onsubmit="submitFaultReport(event)">
+            <div
+              style="
+                font-size: 14px;
+                margin-bottom: 12px;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+              "
+            >
+              <label
+                ><input
+                  type="checkbox"
+                  name="fault_area"
+                  value="Choir Calendar in Web Browser"
+                />
+                Choir Calendar in Web Browser</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="fault_area"
+                  value="Music Director's Notes"
+                />
+                Music Director's Notes</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="fault_area"
+                  value="Notes from Choir Manager"
+                />
+                Notes from Choir Manager</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="fault_area"
+                  value="Future Events"
+                />
+                Future Events</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="fault_area"
+                  value="Choir Calendar Subscription"
+                />
+                Choir Calendar Subscription</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="fault_area"
+                  value="Phone Installation Guide"
+                />
+                Phone Installation Guide</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="fault_area"
+                  value="Child Protection & Safeguarding"
+                />
+                Child Protection &amp; Safeguarding</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="fault_area"
+                  value="QR Code Generator"
+                />
+                QR Code Generator</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="fault_area"
+                  value="General / Other App Glitch"
+                />
+                General / Other App Glitch</label
+              >
+            </div>
+
+            <div style="margin-bottom: 12px">
+              <label
+                for="fault-desc"
+                style="
+                  display: block;
+                  font-weight: bold;
+                  font-size: 14px;
+                  margin-bottom: 4px;
+                "
+                >Describe the problem you are experiencing:</label
+              >
+              <textarea
+                id="fault-desc"
+                rows="4"
+                style="
+                  width: 100%;
+                  box-sizing: border-box;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  font-family: Arial, sans-serif;
+                "
+                required
+                placeholder="Please provide details about what went wrong..."
+              ></textarea>
+            </div>
+
+            <div style="margin-bottom: 12px">
+              <label
+                for="fault-email"
+                style="
+                  display: block;
+                  font-weight: bold;
+                  font-size: 14px;
+                  margin-bottom: 4px;
+                "
+                >Email address (optional):</label
+              >
+              <input
+                type="email"
+                id="fault-email"
+                style="
+                  width: 100%;
+                  box-sizing: border-box;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  font-family: Arial, sans-serif;
+                "
+                placeholder="e.g., name@example.com"
+              />
+            </div>
+
+            <div style="margin-bottom: 15px">
+              <label
+                for="fault-phone"
+                style="
+                  display: block;
+                  font-weight: bold;
+                  font-size: 14px;
+                  margin-bottom: 4px;
+                "
+                >Mobile phone number (optional):</label
+              >
+              <input
+                type="tel"
+                id="fault-phone"
+                style="
+                  width: 100%;
+                  box-sizing: border-box;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  font-family: Arial, sans-serif;
+                "
+                placeholder="e.g., 087 123 4567"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="sub-btn"
+              style="background-color: #734040; margin-top: 0"
+            >
+              Open Email to Send Fault Report
+            </button>
+            <button
+              type="button"
+              onclick="toggleSection('fault-section')"
+              class="sub-btn"
+              style="background-color: #78716c; margin-top: 8px"
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
 
-  </div>
+    <script>
+      const WORKER_URL =
+        "https://youth-calendar-proxy.natsymphchorus.workers.dev/";
+      const DIRECTOR_NOTES_WORKER =
+        "https://youth-choral-director-notes.natsymphchorus.workers.dev/";
+      const MANAGER_NOTES_WORKER =
+        "https://cor-linn-manager-notes.natsymphchorus.workers.dev/";
 
-  <script>
-    const WORKER_URL = 'https://youth-calendar-proxy.natsymphchorus.workers.dev/';
-    const DIRECTOR_NOTES_WORKER = 'https://youth-choral-director-notes.natsymphchorus.workers.dev/';
-    const MANAGER_NOTES_WORKER = 'https://cor-linn-manager-notes.natsymphchorus.workers.dev/';
+      let cachedEvents = [];
+      let showAllFuture = false;
 
-    let cachedEvents = [];
-    let showAllFuture = false;
-
-    function closeAllAbsenceCards() {
-      const rehearsalCard = document.getElementById('rehearsal-absence-card');
-      const performanceCard = document.getElementById('performance-absence-card');
-      if (rehearsalCard) rehearsalCard.style.display = 'none';
-      if (performanceCard) performanceCard.style.display = 'none';
-    }
-
-    async function resyncAllData(btn) {
-      closeAllAbsenceCards();
-      const originalContent = btn.innerHTML;
-      btn.innerHTML = '<span class="btn-large">Syncing...</span><span class="btn-small">Please wait</span>';
-      btn.style.opacity = '0.8';
-
-      try {
-        await Promise.all([
-          loadDynamicEvents(),
-          loadDirectorNotes(),
-          loadManagerNotes()
-        ]);
-
-        btn.innerHTML = '<span class="btn-large">Sync Complete!</span><span class="btn-small">Data is up to date</span>';
-        setTimeout(() => {
-          btn.innerHTML = originalContent;
-          btn.style.opacity = '1';
-        }, 2000);
-      } catch (err) {
-        console.error('Manual resync failed:', err);
-        btn.innerHTML = '<span class="btn-large">Sync Failed</span><span class="btn-small">Check connection</span>';
-        setTimeout(() => {
-          btn.innerHTML = originalContent;
-          btn.style.opacity = '1';
-        }, 3000);
-      }
-    }
-
-    function toggleSection(sectionId) {
-      closeAllAbsenceCards();
-
-      const sectionIds = ['subscribe-section', 'install-section', 'safeguarding-section', 'privacy-section', 'fault-section'];
-      const target = document.getElementById(sectionId);
-      if (!target) return;
-      const isTargetAlreadyOpen = target.style.display === 'block';
-
-      sectionIds.forEach(id => {
-        const section = document.getElementById(id);
-        if (section) section.style.display = 'none';
-      });
-
-      if (!isTargetAlreadyOpen) {
-        target.style.display = 'block';
-        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    }
-
-    function submitFaultReport(event) {
-      event.preventDefault();
-      closeAllAbsenceCards();
-
-      const checkboxes = document.querySelectorAll('input[name="fault_area"]:checked');
-      const selectedAreas = Array.from(checkboxes).map(cb => cb.value);
-      const description = document.getElementById('fault-desc').value.trim();
-      const emailContact = document.getElementById('fault-email').value.trim();
-      const phoneContact = document.getElementById('fault-phone').value.trim();
-
-      const now = new Date();
-      const irishTimeString = now.toLocaleString('en-GB', {
-        timeZone: 'Europe/Dublin',
-        dateStyle: 'full',
-        timeStyle: 'medium'
-      });
-
-      const subject = "NCH Cór Linn Info Hub Fault Report, Created at " + irishTimeString;
-
-      let bodyText = "NCH Cór Linn Info Hub Fault Report\n\n";
-      bodyText += "Timestamp (Irish Time): " + irishTimeString + "\n\n";
-      bodyText += "Problem Areas Selected:\n";
-      if (selectedAreas.length > 0) {
-        selectedAreas.forEach(area => { bodyText += " - " + area + "\n"; });
-      } else {
-        bodyText += " - None specifically checked\n";
-      }
-      bodyText += "\nDescription of Problem:\n" + description + "\n";
-
-      if (emailContact || phoneContact) {
-        bodyText += "\nContact Information Provided:\n";
-        if (emailContact) bodyText += " - Email: " + emailContact + "\n";
-        if (phoneContact) bodyText += " - Mobile Phone: " + phoneContact + "\n";
+      function closeAllAbsenceCards() {
+        const rehearsalCard = document.getElementById("rehearsal-absence-card");
+        const performanceCard = document.getElementById(
+          "performance-absence-card",
+        );
+        if (rehearsalCard) rehearsalCard.style.display = "none";
+        if (performanceCard) performanceCard.style.display = "none";
       }
 
-      const recipient = "natsymphchorus@gmail.com";
-      const mailtoUri = "mailto:" + recipient + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyText);
+      async function resyncAllData(btn) {
+        closeAllAbsenceCards();
+        const originalContent = btn.innerHTML;
+        btn.innerHTML =
+          '<span class="btn-large">Syncing...</span><span class="btn-small">Please wait</span>';
+        btn.style.opacity = "0.8";
 
-      window.location.href = mailtoUri;
-    }
+        try {
+          await Promise.all([
+            loadDynamicEvents(),
+            loadDirectorNotes(),
+            loadManagerNotes(),
+          ]);
 
-    async function loadDynamicEvents() {
-      try {
-        const response = await fetch(WORKER_URL);
-        if (!response.ok) throw new Error('Server returned status ' + response.status);
+          btn.innerHTML =
+            '<span class="btn-large">Sync Complete!</span><span class="btn-small">Data is up to date</span>';
+          setTimeout(() => {
+            btn.innerHTML = originalContent;
+            btn.style.opacity = "1";
+          }, 2000);
+        } catch (err) {
+          console.error("Manual resync failed:", err);
+          btn.innerHTML =
+            '<span class="btn-large">Sync Failed</span><span class="btn-small">Check connection</span>';
+          setTimeout(() => {
+            btn.innerHTML = originalContent;
+            btn.style.opacity = "1";
+          }, 3000);
+        }
+      }
 
-        cachedEvents = await response.json();
+      function toggleSection(sectionId) {
+        closeAllAbsenceCards();
 
-        if (!Array.isArray(cachedEvents) || cachedEvents.length === 0) {
+        const sectionIds = [
+          "subscribe-section",
+          "install-section",
+          "safeguarding-section",
+          "privacy-section",
+          "fault-section",
+        ];
+        const target = document.getElementById(sectionId);
+        if (!target) return;
+        const isTargetAlreadyOpen = target.style.display === "block";
+
+        sectionIds.forEach((id) => {
+          const section = document.getElementById(id);
+          if (section) section.style.display = "none";
+        });
+
+        if (!isTargetAlreadyOpen) {
+          target.style.display = "block";
+          target.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      }
+
+      function submitFaultReport(event) {
+        event.preventDefault();
+        closeAllAbsenceCards();
+
+        const checkboxes = document.querySelectorAll(
+          'input[name="fault_area"]:checked',
+        );
+        const selectedAreas = Array.from(checkboxes).map((cb) => cb.value);
+        const description = document.getElementById("fault-desc").value.trim();
+        const emailContact = document
+          .getElementById("fault-email")
+          .value.trim();
+        const phoneContact = document
+          .getElementById("fault-phone")
+          .value.trim();
+
+        const now = new Date();
+        const irishTimeString = now.toLocaleString("en-GB", {
+          timeZone: "Europe/Dublin",
+          dateStyle: "full",
+          timeStyle: "medium",
+        });
+
+        const subject =
+          "NCH Cór Linn Info Hub Fault Report, Created at " + irishTimeString;
+
+        let bodyText = "NCH Cór Linn Info Hub Fault Report\n\n";
+        bodyText += "Timestamp (Irish Time): " + irishTimeString + "\n\n";
+        bodyText += "Problem Areas Selected:\n";
+        if (selectedAreas.length > 0) {
+          selectedAreas.forEach((area) => {
+            bodyText += " - " + area + "\n";
+          });
+        } else {
+          bodyText += " - None specifically checked\n";
+        }
+        bodyText += "\nDescription of Problem:\n" + description + "\n";
+
+        if (emailContact || phoneContact) {
+          bodyText += "\nContact Information Provided:\n";
+          if (emailContact) bodyText += " - Email: " + emailContact + "\n";
+          if (phoneContact)
+            bodyText += " - Mobile Phone: " + phoneContact + "\n";
+        }
+
+        const recipient = "natsymphchorus@gmail.com";
+        const mailtoUri =
+          "mailto:" +
+          recipient +
+          "?subject=" +
+          encodeURIComponent(subject) +
+          "&body=" +
+          encodeURIComponent(bodyText);
+
+        window.location.href = mailtoUri;
+      }
+
+      async function loadDynamicEvents() {
+        try {
+          const response = await fetch(WORKER_URL);
+          if (!response.ok)
+            throw new Error("Server returned status " + response.status);
+
+          cachedEvents = await response.json();
+
+          if (!Array.isArray(cachedEvents) || cachedEvents.length === 0) {
+            showFallbackNotice();
+            return;
+          }
+
+          renderEvents();
+          loadDirectorNotes();
+          loadManagerNotes();
+        } catch (err) {
+          console.error("Error loading calendar events:", err);
+          showFallbackNotice();
+        }
+      }
+
+      function renderEvents() {
+        const now = new Date();
+        const todayStr = now.toISOString().split("T")[0];
+
+        const dateMap = new Map();
+        cachedEvents.forEach((ev) => {
+          if (!dateMap.has(ev.startDateStr)) {
+            dateMap.set(ev.startDateStr, []);
+          }
+          dateMap.get(ev.startDateStr).push(ev);
+        });
+
+        const targetDates = Array.from(dateMap.keys()).sort();
+
+        if (targetDates.length === 0) {
           showFallbackNotice();
           return;
         }
 
+        let fullHTML = "";
+
+        let firstDateKey = targetDates[0];
+        let subheadingText =
+          firstDateKey === todayStr ? "Today's Event" : "Next Event";
+
+        fullHTML +=
+          '<div class="section-subheading">' + subheadingText + "</div>";
+
+        if (targetDates.length > 0) {
+          const dateKey = firstDateKey;
+          const dayEvents = dateMap.get(dateKey);
+          const parts = dateKey.split("-").map(Number);
+          const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+          const formattedDateTitle = dateObj.toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          });
+
+          let eventsDetailsHTML = "";
+
+          dayEvents.forEach((ev) => {
+            const title = ev.summary || "";
+
+            const extraStyle = /to be confirmed/i.test(title)
+              ? "background-color: #f2d5e8; padding: 10px; border-radius: 5px;"
+              : /\bExtra\b/i.test(title)
+                ? "background-color: #f4faa5; padding: 10px; border-radius: 5px;"
+                : "";
+
+            eventsDetailsHTML +=
+              '<p style="margin-top: 0; margin-bottom: 8px; ' +
+              extraStyle +
+              '"><strong>' +
+              ev.summary +
+              "</strong><br><strong>Time:</strong> " +
+              ev.timeStr +
+              "<br><strong>Venue:</strong> " +
+              ev.location +
+              "</p>";
+          });
+
+          fullHTML +=
+            '<div class="card card-event-1"><h3>' +
+            formattedDateTitle +
+            '</h3><div class="card-inner">' +
+            eventsDetailsHTML +
+            "</div></div>";
+        }
+
+        fullHTML += '<div class="section-subheading">Current Notes</div>';
+
+        fullHTML +=
+          '<div class="card card-manager"><h3>Notes from Choir Manager</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #6b1d54; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+
+        fullHTML +=
+          '<div class="card card-director"><h3>Music Director\'s Notes</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+
+        fullHTML += '<div class="section-subheading">Future Events</div>';
+
+        const futureDates = targetDates.slice(1);
+        const displayDates = showAllFuture
+          ? futureDates
+          : futureDates.slice(0, 4);
+        const hasMoreFutureEvents = futureDates.length > 4;
+
+        displayDates.forEach((dateKey) => {
+          const dayEvents = dateMap.get(dateKey);
+
+          const parts = dateKey.split("-").map(Number);
+          const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+          const formattedDateTitle = dateObj.toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          });
+
+          let eventsDetailsHTML = "";
+
+          dayEvents.forEach((ev) => {
+            const title = ev.summary || "";
+
+            const extraStyle = /to be confirmed/i.test(title)
+              ? "background-color: #f2d5e8; padding: 10px; border-radius: 5px;"
+              : /\bExtra\b/i.test(title)
+                ? "background-color: #f4faa5; padding: 10px; border-radius: 5px;"
+                : "";
+
+            eventsDetailsHTML +=
+              '<p style="margin-top: 0; margin-bottom: 8px; ' +
+              extraStyle +
+              '"><strong>' +
+              ev.summary +
+              "</strong><br><strong>Time:</strong> " +
+              ev.timeStr +
+              "<br><strong>Venue:</strong> " +
+              ev.location +
+              "</p>";
+          });
+
+          fullHTML +=
+            '<div class="card card-event-secondary"><h3>' +
+            formattedDateTitle +
+            '</h3><div class="card-inner">' +
+            eventsDetailsHTML +
+            "</div></div>";
+        });
+
+        if (!showAllFuture && hasMoreFutureEvents) {
+          fullHTML +=
+            '<button class="load-more-btn" onclick="showAllEvents()">Show All Future Events</button>';
+        } else if (showAllFuture && hasMoreFutureEvents) {
+          fullHTML +=
+            '<button class="reduce-btn" onclick="reduceEvents()">Show Fewer Future Events</button>';
+        }
+
+        document.getElementById("events-container").innerHTML = fullHTML;
+      }
+
+      function showAllEvents() {
+        closeAllAbsenceCards();
+        showAllFuture = true;
         renderEvents();
         loadDirectorNotes();
         loadManagerNotes();
-
-      } catch (err) {
-        console.error('Error loading calendar events:', err);
-        showFallbackNotice();
+        window.scrollBy({ top: 300, behavior: "smooth" });
       }
-    }
 
-    function renderEvents() {
-      const now = new Date();
-      const todayStr = now.toISOString().split('T')[0];
+      function reduceEvents() {
+        closeAllAbsenceCards();
+        showAllFuture = false;
+        renderEvents();
+        loadDirectorNotes();
+        loadManagerNotes();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
 
-      const dateMap = new Map();
-      cachedEvents.forEach(ev => {
-        if (!dateMap.has(ev.startDateStr)) {
-          dateMap.set(ev.startDateStr, []);
+      function showFallbackNotice() {
+        let fallbackHTML =
+          '<div class="section-subheading">Next Event</div>' +
+          '<div class="card card-event-1"><h3>Schedule Notice</h3><div class="card-inner"><p style="margin-top: 0;">Unable to load live calendar feed automatically. Please view the <a href="https://calendar.google.com/calendar/embed?src=06d1d22e95ac65658f0c018562876542aa9a449fce7df7cb85f232d7e5595b50%40group.calendar.google.com&ctz=Europe%2FDublin" target="_blank" style="color: #1e3a8a; font-weight: bold;" onclick="closeAllAbsenceCards()">Choir Calendar</a> directly.</p></div></div>' +
+          '<div class="section-subheading">Current Notes</div>' +
+          '<div class="card card-manager"><h3>Notes from Choir Manager</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #6b1d54; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' +
+          '<div class="card card-director"><h3>Music Director\'s Notes</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+
+        document.getElementById("events-container").innerHTML = fallbackHTML;
+        loadDirectorNotes();
+        loadManagerNotes();
+      }
+
+      loadDynamicEvents();
+
+      async function loadDirectorNotes() {
+        try {
+          const response = await fetch(DIRECTOR_NOTES_WORKER);
+          if (response.ok) {
+            const data = await response.json();
+            if (data.content) {
+              const contentEl = document.getElementById("director-content");
+              if (contentEl) contentEl.innerHTML = data.content;
+            }
+            if (data.modifiedTime) {
+              const dateObj = new Date(data.modifiedTime);
+              const formattedDate = dateObj.toLocaleDateString("en-GB", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              });
+              const formattedTime = dateObj.toLocaleTimeString("en-GB", {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+              const timeEl = document.getElementById("director-timestamp");
+              if (timeEl)
+                timeEl.innerText =
+                  "Last Updated: " + formattedTime + " on " + formattedDate;
+            } else {
+              const timeEl = document.getElementById("director-timestamp");
+              if (timeEl) timeEl.innerText = "Last Updated: Unavailable";
+            }
+          }
+        } catch (e) {
+          console.error("Failed to load director notes", e);
+          const el = document.getElementById("director-timestamp");
+          if (el) el.innerText = "Last Updated: Unavailable";
         }
-        dateMap.get(ev.startDateStr).push(ev);
-      });
-
-      const targetDates = Array.from(dateMap.keys()).sort();
-
-      if (targetDates.length === 0) {
-        showFallbackNotice();
-        return;
       }
 
-      let fullHTML = '';
+      async function loadManagerNotes() {
+        try {
+          const response = await fetch(MANAGER_NOTES_WORKER);
+          if (response.ok) {
+            const data = await response.json();
+            if (data.content) {
+              const contentEl = document.getElementById("manager-content");
+              if (contentEl) contentEl.innerHTML = data.content;
+            }
+            if (data.modifiedTime) {
+              const dateObj = new Date(data.modifiedTime);
+              const formattedDate = dateObj.toLocaleDateString("en-GB", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              });
+              const formattedTime = dateObj.toLocaleTimeString("en-GB", {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+              const timeEl = document.getElementById("manager-timestamp");
+              if (timeEl)
+                timeEl.innerText =
+                  "Last Updated: " + formattedTime + " on " + formattedDate;
+            } else {
+              const timeEl = document.getElementById("manager-timestamp");
+              if (timeEl) timeEl.innerText = "Last Updated: Unavailable";
+            }
+          }
+        } catch (e) {
+          console.error("Failed to load manager notes", e);
+          const el = document.getElementById("manager-timestamp");
+          if (el) el.innerText = "Last Updated: Unavailable";
+        }
+      }
 
-      let firstDateKey = targetDates[0];
-      let subheadingText = (firstDateKey === todayStr) ? "Today's Event" : "Next Event";
+      function openDirectorPrintView() {
+        closeAllAbsenceCards();
+        const contentEl = document.getElementById("director-content");
+        const timeEl = document.getElementById("director-timestamp");
+        const contentHTML = contentEl ? contentEl.innerHTML : "";
+        const timestampText = timeEl ? timeEl.innerText : "";
 
-      fullHTML += '<div class="section-subheading">' + subheadingText + '</div>';
+        const printPageHTML =
+          "<!DOCTYPE html>" +
+          '<html lang="en">' +
+          "<head>" +
+          '<meta charset="utf-8">' +
+          '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+          "<title>Music Director's Notes - Printable View</title>" +
+          "<style>" +
+          "body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }" +
+          "h2 { color: #15803d; border-bottom: 2px solid #15803d; padding-bottom: 8px; margin-top: 0; }" +
+          ".timestamp { font-size: 14px; color: #d32f2f; margin-bottom: 20px; font-style: italic; font-weight: bold; }" +
+          ".btn-container { margin-bottom: 30px; display: flex; gap: 10px; }" +
+          ".print-btn { background: #15803d; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }" +
+          ".print-btn:hover { background: #166534; }" +
+          ".close-btn { background: #78716c; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }" +
+          ".close-btn:hover { background: #57534e; }" +
+          "@media print { .btn-container { display: none; } }" +
+          "</style>" +
+          "</head>" +
+          "<body>" +
+          '<div class="btn-container">' +
+          '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
+          '<button class="close-btn" onclick="window.close()">Close Page</button>' +
+          "</div>" +
+          "<h2>Music Director's Notes</h2>" +
+          '<div class="timestamp">' +
+          timestampText +
+          "</div>" +
+          '<div style="font-size: 16px;">' +
+          contentHTML +
+          "</div>" +
+          "</body>" +
+          "</html>";
 
-      if (targetDates.length > 0) {
-        const dateKey = firstDateKey;
-        const dayEvents = dateMap.get(dateKey);
-        const parts = dateKey.split('-').map(Number);
-        const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
-        const formattedDateTitle = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        const blob = new Blob([printPageHTML], { type: "text/html" });
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, "_blank");
+      }
 
-        let eventsDetailsHTML = '';
-        dayEvents.forEach(ev => {
-          eventsDetailsHTML += '<p style="margin-top: 0; margin-bottom: 8px;"><strong>' + ev.summary + '</strong><br><strong>Time:</strong> ' + ev.timeStr + '<br><strong>Venue:</strong> ' + ev.location + '</p>';
+      function openManagerPrintView() {
+        closeAllAbsenceCards();
+        const contentEl = document.getElementById("manager-content");
+        const timeEl = document.getElementById("manager-timestamp");
+        const contentHTML = contentEl ? contentEl.innerHTML : "";
+        const timestampText = timeEl ? timeEl.innerText : "";
+
+        const printPageHTML =
+          "<!DOCTYPE html>" +
+          '<html lang="en">' +
+          "<head>" +
+          '<meta charset="utf-8">' +
+          '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+          "<title>Notes from Choir Manager - Printable View</title>" +
+          "<style>" +
+          "body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }" +
+          "h2 { color: #6b1d54; border-bottom: 2px solid #6b1d54; padding-bottom: 8px; margin-top: 0; }" +
+          ".timestamp { font-size: 14px; color: #d32f2f; margin-bottom: 20px; font-style: italic; font-weight: bold; }" +
+          ".btn-container { margin-bottom: 30px; display: flex; gap: 10px; }" +
+          ".print-btn { background: #6b1d54; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }" +
+          ".print-btn:hover { background: #531441; }" +
+          ".close-btn { background: #78716c; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }" +
+          ".close-btn:hover { background: #57534e; }" +
+          "@media print { .btn-container { display: none; } }" +
+          "</style>" +
+          "</head>" +
+          "<body>" +
+          '<div class="btn-container">' +
+          '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
+          '<button class="close-btn" onclick="window.close()">Close Page</button>' +
+          "</div>" +
+          "<h2>Notes from Choir Manager</h2>" +
+          '<div class="timestamp">' +
+          timestampText +
+          "</div>" +
+          '<div style="font-size: 16px;">' +
+          contentHTML +
+          "</div>" +
+          "</body>" +
+          "</html>";
+
+        const blob = new Blob([printPageHTML], { type: "text/html" });
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, "_blank");
+      }
+
+      function openQRCodePage() {
+        closeAllAbsenceCards();
+        const appUrl = window.location.href;
+        const qrPageHTML =
+          "<!DOCTYPE html>" +
+          '<html lang="en">' +
+          "<head>" +
+          '<meta charset="utf-8">' +
+          '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+          "<title>NSCI Hub - QR Code</title>" +
+          '<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>' +
+          "<style>" +
+          "body { font-family: Arial, sans-serif; padding: 30px; color: #222; text-align: center; max-width: 600px; margin: 0 auto; line-height: 1.5; }" +
+          "h2 { color: #d97706; margin-top: 0; font-variant: small-caps; }" +
+          ".qr-container { background: #fff; padding: 20px; border: 1px solid #ccc; border-radius: 8px; display: inline-block; margin: 20px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }" +
+          "#qrcode { display: flex; justify-content: center; margin: 10px 0; }" +
+          ".btn { background: #37474f; color: white; border: none; padding: 12px 20px; font-size: 15px; font-weight: bold; border-radius: 6px; cursor: pointer; margin: 10px 5px; font-family: Arial, sans-serif; }" +
+          ".btn:hover { background: #263238; }" +
+          ".instruction-box { background: #f8f9fa; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; font-size: 13px; color: #334155; margin: 15px auto; max-width: 400px; }" +
+          ".url-text { font-family: monospace; background: #f1f3f4; padding: 8px; border-radius: 4px; font-size: 13px; word-break: break-all; margin: 15px 0; }" +
+          "@media print { .no-print { display: none; } }" +
+          "</style>" +
+          "</head>" +
+          "<body>" +
+          '<div class="no-print" style="margin-bottom: 20px;">' +
+          '<button class="btn" onclick="window.print()">Print This Page</button>' +
+          '<button class="btn" onclick="window.close()" style="background: #78716c;">Close Page</button>' +
+          "</div>" +
+          "<h2>NCH Cór Linn</h2>" +
+          "<p><strong>Member Information Hub - QR Code</strong></p>" +
+          '<p style="font-size: 14px;">Point another device&apos;s camera at the QR code below to open this app:</p>' +
+          '<div class="qr-container" id="qr-box">' +
+          '<div id="qrcode"></div>' +
+          '<div class="instruction-box"><strong>To save to your phone:</strong> Touch and hold the QR code above, then select <em>Download image</em> (Android) or <em>Add to Photos / Save Image</em> (iPhone).</div>' +
+          '<div class="url-text">' +
+          appUrl +
+          "</div>" +
+          "</div>" +
+          "<script>" +
+          'new QRCode(document.getElementById("qrcode"), { text: "' +
+          appUrl +
+          '", width: 220, height: 220, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });' +
+          "<\/script>" +
+          "</body>" +
+          "</html>";
+
+        const blob = new Blob([qrPageHTML], { type: "text/html" });
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, "_blank");
+      }
+
+      function copyAndOpenInstructions(btn) {
+        closeAllAbsenceCards();
+        const icalUrl =
+          "https://calendar.google.com/calendar/ical/06d1d22e95ac65658f0c018562876542aa9a449fce7df7cb85f232d7e5595b50%40group.calendar.google.com/public/basic.ics";
+
+        navigator.clipboard.writeText(icalUrl).catch((err) => {
+          console.error("Clipboard write failed", err);
         });
 
-        fullHTML += '<div class="card card-event-1"><h3>' + formattedDateTitle + '</h3><div class="card-inner">' + eventsDetailsHTML + '</div></div>';
+        const originalText = btn.innerText;
+        btn.innerText = "Link Copied! Opening Guide...";
+        setTimeout(() => {
+          btn.innerText = originalText;
+        }, 3000);
+
+        const instructionsHTML =
+          "<!DOCTYPE html>" +
+          '<html lang="en">' +
+          "<head>" +
+          '<meta charset="utf-8">' +
+          '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+          "<title>Apple & Outlook Calendar Setup Guide</title>" +
+          "<style>" +
+          "body { font-family: Arial, sans-serif; background: #f8f9fa; color: #333; padding: 20px; line-height: 1.6; }" +
+          ".box { max-width: 600px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); border-top: 4px solid #37474f; }" +
+          "h2 { color: #37474f; margin-top: 0; }" +
+          "input { width: 100%; padding: 10px; font-size: 13px; box-sizing: border-box; background: #f1f3f4; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; font-family: monospace; }" +
+          "ul { padding-left: 20px; }" +
+          "li { margin-bottom: 10px; }" +
+          ".note { background: #f7f5f6; border-left: 4px solid #d9534f; padding: 10px; font-size: 13px; margin-top: 20px; border-radius: 4px; }" +
+          "</style>" +
+          "</head>" +
+          "<body>" +
+          '<div class="box">' +
+          "<h2>Apple & Outlook Calendar Setup</h2>" +
+          "<p>The subscription link has been copied to your clipboard. If you need to copy it manually again, use the box below:</p>" +
+          '<label for="urlbox"><strong>Calendar iCal Link:</strong></label>' +
+          '<input type="text" id="urlbox" value="' +
+          icalUrl +
+          '" readonly onclick="this.select();">' +
+          "<h3>Step-by-Step Instructions:</h3>" +
+          "<ul>" +
+          "<li><strong>iPhone / iPad (Apple Calendar):</strong> Open device <em>Settings &gt; Calendar &gt; Accounts &gt; Add Account &gt; Other &gt; Add Subscribed Calendar</em>, then paste the link into the Server field and save.</li>" +
+          "<li><strong>Outlook (Desktop / Web):</strong> Open Outlook Calendar, click <em>Add calendar &gt; Subscribe from web</em>, paste the link, name the calendar, and save.</li>" +
+          "</ul>" +
+          '<div class="note">' +
+          '<strong>Note:</strong> Calendar apps check for updates periodically. For urgent updates, check the main <a href="https://natsymphchoire.github.io/Member-Info-Hub/" target="_blank">Member Hub</a>.' +
+          "</div>" +
+          "</div>" +
+          "</body>" +
+          "</html>";
+
+        const blob = new Blob([instructionsHTML], { type: "text/html" });
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, "_blank");
       }
 
-      fullHTML += '<div class="section-subheading">Current Notes</div>';
+      function loadRehearsalDates() {
+        const container = document.getElementById(
+          "rehearsal-checkboxes-container",
+        );
+        if (!container) return;
 
-      fullHTML += '<div class="card card-manager"><h3>Notes from Choir Manager</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #6b1d54; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
+        const events = cachedEvents || [];
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
 
-      fullHTML += '<div class="card card-director"><h3>Music Director\'s Notes</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
-
-      fullHTML += '<div class="section-subheading">Future Events</div>';
-
-      const futureDates = targetDates.slice(1);
-      const displayDates = showAllFuture ? futureDates : futureDates.slice(0, 4);
-      const hasMoreFutureEvents = futureDates.length > 4;
-
-      displayDates.forEach(dateKey => {
-        const dayEvents = dateMap.get(dateKey);
-
-        const parts = dateKey.split('-').map(Number);
-        const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
-        const formattedDateTitle = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-
-        let eventsDetailsHTML = '';
-        dayEvents.forEach(ev => {
-          eventsDetailsHTML += '<p style="margin-top: 0; margin-bottom: 8px;"><strong>' + ev.summary + '</strong><br><strong>Time:</strong> ' + ev.timeStr + '<br><strong>Venue:</strong> ' + ev.location + '</p>';
+        const rehearsals = events.filter((e) => {
+          const title = (e.summary || "").toLowerCase();
+          const eventDate = new Date(e.startDateStr);
+          return title.includes("rehearsal") && eventDate >= now;
         });
 
-        fullHTML += '<div class="card card-event-secondary"><h3>' + formattedDateTitle + '</h3><div class="card-inner">' + eventsDetailsHTML + '</div></div>';
-      });
+        const uniqueDates = [];
+        rehearsals.forEach((rev) => {
+          if (rev.startDateStr && !uniqueDates.includes(rev.startDateStr)) {
+            uniqueDates.push(rev.startDateStr);
+          }
+        });
 
-      if (!showAllFuture && hasMoreFutureEvents) {
-        fullHTML += '<button class="load-more-btn" onclick="showAllEvents()">Show All Future Events</button>';
-      } else if (showAllFuture && hasMoreFutureEvents) {
-        fullHTML += '<button class="reduce-btn" onclick="reduceEvents()">Show Fewer Future Events</button>';
+        uniqueDates.sort();
+        const nextThreeDays = uniqueDates.slice(0, 3);
+
+        if (nextThreeDays.length > 0) {
+          container.innerHTML = "";
+          nextThreeDays.forEach((dateStr) => {
+            const parts = dateStr.split("-").map(Number);
+            const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+            const formattedDate = dateObj.toLocaleDateString("en-GB", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
+
+            const label = document.createElement("label");
+            label.innerHTML = `<input type="checkbox" name="absence-date" value="${formattedDate}"> ${formattedDate}`;
+            container.appendChild(label);
+          });
+        } else {
+          container.innerHTML =
+            "<em>No upcoming rehearsal dates found in the calendar feed.</em>";
+        }
       }
 
-      document.getElementById('events-container').innerHTML = fullHTML;
-    }
+      function loadPerformanceDates() {
+        const container = document.getElementById(
+          "performance-checkboxes-container",
+        );
+        if (!container) return;
 
-    function showAllEvents() {
-      closeAllAbsenceCards();
-      showAllFuture = true;
-      renderEvents();
-      loadDirectorNotes();
-      loadManagerNotes();
-      window.scrollBy({ top: 300, behavior: 'smooth' });
-    }
+        const events = cachedEvents || [];
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
 
-    function reduceEvents() {
-      closeAllAbsenceCards();
-      showAllFuture = false;
-      renderEvents();
-      loadDirectorNotes();
-      loadManagerNotes();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+        const performances = events.filter((e) => {
+          const title = (e.summary || "").toLowerCase();
+          const eventDate = new Date(e.startDateStr);
+          return (
+            (title.includes("concert") ||
+              title.includes("performance") ||
+              title.includes("symphony") ||
+              title.includes("messiah") ||
+              title.includes("passions")) &&
+            eventDate >= now
+          );
+        });
 
-    function showFallbackNotice() {
-      let fallbackHTML =
-        '<div class="section-subheading">Next Event</div>' +
-        '<div class="card card-event-1"><h3>Schedule Notice</h3><div class="card-inner"><p style="margin-top: 0;">Unable to load live calendar feed automatically. Please view the <a href="https://calendar.google.com/calendar/embed?src=06d1d22e95ac65658f0c018562876542aa9a449fce7df7cb85f232d7e5595b50%40group.calendar.google.com&ctz=Europe%2FDublin" target="_blank" style="color: #1e3a8a; font-weight: bold;" onclick="closeAllAbsenceCards()">Choir Calendar</a> directly.</p></div></div>' +
-        '<div class="section-subheading">Current Notes</div>' +
-        '<div class="card card-manager"><h3>Notes from Choir Manager</h3><div class="card-inner"><p id="manager-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="manager-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openManagerPrintView()" style="color: #6b1d54; font-weight: bold; font-size: 13px; text-decoration: none;">Open as separate printable file</a></div></div></div>' + 
-        '<div class="card card-director"><h3>Music Director\'s Notes</h3><div class="card-inner"><p id="director-timestamp" style="font-size: 13px; color: #d32f2f; margin-top: 0; margin-bottom: 8px; font-weight: bold;">Last Updated: Loading...</p><div id="director-content"><em>No notes currently available.</em></div><div style="text-align: right; margin-top: 5px;"><a href="javascript:void(0);" onclick="openDirectorPrintView()" style="color: #15803d; font-weight: bold; font-size: 14px; text-decoration: none;">Open as separate printable file</a></div></div></div>';
-        
+        performances.sort(
+          (a, b) => new Date(a.startDateStr) - new Date(b.startDateStr),
+        );
 
-      document.getElementById('events-container').innerHTML = fallbackHTML;
-      loadDirectorNotes();
-      loadManagerNotes();
-    }
+        if (performances.length > 0) {
+          container.innerHTML = "";
+          performances.forEach((pev) => {
+            const parts = pev.startDateStr.split("-").map(Number);
+            const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+            const formattedDate = dateObj.toLocaleDateString("en-GB", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
 
-    loadDynamicEvents();
+            const displayLabel = `${formattedDate} - ${pev.summary}`;
 
-    async function loadDirectorNotes() {
-      try {
-        const response = await fetch(DIRECTOR_NOTES_WORKER);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.content) {
-            const contentEl = document.getElementById('director-content');
-            if (contentEl) contentEl.innerHTML = data.content;
-          }
-          if (data.modifiedTime) {
-            const dateObj = new Date(data.modifiedTime);
-            const formattedDate = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-            const formattedTime = dateObj.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-            const timeEl = document.getElementById('director-timestamp');
-            if (timeEl) timeEl.innerText = 'Last Updated: ' + formattedTime + ' on ' + formattedDate;
-          } else {
-            const timeEl = document.getElementById('director-timestamp');
-            if (timeEl) timeEl.innerText = 'Last Updated: Unavailable';
-          }
+            const label = document.createElement("label");
+            label.innerHTML = `<input type="checkbox" name="perf-absence-date" value="${displayLabel}"> ${displayLabel}`;
+            container.appendChild(label);
+          });
+        } else {
+          container.innerHTML =
+            "<em>No upcoming performance dates found in the calendar feed.</em>";
         }
-      } catch (e) {
-        console.error('Failed to load director notes', e);
-        const el = document.getElementById('director-timestamp');
-        if (el) el.innerText = 'Last Updated: Unavailable';
       }
-    }
 
-    async function loadManagerNotes() {
-      try {
-        const response = await fetch(MANAGER_NOTES_WORKER);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.content) {
-            const contentEl = document.getElementById('manager-content');
-            if (contentEl) contentEl.innerHTML = data.content;
+      window.toggleSubcard = function (cardId) {
+        const rehearsalCard = document.getElementById("rehearsal-absence-card");
+        const performanceCard = document.getElementById(
+          "performance-absence-card",
+        );
+
+        if (cardId === "rehearsal-absence-card") {
+          if (performanceCard) performanceCard.style.display = "none";
+          if (rehearsalCard) {
+            rehearsalCard.style.display =
+              rehearsalCard.style.display === "none" ||
+              rehearsalCard.style.display === ""
+                ? "block"
+                : "none";
+            if (rehearsalCard.style.display === "block") {
+              loadRehearsalDates();
+              rehearsalCard.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+              });
+            }
           }
-          if (data.modifiedTime) {
-            const dateObj = new Date(data.modifiedTime);
-            const formattedDate = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-            const formattedTime = dateObj.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-            const timeEl = document.getElementById('manager-timestamp');
-            if (timeEl) timeEl.innerText = 'Last Updated: ' + formattedTime + ' on ' + formattedDate;
-          } else {
-            const timeEl = document.getElementById('manager-timestamp');
-            if (timeEl) timeEl.innerText = 'Last Updated: Unavailable';
+        } else if (cardId === "performance-absence-card") {
+          if (rehearsalCard) rehearsalCard.style.display = "none";
+          if (performanceCard) {
+            performanceCard.style.display =
+              performanceCard.style.display === "none" ||
+              performanceCard.style.display === ""
+                ? "block"
+                : "none";
+            if (performanceCard.style.display === "block") {
+              loadPerformanceDates();
+              performanceCard.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+              });
+            }
           }
         }
-      } catch (e) {
-        console.error('Failed to load manager notes', e);
-        const el = document.getElementById('manager-timestamp');
-        if (el) el.innerText = 'Last Updated: Unavailable';
-      }
-    }
+      };
 
-    function openDirectorPrintView() {
-      closeAllAbsenceCards();
-      const contentEl = document.getElementById('director-content');
-      const timeEl = document.getElementById('director-timestamp');
-      const contentHTML = contentEl ? contentEl.innerHTML : '';
-      const timestampText = timeEl ? timeEl.innerText : '';
+      function submitRehearsalAbsence(event) {
+        event.preventDefault();
 
-      const printPageHTML =
-        '<!DOCTYPE html>' +
-        '<html lang="en">' +
-        '<head>' +
-        '<meta charset="utf-8">' +
-        '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-        '<title>Music Director\'s Notes - Printable View</title>' +
-        '<style>' +
-        'body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }' +
-        'h2 { color: #15803d; border-bottom: 2px solid #15803d; padding-bottom: 8px; margin-top: 0; }' +
-        '.timestamp { font-size: 14px; color: #d32f2f; margin-bottom: 20px; font-style: italic; font-weight: bold; }' +
-        '.btn-container { margin-bottom: 30px; display: flex; gap: 10px; }' +
-        '.print-btn { background: #15803d; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }' +
-        '.print-btn:hover { background: #166534; }' +
-        '.close-btn { background: #78716c; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }' +
-        '.close-btn:hover { background: #57534e; }' +
-        '@media print { .btn-container { display: none; } }' +
-        '</style>' +
-        '</head>' +
-        '<body>' +
-        '<div class="btn-container">' +
-        '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
-        '<button class="close-btn" onclick="window.close()">Close Page</button>' +
-        '</div>' +
-        '<h2>Music Director\'s Notes</h2>' +
-        '<div class="timestamp">' + timestampText + '</div>' +
-        '<div style="font-size: 16px;">' + contentHTML + '</div>' +
-        '</body>' +
-        '</html>';
+        const name = document.getElementById("absence-name").value.trim();
+        const voiceEl = document.querySelector(
+          'input[name="absence-voice"]:checked',
+        );
+        const voice = voiceEl ? voiceEl.value : "Not specified";
+        const mobile =
+          document.getElementById("absence-mobile").value.trim() ||
+          "Not provided";
+        const notes = document.getElementById("absence-notes").value.trim();
 
-      const blob = new Blob([printPageHTML], { type: 'text/html' });
-      const blobUrl = URL.createObjectURL(blob);
-      window.open(blobUrl, '_blank');
-    }
-
-    function openManagerPrintView() {
-      closeAllAbsenceCards();
-      const contentEl = document.getElementById('manager-content');
-      const timeEl = document.getElementById('manager-timestamp');
-      const contentHTML = contentEl ? contentEl.innerHTML : '';
-      const timestampText = timeEl ? timeEl.innerText : '';
-
-      const printPageHTML =
-        '<!DOCTYPE html>' +
-        '<html lang="en">' +
-        '<head>' +
-        '<meta charset="utf-8">' +
-        '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-        '<title>Notes from Choir Manager - Printable View</title>' +
-        '<style>' +
-        'body { font-family: Arial, sans-serif; padding: 20px; color: #222; line-height: 1.6; max-width: 700px; margin: 0 auto; }' +
-        'h2 { color: #6b1d54; border-bottom: 2px solid #6b1d54; padding-bottom: 8px; margin-top: 0; }' +
-        '.timestamp { font-size: 14px; color: #d32f2f; margin-bottom: 20px; font-style: italic; font-weight: bold; }' +
-        '.btn-container { margin-bottom: 30px; display: flex; gap: 10px; }' +
-        '.print-btn { background: #6b1d54; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }' +
-        '.print-btn:hover { background: #531441; }' +
-        '.close-btn { background: #78716c; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }' +
-        '.close-btn:hover { background: #57534e; }' +
-        '@media print { .btn-container { display: none; } }' +
-        '</style>' +
-        '</head>' +
-        '<body>' +
-        '<div class="btn-container">' +
-        '<button class="print-btn" onclick="window.print()">Print This Page</button>' +
-        '<button class="close-btn" onclick="window.close()">Close Page</button>' +
-        '</div>' +
-        '<h2>Notes from Choir Manager</h2>' +
-        '<div class="timestamp">' + timestampText + '</div>' +
-        '<div style="font-size: 16px;">' + contentHTML + '</div>' +
-        '</body>' +
-        '</html>';
-
-      const blob = new Blob([printPageHTML], { type: 'text/html' });
-      const blobUrl = URL.createObjectURL(blob);
-      window.open(blobUrl, '_blank');
-    }
-
-    function openQRCodePage() {
-      closeAllAbsenceCards();
-      const appUrl = window.location.href;
-      const qrPageHTML =
-        '<!DOCTYPE html>' +
-        '<html lang="en">' +
-        '<head>' +
-        '<meta charset="utf-8">' +
-        '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-        '<title>NSCI Hub - QR Code</title>' +
-        '<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>' +
-        '<style>' +
-        'body { font-family: Arial, sans-serif; padding: 30px; color: #222; text-align: center; max-width: 600px; margin: 0 auto; line-height: 1.5; }' +
-        'h2 { color: #d97706; margin-top: 0; font-variant: small-caps; }' +
-        '.qr-container { background: #fff; padding: 20px; border: 1px solid #ccc; border-radius: 8px; display: inline-block; margin: 20px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }' +
-        '#qrcode { display: flex; justify-content: center; margin: 10px 0; }' +
-        '.btn { background: #37474f; color: white; border: none; padding: 12px 20px; font-size: 15px; font-weight: bold; border-radius: 6px; cursor: pointer; margin: 10px 5px; font-family: Arial, sans-serif; }' +
-        '.btn:hover { background: #263238; }' +
-        '.instruction-box { background: #f8f9fa; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; font-size: 13px; color: #334155; margin: 15px auto; max-width: 400px; }' +
-        '.url-text { font-family: monospace; background: #f1f3f4; padding: 8px; border-radius: 4px; font-size: 13px; word-break: break-all; margin: 15px 0; }' +
-        '@media print { .no-print { display: none; } }' +
-        '</style>' +
-        '</head>' +
-        '<body>' +
-        '<div class="no-print" style="margin-bottom: 20px;">' +
-        '<button class="btn" onclick="window.print()">Print This Page</button>' +
-        '<button class="btn" onclick="window.close()" style="background: #78716c;">Close Page</button>' +
-        '</div>' +
-        '<h2>NCH Cór Linn</h2>' +
-        '<p><strong>Member Information Hub - QR Code</strong></p>' +
-        '<p style="font-size: 14px;">Point another device&apos;s camera at the QR code below to open this app:</p>' +
-        '<div class="qr-container" id="qr-box">' +
-        '<div id="qrcode"></div>' +
-        '<div class="instruction-box"><strong>To save to your phone:</strong> Touch and hold the QR code above, then select <em>Download image</em> (Android) or <em>Add to Photos / Save Image</em> (iPhone).</div>' +
-        '<div class="url-text">' + appUrl + '</div>' +
-        '</div>' +
-        '<script>' +
-        'new QRCode(document.getElementById("qrcode"), { text: "' + appUrl + '", width: 220, height: 220, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });' +
-        '<\/script>' +
-        '</body>' +
-        '</html>';
-
-      const blob = new Blob([qrPageHTML], { type: 'text/html' });
-      const blobUrl = URL.createObjectURL(blob);
-      window.open(blobUrl, '_blank');
-    }
-
-    function copyAndOpenInstructions(btn) {
-      closeAllAbsenceCards();
-      const icalUrl = "https://calendar.google.com/calendar/ical/06d1d22e95ac65658f0c018562876542aa9a449fce7df7cb85f232d7e5595b50%40group.calendar.google.com/public/basic.ics";
-
-      navigator.clipboard.writeText(icalUrl).catch(err => {
-        console.error("Clipboard write failed", err);
-      });
-
-      const originalText = btn.innerText;
-      btn.innerText = "Link Copied! Opening Guide...";
-      setTimeout(() => {
-        btn.innerText = originalText;
-      }, 3000);
-
-      const instructionsHTML =
-        '<!DOCTYPE html>' +
-        '<html lang="en">' +
-        '<head>' +
-        '<meta charset="utf-8">' +
-        '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-        '<title>Apple & Outlook Calendar Setup Guide</title>' +
-        '<style>' +
-        'body { font-family: Arial, sans-serif; background: #f8f9fa; color: #333; padding: 20px; line-height: 1.6; }' +
-        '.box { max-width: 600px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); border-top: 4px solid #37474f; }' +
-        'h2 { color: #37474f; margin-top: 0; }' +
-        'input { width: 100%; padding: 10px; font-size: 13px; box-sizing: border-box; background: #f1f3f4; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; font-family: monospace; }' +
-        'ul { padding-left: 20px; }' +
-        'li { margin-bottom: 10px; }' +
-        '.note { background: #f7f5f6; border-left: 4px solid #d9534f; padding: 10px; font-size: 13px; margin-top: 20px; border-radius: 4px; }' +
-        '</style>' +
-        '</head>' +
-        '<body>' +
-        '<div class="box">' +
-        '<h2>Apple & Outlook Calendar Setup</h2>' +
-        '<p>The subscription link has been copied to your clipboard. If you need to copy it manually again, use the box below:</p>' +
-        '<label for="urlbox"><strong>Calendar iCal Link:</strong></label>' +
-        '<input type="text" id="urlbox" value="' + icalUrl + '" readonly onclick="this.select();">' +
-        '<h3>Step-by-Step Instructions:</h3>' +
-        '<ul>' +
-        '<li><strong>iPhone / iPad (Apple Calendar):</strong> Open device <em>Settings &gt; Calendar &gt; Accounts &gt; Add Account &gt; Other &gt; Add Subscribed Calendar</em>, then paste the link into the Server field and save.</li>' +
-        '<li><strong>Outlook (Desktop / Web):</strong> Open Outlook Calendar, click <em>Add calendar &gt; Subscribe from web</em>, paste the link, name the calendar, and save.</li>' +
-        '</ul>' +
-        '<div class="note">' +
-        '<strong>Note:</strong> Calendar apps check for updates periodically. For urgent updates, check the main <a href="https://natsymphchoire.github.io/Member-Info-Hub/" target="_blank">Member Hub</a>.' +
-        '</div>' +
-        '</div>' +
-        '</body>' +
-        '</html>';
-
-      const blob = new Blob([instructionsHTML], { type: 'text/html' });
-      const blobUrl = URL.createObjectURL(blob);
-      window.open(blobUrl, '_blank');
-    }
-
-    function loadRehearsalDates() {
-      const container = document.getElementById('rehearsal-checkboxes-container');
-      if (!container) return;
-
-      const events = cachedEvents || [];
-      const now = new Date();
-      now.setHours(0, 0, 0, 0);
-
-      const rehearsals = events.filter(e => {
-        const title = (e.summary || '').toLowerCase();
-        const eventDate = new Date(e.startDateStr);
-        return title.includes('rehearsal') && eventDate >= now;
-      });
-
-      const uniqueDates = [];
-      rehearsals.forEach(rev => {
-        if (rev.startDateStr && !uniqueDates.includes(rev.startDateStr)) {
-          uniqueDates.push(rev.startDateStr);
-        }
-      });
-
-      uniqueDates.sort();
-      const nextThreeDays = uniqueDates.slice(0, 3);
-
-      if (nextThreeDays.length > 0) {
-        container.innerHTML = '';
-        nextThreeDays.forEach(dateStr => {
-          const parts = dateStr.split('-').map(Number);
-          const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
-          const formattedDate = dateObj.toLocaleDateString('en-GB', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
+        const selectedDates = [];
+        document
+          .querySelectorAll('input[name="absence-date"]:checked')
+          .forEach((cb) => {
+            selectedDates.push(cb.value);
           });
 
-          const label = document.createElement('label');
-          label.innerHTML = `<input type="checkbox" name="absence-date" value="${formattedDate}"> ${formattedDate}`;
-          container.appendChild(label);
-        });
-      } else {
-        container.innerHTML = '<em>No upcoming rehearsal dates found in the calendar feed.</em>';
+        const datesString =
+          selectedDates.length > 0
+            ? selectedDates.join("\n- ")
+            : "None selected";
+
+        const subject = encodeURIComponent(
+          `Rehearsal Absence Notice: ${name} (${voice})`,
+        );
+        const body = encodeURIComponent(
+          `This is a rehearsal absence notification generated via NSCI Hub App:\n\n` +
+            `Name: ${name}\n\n` +
+            `Voice Part: ${voice}\n\n` +
+            `Mobile: ${mobile}\n\n` +
+            `Forthcoming Absences:\n- ${datesString}\n\n` +
+            `Additional Information:\n${notes || "None provided"}\n\n` +
+            `---`,
+        );
+
+        let mailtoUri = `mailto:nchchoirs@nch.ie?subject=${subject}&body=${body}`;
+        window.location.href = mailtoUri;
+
+        // Immediately close the subcard and reset the form fields
+        toggleSubcard("rehearsal-absence-card");
+        event.target.reset();
       }
-    }
 
-    function loadPerformanceDates() {
-      const container = document.getElementById('performance-checkboxes-container');
-      if (!container) return;
+      function submitPerformanceAbsence(event) {
+        event.preventDefault();
 
-      const events = cachedEvents || [];
-      const now = new Date();
-      now.setHours(0, 0, 0, 0);
+        const name = document.getElementById("perf-absence-name").value.trim();
+        const voiceEl = document.querySelector(
+          'input[name="perf-absence-voice"]:checked',
+        );
+        const voice = voiceEl ? voiceEl.value : "Not specified";
+        const mobile =
+          document.getElementById("perf-absence-mobile").value.trim() ||
+          "Not provided";
+        const notes = document
+          .getElementById("perf-absence-notes")
+          .value.trim();
 
-      const performances = events.filter(e => {
-        const title = (e.summary || '').toLowerCase();
-        const eventDate = new Date(e.startDateStr);
-        return (title.includes('concert') || title.includes('performance') || title.includes('symphony') || title.includes('messiah') || title.includes('passions')) && eventDate >= now;
-      });
-
-      performances.sort((a, b) => new Date(a.startDateStr) - new Date(b.startDateStr));
-
-      if (performances.length > 0) {
-        container.innerHTML = '';
-        performances.forEach(pev => {
-          const parts = pev.startDateStr.split('-').map(Number);
-          const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
-          const formattedDate = dateObj.toLocaleDateString('en-GB', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
+        const selectedDates = [];
+        document
+          .querySelectorAll('input[name="perf-absence-date"]:checked')
+          .forEach((cb) => {
+            selectedDates.push(cb.value);
           });
 
-          const displayLabel = `${formattedDate} - ${pev.summary}`;
+        const datesString =
+          selectedDates.length > 0
+            ? selectedDates.join("\n- ")
+            : "None selected";
 
-          const label = document.createElement('label');
-          label.innerHTML = `<input type="checkbox" name="perf-absence-date" value="${displayLabel}"> ${displayLabel}`;
-          container.appendChild(label);
-        });
-      } else {
-        container.innerHTML = '<em>No upcoming performance dates found in the calendar feed.</em>';
+        const subject = encodeURIComponent(
+          `Performance Absence Notice: ${name} (${voice})`,
+        );
+        const body = encodeURIComponent(
+          `This is a performance absence notification generated via the NSCI Hub App:\n\n` +
+            `Name: ${name}\n\n` +
+            `Voice Part: ${voice}\n\n` +
+            `Mobile: ${mobile}\n\n` +
+            `Forthcoming Performance Absences:\n\n- ${datesString}\n\n` +
+            `Additional Information:\n\n${notes || "None provided"}\n\n` +
+            `---`,
+        );
+
+        let mailtoUri = `mailto:nchchoirs@nch.ie?subject=${subject}&body=${body}`;
+        window.location.href = mailtoUri;
+
+        // Immediately close the subcard and reset the form fields
+        toggleSubcard("performance-absence-card");
+        event.target.reset();
       }
-    }
-
-    window.toggleSubcard = function (cardId) {
-      const rehearsalCard = document.getElementById('rehearsal-absence-card');
-      const performanceCard = document.getElementById('performance-absence-card');
-
-      if (cardId === 'rehearsal-absence-card') {
-        if (performanceCard) performanceCard.style.display = 'none';
-        if (rehearsalCard) {
-          rehearsalCard.style.display = (rehearsalCard.style.display === 'none' || rehearsalCard.style.display === '') ? 'block' : 'none';
-          if (rehearsalCard.style.display === 'block') {
-            loadRehearsalDates();
-            rehearsalCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-        }
-      } else if (cardId === 'performance-absence-card') {
-        if (rehearsalCard) rehearsalCard.style.display = 'none';
-        if (performanceCard) {
-          performanceCard.style.display = (performanceCard.style.display === 'none' || performanceCard.style.display === '') ? 'block' : 'none';
-          if (performanceCard.style.display === 'block') {
-            loadPerformanceDates();
-            performanceCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-        }
-      }
-    };
-
-    function submitRehearsalAbsence(event) {
-      event.preventDefault();
-
-      const name = document.getElementById('absence-name').value.trim();
-      const voiceEl = document.querySelector('input[name="absence-voice"]:checked');
-      const voice = voiceEl ? voiceEl.value : 'Not specified';
-      const mobile = document.getElementById('absence-mobile').value.trim() || 'Not provided';
-      const notes = document.getElementById('absence-notes').value.trim();
-
-      const selectedDates = [];
-      document.querySelectorAll('input[name="absence-date"]:checked').forEach(cb => {
-        selectedDates.push(cb.value);
-      });
-
-      const datesString = selectedDates.length > 0 ? selectedDates.join('\n- ') : 'None selected';
-
-      const subject = encodeURIComponent(`Rehearsal Absence Notice: ${name} (${voice})`);
-      const body = encodeURIComponent(
-        `This is a rehearsal absence notification generated via NSCI Hub App:\n\n` +
-        `Name: ${name}\n\n` +
-        `Voice Part: ${voice}\n\n` +
-        `Mobile: ${mobile}\n\n` +
-        `Forthcoming Absences:\n- ${datesString}\n\n` +
-        `Additional Information:\n${notes || 'None provided'}\n\n` +
-        `---`
-      );
-
-      let mailtoUri = `mailto:nchchoirs@nch.ie?subject=${subject}&body=${body}`;
-      window.location.href = mailtoUri;
-
-      // Immediately close the subcard and reset the form fields
-      toggleSubcard('rehearsal-absence-card');
-      event.target.reset();
-    }
-
-    function submitPerformanceAbsence(event) {
-      event.preventDefault();
-
-      const name = document.getElementById('perf-absence-name').value.trim();
-      const voiceEl = document.querySelector('input[name="perf-absence-voice"]:checked');
-      const voice = voiceEl ? voiceEl.value : 'Not specified';
-      const mobile = document.getElementById('perf-absence-mobile').value.trim() || 'Not provided';
-      const notes = document.getElementById('perf-absence-notes').value.trim();
-
-      const selectedDates = [];
-      document.querySelectorAll('input[name="perf-absence-date"]:checked').forEach(cb => {
-        selectedDates.push(cb.value);
-      });
-
-      const datesString = selectedDates.length > 0 ? selectedDates.join('\n- ') : 'None selected';
-
-      const subject = encodeURIComponent(`Performance Absence Notice: ${name} (${voice})`);
-      const body = encodeURIComponent(
-        `This is a performance absence notification generated via the NSCI Hub App:\n\n` +
-        `Name: ${name}\n\n` +
-        `Voice Part: ${voice}\n\n` +
-        `Mobile: ${mobile}\n\n` +
-        `Forthcoming Performance Absences:\n\n- ${datesString}\n\n` +
-        `Additional Information:\n\n${notes || 'None provided'}\n\n` +
-        `---`
-      );
-
-      let mailtoUri = `mailto:nchchoirs@nch.ie?subject=${subject}&body=${body}`;
-      window.location.href = mailtoUri;
-
-      // Immediately close the subcard and reset the form fields
-      toggleSubcard('performance-absence-card');
-      event.target.reset();
-    }
-  </script>
-
-</body>
-
+    </script>
+  </body>
 </html>
