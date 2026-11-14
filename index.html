@@ -1339,6 +1339,55 @@
         }
       }
 
+      function createDescriptionPreview(description) {
+        if (!description || !description.trim()) return "";
+
+        const escapeHTML = (text) =>
+          String(text).replace(
+            /[&<>"']/g,
+            (char) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[char],
+          );
+
+        const cleaned = description.trim();
+        const words = cleaned.split(/\s+/);
+        const isLong = words.length > 5;
+        const preview = escapeHTML(words.slice(0, 5).join(" "));
+        const label = "<strong>Additional Information:</strong> ";
+
+        if (!isLong) {
+          return `<div style="margin-top: 0;">
+      ${label}<span style="font-size: 12px;">${escapeHTML(cleaned)}</span>
+    </div>`;
+        }
+
+        return `
+    <div class="additional-info" style="margin-top: 0;">
+      ${label}<span class="info-preview" style="font-size: 12px;">${preview}… </span><span class="info-full" style="display: none; font-size: 12px; white-space: pre-line;">${escapeHTML(cleaned)} </span><button type="button" class="info-toggle"
+        onclick="toggleDescriptionPreview(this)"
+        style="display: inline; background: none; border: none; padding: 0; color: #2563eb; cursor: pointer; font-size: 12px; text-decoration: underline;">Click here for more</button>
+    </div>`;
+      }
+
+      function toggleDescriptionPreview(button) {
+        const container = button.closest(".additional-info");
+        const preview = container.querySelector(".info-preview");
+        const full = container.querySelector(".info-full");
+
+        const expanding = full.style.display === "none";
+
+        preview.style.display = expanding ? "none" : "inline";
+        full.style.display = expanding ? "inline" : "none";
+
+        button.textContent = expanding ? "Show less" : "Click here for more";
+      }
+
       function renderEvents() {
         const now = new Date();
         const todayStr = now.toISOString().split("T")[0];
@@ -1391,7 +1440,7 @@
                 : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
 
             eventsDetailsHTML +=
-              '<p style="margin-top: 0; margin-bottom: 8px; ' +
+              '<div style="margin-top: 0; margin-bottom: 8px; ' +
               extraStyle +
               '"><strong>' +
               ev.summary +
@@ -1399,7 +1448,8 @@
               ev.timeStr +
               "<br><strong>Venue:</strong> " +
               ev.location +
-              "</p>";
+              createDescriptionPreview(ev.description) +
+              "</div>";
           });
 
           fullHTML +=
@@ -1450,7 +1500,7 @@
                 : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
 
             eventsDetailsHTML +=
-              '<p style="margin-top: 0; margin-bottom: 8px; ' +
+              '<div style="margin-top: 0; margin-bottom: 8px; ' +
               extraStyle +
               '"><strong>' +
               ev.summary +
@@ -1458,7 +1508,8 @@
               ev.timeStr +
               "<br><strong>Venue:</strong> " +
               ev.location +
-              "</p>";
+              createDescriptionPreview(ev.description) +
+              "</div>";
           });
 
           fullHTML +=
