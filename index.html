@@ -654,19 +654,13 @@
         </div>
       </div>
 
-      <!-- Row 1: Side-by-Side Absence Notification Buttons (Pale Yellow) -->
+      <!-- Single Absence Notification Button -->
       <div class="notification-button-row">
         <button
           class="action-btn-shared pale-yellow-btn"
           onclick="toggleSubcard('rehearsal-absence-card')"
         >
-          Notify Forthcoming Absence(s) From Rehearsal(s)
-        </button>
-        <button
-          class="action-btn-shared pale-yellow-btn"
-          onclick="toggleSubcard('performance-absence-card')"
-        >
-          Notify Forthcoming Absence(s) From Performance(s)
+          Notify Forthcoming Absence(s)
         </button>
       </div>
 
@@ -676,27 +670,20 @@
         class="subcard-container"
         style="display: none"
       >
-        <h4>Forthcoming Absence(s) from Rehearsal(s)</h4>
+        <h4>Forthcoming Absence(s)</h4>
 
         <div class="subcard-intro-text">
           <p>
-            NSCI Members are expected to try to attend all rehearsals. However
-            it is understood that this is not always possible. NCSI management
-            will always try to work around individual issues - particularly
-            last-minute emergencies.
+            NCH Cór Linn members are expected to try to attend all rehearsals,
+            performances and other events. However it is understood that this is
+            not always possible. Choir Management will always try to work around
+            individual issues - particularly last-minute emergencies.
           </p>
           <p>
             Please communicate absences to the Choir Manager ahead of time
             whenever possible. We understand that circumstances change, but late
-            drop-outs can make the planning and running of the NCSI really
+            drop-outs can make the planning and running of the choir really
             challenging.
-          </p>
-          <p>
-            <strong
-              >If you wish you can complete this form to generate a
-              pre-populated email, which you can then send to the Choir
-              Manager.)</strong
-            >
           </p>
         </div>
 
@@ -751,9 +738,9 @@
           </div>
 
           <div class="form-group">
-            <label>4. Rehearsal(s) From Which You Will be Absent:</label>
+            <label>4. Forthcoming Dates on Which You Will Be Absent:</label>
             <div id="rehearsal-checkboxes-container" class="checkbox-group">
-              <em>Loading upcoming rehearsal dates...</em>
+              <em>Loading forthcoming dates...</em>
             </div>
           </div>
 
@@ -774,142 +761,6 @@
               type="button"
               class="form-cancel-btn"
               onclick="toggleSubcard('rehearsal-absence-card')"
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Performance Absence Subcard -->
-      <div
-        id="performance-absence-card"
-        class="subcard-container"
-        style="display: none"
-      >
-        <h4>Forthcoming Absence(s) from Performance(s)</h4>
-
-        <div class="subcard-intro-text">
-          <p>
-            NSCI Members are expected to commit to all or most of the concert
-            performances scheduled in a season in order to retain their place in
-            the choir. (Taking part in half or less of the concerts in a season
-            will lead to a discussion regarding your continuing membership).
-            However NSCI Management fully acknowledge that members will
-            sometimes be compelled to miss a performance. They will always try
-            to accommodate individual issues, particularly last-minute
-            emergencies.
-          </p>
-          <p>
-            If you know you will be unable to take part in a forthcoming
-            performance it is essential that the Choir Manager be advised at the
-            earliest possible opportunity. The Chorus Director needs to know to
-            what extent the choir may be operating in any forthcoming concert
-            with somewhat reduced numbers. Late drop-outs make that sort of
-            planning really challenging. Accordingly, such drop-outs must be
-            avoided except when they arise by virtue of genuinely unforeseen &
-            pressing circumstances.
-          </p>
-          <p>
-            <strong
-              >If you wish you can complete this form to generate a
-              pre-populated email, which you can then send to the Choir Manager,
-              regarding any forthcoming performances you will be unable to take
-              part in.</strong
-            >
-          </p>
-        </div>
-
-        <form
-          id="performance-absence-form"
-          onsubmit="submitPerformanceAbsence(event)"
-        >
-          <div class="form-group">
-            <label for="perf-absence-name">1. Name:</label>
-            <input
-              type="text"
-              id="perf-absence-name"
-              required
-              placeholder="Your name"
-            />
-          </div>
-
-          <div class="form-group">
-            <label>2. Voice:</label>
-            <div class="radio-group">
-              <label
-                ><input
-                  type="radio"
-                  name="perf-absence-voice"
-                  value="Soprano"
-                  required
-                />
-                Soprano</label
-              >
-              <label
-                ><input type="radio" name="perf-absence-voice" value="Alto" />
-                Alto</label
-              >
-              <label
-                ><input type="radio" name="perf-absence-voice" value="Tenor" />
-                Tenor</label
-              >
-              <label
-                ><input type="radio" name="perf-absence-voice" value="Bass" />
-                Bass</label
-              >
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="perf-absence-mobile"
-              >3. Mobile Number (optional):</label
-            >
-            <input
-              type="tel"
-              id="perf-absence-mobile"
-              placeholder="Your mobile number"
-            />
-          </div>
-
-          <div class="form-group">
-            <label>4. Performance(s) From Which You Will be Absent:</label>
-            <div id="performance-checkboxes-container" class="checkbox-group">
-              <em>Loading upcoming performance dates...</em>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="perf-absence-notes">5. Additional Information:</label>
-            <textarea
-              id="perf-absence-notes"
-              rows="3"
-              placeholder="Any additional information regarding your absence"
-            ></textarea>
-          </div>
-
-          <div class="subcard-concluding-text">
-            <p>
-              If you are unable to participate in a forthcoming performance, you
-              are still welcome (and actively encouraged) to come nonetheless to
-              as many rehearsals as you can. This helps keep the sound,
-              musicianship & social culture of the choir alive and developing.
-              It also helps build the institutional repertoire memory of the
-              NCSI. But typically we expect to have only those singers who
-              intend performing in a concert taking part in the final Wednesday
-              choir-only rehearsal before concert week, and attending the
-              rehearsals with the conductor during concert week.
-            </p>
-          </div>
-
-          <div class="form-buttons">
-            <button type="submit" class="form-submit-btn">
-              Generate EMail (and remember to actually send it)
-            </button>
-            <button
-              type="button"
-              class="form-cancel-btn"
-              onclick="toggleSubcard('performance-absence-card')"
             >
               Cancel
             </button>
@@ -1349,12 +1200,8 @@
       let showAllFuture = false;
 
       function closeAllAbsenceCards() {
-        const rehearsalCard = document.getElementById("rehearsal-absence-card");
-        const performanceCard = document.getElementById(
-          "performance-absence-card",
-        );
-        if (rehearsalCard) rehearsalCard.style.display = "none";
-        if (performanceCard) performanceCard.style.display = "none";
+        const card = document.getElementById("rehearsal-absence-card");
+        if (card) card.style.display = "none";
       }
 
       async function resyncAllData(btn) {
@@ -1538,11 +1385,11 @@
             const title = ev.summary || "";
 
             const extraStyle = /to be confirmed/i.test(title)
-  ? "background-color: #ead5e7; padding: 10px; border-radius: 5px;"
-  : /\bRegular Rehearsal\b/i.test(title)
-    ? "background-color: #ffffff; padding: 10px; border-radius: 5px;"
-    : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
-                
+              ? "background-color: #ead5e7; padding: 10px; border-radius: 5px;"
+              : /\bRegular Rehearsal\b/i.test(title)
+                ? "background-color: #ffffff; padding: 10px; border-radius: 5px;"
+                : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
+
             eventsDetailsHTML +=
               '<p style="margin-top: 0; margin-bottom: 8px; ' +
               extraStyle +
@@ -1597,11 +1444,11 @@
             const title = ev.summary || "";
 
             const extraStyle = /to be confirmed/i.test(title)
-  ? "background-color: #ead5e7; padding: 10px; border-radius: 5px;"
-  : /\bRegular Rehearsal\b/i.test(title)
-    ? "background-color: #ffffff; padding: 10px; border-radius: 5px;"
-    : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
-                
+              ? "background-color: #ead5e7; padding: 10px; border-radius: 5px;"
+              : /\bRegular Rehearsal\b/i.test(title)
+                ? "background-color: #ffffff; padding: 10px; border-radius: 5px;"
+                : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
+
             eventsDetailsHTML +=
               '<p style="margin-top: 0; margin-bottom: 8px; ' +
               extraStyle +
@@ -1946,137 +1793,69 @@
         );
         if (!container) return;
 
-        const events = cachedEvents || [];
         const now = new Date();
-        now.setHours(0, 0, 0, 0);
+        const todayStr =
+          now.getFullYear() +
+          "-" +
+          String(now.getMonth() + 1).padStart(2, "0") +
+          "-" +
+          String(now.getDate()).padStart(2, "0");
 
-        const rehearsals = events.filter((e) => {
-          const title = (e.summary || "").toLowerCase();
-          const eventDate = new Date(e.startDateStr);
-          return title.includes("rehearsal") && eventDate >= now;
-        });
+        const uniqueDates = [
+          ...new Set(
+            cachedEvents
+              .filter((e) => e.startDateStr && e.startDateStr >= todayStr)
+              .map((e) => e.startDateStr),
+          ),
+        ].sort();
 
-        const uniqueDates = [];
-        rehearsals.forEach((rev) => {
-          if (rev.startDateStr && !uniqueDates.includes(rev.startDateStr)) {
-            uniqueDates.push(rev.startDateStr);
-          }
-        });
+        container.innerHTML = "";
 
-        uniqueDates.sort();
-        const nextThreeDays = uniqueDates.slice(0, 3);
-
-        if (nextThreeDays.length > 0) {
-          container.innerHTML = "";
-          nextThreeDays.forEach((dateStr) => {
-            const parts = dateStr.split("-").map(Number);
-            const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
-            const formattedDate = dateObj.toLocaleDateString("en-GB", {
-              weekday: "long",
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            });
-
-            const label = document.createElement("label");
-            label.innerHTML = `<input type="checkbox" name="absence-date" value="${formattedDate}"> ${formattedDate}`;
-            container.appendChild(label);
-          });
-        } else {
+        if (uniqueDates.length === 0) {
           container.innerHTML =
-            "<em>No upcoming rehearsal dates found in the calendar feed.</em>";
+            "<em>No forthcoming dates found in the calendar feed.</em>";
+          return;
         }
-      }
 
-      function loadPerformanceDates() {
-        const container = document.getElementById(
-          "performance-checkboxes-container",
-        );
-        if (!container) return;
+        uniqueDates.forEach((dateStr) => {
+          const parts = dateStr.split("-").map(Number);
+          const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
 
-        const events = cachedEvents || [];
-        const now = new Date();
-        now.setHours(0, 0, 0, 0);
-
-        const performances = events.filter((e) => {
-          const title = (e.summary || "").toLowerCase();
-          const eventDate = new Date(e.startDateStr);
-          return (
-            (title.includes("concert") ||
-              title.includes("performance") ||
-              title.includes("symphony") ||
-              title.includes("messiah") ||
-              title.includes("passions")) &&
-            eventDate >= now
-          );
-        });
-
-        performances.sort(
-          (a, b) => new Date(a.startDateStr) - new Date(b.startDateStr),
-        );
-
-        if (performances.length > 0) {
-          container.innerHTML = "";
-          performances.forEach((pev) => {
-            const parts = pev.startDateStr.split("-").map(Number);
-            const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
-            const formattedDate = dateObj.toLocaleDateString("en-GB", {
-              weekday: "long",
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            });
-
-            const displayLabel = `${formattedDate} - ${pev.summary}`;
-
-            const label = document.createElement("label");
-            label.innerHTML = `<input type="checkbox" name="perf-absence-date" value="${displayLabel}"> ${displayLabel}`;
-            container.appendChild(label);
+          const formattedDate = dateObj.toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
           });
-        } else {
-          container.innerHTML =
-            "<em>No upcoming performance dates found in the calendar feed.</em>";
-        }
+
+          const label = document.createElement("label");
+          const checkbox = document.createElement("input");
+
+          checkbox.type = "checkbox";
+          checkbox.name = "absence-date";
+          checkbox.value = formattedDate;
+
+          label.appendChild(checkbox);
+          label.appendChild(document.createTextNode(" " + formattedDate));
+          container.appendChild(label);
+        });
       }
 
       window.toggleSubcard = function (cardId) {
-        const rehearsalCard = document.getElementById("rehearsal-absence-card");
-        const performanceCard = document.getElementById(
-          "performance-absence-card",
-        );
+        if (cardId !== "rehearsal-absence-card") return;
 
-        if (cardId === "rehearsal-absence-card") {
-          if (performanceCard) performanceCard.style.display = "none";
-          if (rehearsalCard) {
-            rehearsalCard.style.display =
-              rehearsalCard.style.display === "none" ||
-              rehearsalCard.style.display === ""
-                ? "block"
-                : "none";
-            if (rehearsalCard.style.display === "block") {
-              loadRehearsalDates();
-              rehearsalCard.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest",
-              });
-            }
-          }
-        } else if (cardId === "performance-absence-card") {
-          if (rehearsalCard) rehearsalCard.style.display = "none";
-          if (performanceCard) {
-            performanceCard.style.display =
-              performanceCard.style.display === "none" ||
-              performanceCard.style.display === ""
-                ? "block"
-                : "none";
-            if (performanceCard.style.display === "block") {
-              loadPerformanceDates();
-              performanceCard.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest",
-              });
-            }
-          }
+        const card = document.getElementById("rehearsal-absence-card");
+        if (!card) return;
+
+        const opening = card.style.display !== "block";
+        card.style.display = opening ? "block" : "none";
+
+        if (opening) {
+          loadRehearsalDates();
+          card.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+          });
         }
       };
 
@@ -2106,10 +1885,10 @@
             : "None selected";
 
         const subject = encodeURIComponent(
-          `Rehearsal Absence Notice: ${name} (${voice})`,
+          `Cor Linn Absence Notice: ${name} (${voice})`,
         );
         const body = encodeURIComponent(
-          `This is a rehearsal absence notification generated via NSCI Hub App:\n\n` +
+          `This is a rehearsal absence notification generated via the NCH - Cór Linn Hub:\n\n` +
             `Name: ${name}\n\n` +
             `Voice Part: ${voice}\n\n` +
             `Mobile: ${mobile}\n\n` +
@@ -2123,54 +1902,6 @@
 
         // Immediately close the subcard and reset the form fields
         toggleSubcard("rehearsal-absence-card");
-        event.target.reset();
-      }
-
-      function submitPerformanceAbsence(event) {
-        event.preventDefault();
-
-        const name = document.getElementById("perf-absence-name").value.trim();
-        const voiceEl = document.querySelector(
-          'input[name="perf-absence-voice"]:checked',
-        );
-        const voice = voiceEl ? voiceEl.value : "Not specified";
-        const mobile =
-          document.getElementById("perf-absence-mobile").value.trim() ||
-          "Not provided";
-        const notes = document
-          .getElementById("perf-absence-notes")
-          .value.trim();
-
-        const selectedDates = [];
-        document
-          .querySelectorAll('input[name="perf-absence-date"]:checked')
-          .forEach((cb) => {
-            selectedDates.push(cb.value);
-          });
-
-        const datesString =
-          selectedDates.length > 0
-            ? selectedDates.join("\n- ")
-            : "None selected";
-
-        const subject = encodeURIComponent(
-          `Performance Absence Notice: ${name} (${voice})`,
-        );
-        const body = encodeURIComponent(
-          `This is a performance absence notification generated via the NSCI Hub App:\n\n` +
-            `Name: ${name}\n\n` +
-            `Voice Part: ${voice}\n\n` +
-            `Mobile: ${mobile}\n\n` +
-            `Forthcoming Performance Absences:\n\n- ${datesString}\n\n` +
-            `Additional Information:\n\n${notes || "None provided"}\n\n` +
-            `---`,
-        );
-
-        let mailtoUri = `mailto:nchchoirs@nch.ie?subject=${subject}&body=${body}`;
-        window.location.href = mailtoUri;
-
-        // Immediately close the subcard and reset the form fields
-        toggleSubcard("performance-absence-card");
         event.target.reset();
       }
     </script>
