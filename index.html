@@ -1363,15 +1363,15 @@
 
         if (!isLong) {
           return `<div style="margin-top: 0;">
-      ${label}<span style="font-size: 12px;">${escapeHTML(cleaned)}</span>
+      ${label}<span style="font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere;">${escapeHTML(cleaned)}</span>
     </div>`;
         }
 
         return `
     <div class="additional-info" style="margin-top: 0;">
-      ${label}<span class="info-preview" style="font-size: 12px;">${preview}… </span><span class="info-full" style="display: none; font-size: 12px; white-space: pre-line;">${escapeHTML(cleaned)} </span><button type="button" class="info-toggle"
+      ${label}<span class="info-preview" style="font-size: 14px;">${preview}… </span><div class="info-full" style="display: none; font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5; margin-top: 4px;">${escapeHTML(cleaned)}</div><button type="button" class="info-toggle"
         onclick="toggleDescriptionPreview(this)"
-        style="display: inline; background: none; border: none; padding: 0; color: #2563eb; cursor: pointer; font-size: 12px; text-decoration: underline;">Click here for more</button>
+        style="display: inline; background: none; border: none; padding: 0; color: #2563eb; cursor: pointer; font-size: 14px; text-decoration: underline;">Click here for more</button>
     </div>`;
       }
 
@@ -1383,7 +1383,7 @@
         const expanding = full.style.display === "none";
 
         preview.style.display = expanding ? "none" : "inline";
-        full.style.display = expanding ? "inline" : "none";
+        full.style.display = expanding ? "block" : "none";
 
         button.textContent = expanding ? "Show less" : "Click here for more";
       }
@@ -1433,11 +1433,28 @@
           dayEvents.forEach((ev) => {
             const title = ev.summary || "";
 
-            const extraStyle = /to be confirmed/i.test(title)
-              ? "background-color: #ead5e7; padding: 10px; border-radius: 5px;"
-              : /\bRegular Rehearsal\b/i.test(title)
-                ? "background-color: #ffffff; padding: 10px; border-radius: 5px;"
-                : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
+            const isTBC = /\s*-\s*To Be Confirmed\s*$/i.test(title);
+
+            const isRehearsal =
+              /^(?:[SATB]+\s+)?(?:Semi-Chorus\s+)?Rehearsal(?:\s*-\s*To Be Confirmed)?$/i.test(
+                title,
+              );
+
+            const isSaturday =
+              /^\d{4}-\d{2}-\d{2}$/.test(ev.startDateStr) &&
+              new Date(ev.startDateStr + "T12:00:00Z").getUTCDay() === 6;
+
+            const isStandardTime = /^11:30\s*[–-]\s*14:00$/.test(
+              ev.timeStr.trim(),
+            );
+
+            const backgroundColour = isTBC
+              ? "#ead5e7"
+              : isRehearsal && isSaturday && isStandardTime
+                ? "#ffffff"
+                : "#f8fbd4";
+
+            const extraStyle = `background-color: ${backgroundColour}; padding: 10px; border-radius: 5px;`;
 
             eventsDetailsHTML +=
               '<div style="margin-top: 0; margin-bottom: 8px; ' +
@@ -1493,11 +1510,28 @@
           dayEvents.forEach((ev) => {
             const title = ev.summary || "";
 
-            const extraStyle = /to be confirmed/i.test(title)
-              ? "background-color: #ead5e7; padding: 10px; border-radius: 5px;"
-              : /\bRegular Rehearsal\b/i.test(title)
-                ? "background-color: #ffffff; padding: 10px; border-radius: 5px;"
-                : "background-color: #f8fbd4; padding: 10px; border-radius: 5px;";
+            const isTBC = /\s*-\s*To Be Confirmed\s*$/i.test(title);
+
+            const isRehearsal =
+              /^(?:[SATB]+\s+)?(?:Semi-Chorus\s+)?Rehearsal(?:\s*-\s*To Be Confirmed)?$/i.test(
+                title,
+              );
+
+            const isSaturday =
+              /^\d{4}-\d{2}-\d{2}$/.test(ev.startDateStr) &&
+              new Date(ev.startDateStr + "T12:00:00Z").getUTCDay() === 6;
+
+            const isStandardTime = /^11:30\s*[–-]\s*14:00$/.test(
+              ev.timeStr.trim(),
+            );
+
+            const backgroundColour = isTBC
+              ? "#ead5e7"
+              : isRehearsal && isSaturday && isStandardTime
+                ? "#ffffff"
+                : "#f8fbd4";
+
+            const extraStyle = `background-color: ${backgroundColour}; padding: 10px; border-radius: 5px;`;
 
             eventsDetailsHTML +=
               '<div style="margin-top: 0; margin-bottom: 8px; ' +
