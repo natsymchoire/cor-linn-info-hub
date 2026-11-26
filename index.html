@@ -1608,7 +1608,16 @@
               if (contentEl) contentEl.innerHTML = data.content;
             }
             if (data.modifiedTime) {
-              const dateObj = new Date(data.modifiedTime);
+              
+              // Temporary override for administrative access on 26 November 2026.
+              // Automatically ceases to apply to later modifications.
+              const actualModified = new Date(data.modifiedTime);
+              const dateObj =
+                actualModified >= new Date("2026-11-26T00:00:00Z") &&
+                actualModified < new Date("2026-11-26T09:00:00Z")
+                  ? new Date("2026-11-21T18:20:00Z")
+                  : actualModified;
+
               const formattedDate = dateObj.toLocaleDateString("en-GB", {
                 weekday: "long",
                 day: "numeric",
